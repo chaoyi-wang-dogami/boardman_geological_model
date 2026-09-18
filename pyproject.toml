@@ -1,0 +1,19 @@
+[project]
+name = "boardman-geological-model"
+version = "0.1.0"
+description = "OWRD well-report downloader for the Boardman geological model"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.32,<3",
+    "PyYAML>=6,<7",
+    "pandas>=2.2,<3",
+    "lxml>=5,<7",
+    "geopandas>=1.0,<2",
+    "pyogrio>=0.9,<1",
+    "matplotlib>=3.11.2",
+    "ipykernel>=7.3.0",
+]
+
+[tool.uv]
+package = false

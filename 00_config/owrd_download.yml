@@ -1,0 +1,51 @@
+# OWRD Well Report downloader configuration for the Boardman study area.
+
+owrd:
+  layer_url: "https://gis.wrd.state.or.us/server/rest/services/dynamic/Well_Reports_Query_WGS84/FeatureServer/0"
+  detail_url_template: "https://apps.wrd.state.or.us/apps/gw/well_log/wl_details.aspx?wl_id={wl_id}"
+  page_size: 2000
+  request_timeout_seconds: 90
+  retries: 4
+  retry_backoff_seconds: 1.0
+  delay_between_wells_seconds: 0.25
+  user_agent: "boardman-geological-model/0.1 (OWRD public-data research downloader)"
+
+study_area:
+  meridian: "WM"
+  townships:
+    - "T5N R25E"
+    - "T5N R26E"
+    - "T5N R27E"
+    - "T4N R24E"
+    - "T4N R25E"
+    - "T4N R26E"
+    - "T4N R27E"
+    - "T3N R24E"
+    - "T3N R25E"
+    - "T3N R26E"
+    - "T3N R27E"
+    - "T2N R24E"
+    - "T2N R25E"
+    - "T2N R26E"
+    - "T2N R27E" 
+
+location_quality:
+  class_a_max_error_ft: 50
+  class_b_max_error_ft: 100
+  # Sources matching this expression are treated as PLSS-derived/approximate,
+  # even if a latitude and longitude happen to be populated.
+  inferred_source_pattern: "(?i)(centroid|section center|quarter.?section|quarter.?quarter|PLSS|TRS)"
+
+downloads:
+  fetch_lithology: true
+  fetch_well_reports: true
+  overwrite_existing: false
+
+outputs:
+  raw_wells_csv: "01_raw/owrd/wells_raw.csv"
+  download_log_csv: "01_raw/owrd/download_log.csv"
+  per_well_directory: "01_raw/wells"
+  wells_all_csv: "02_gis/wells_all.csv"
+  wells_high_confidence_csv: "02_gis/wells_high_confidence.csv"
+  wells_geopackage: "02_gis/wells.gpkg"
+  combined_lithology_csv: "03_processed/lithology/lithology_all_raw.csv"

@@ -1,0 +1,25 @@
+# Python environments and caches
+.venv/
+# Keep uv.lock tracked for reproducible dependency versions.
+__pycache__/
+*.py[cod]
+
+# Interrupted downloads and temporary writes
+*.part
+
+# Downloaded OWRD records (large and reproducible)
+01_raw/wells/
+01_raw/owrd/*.csv
+
+# Generated GIS products
+02_gis/*.csv
+02_gis/*.gpkg
+02_gis/*.gpkg-*
+
+# Generated combined raw interval table
+03_processed/lithology/lithology_all_raw.csv
+
+# Notebook checkpoints and local editor files
+.ipynb_checkpoints/
+.vscode/
+.idea/
