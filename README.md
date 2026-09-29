@@ -1,7 +1,7 @@
 # Boardman geological model — OWRD downloader
 
 This first project component downloads Oregon Water Resources Department
-(OWRD) well-report data for the nine configured Boardman-area townships.
+(OWRD) well-report data for the 19 configured Boardman-area townships.
 
 It produces:
 
@@ -65,6 +65,26 @@ uv export --format requirements-txt --no-emit-project --output-file requirements
 ```
 
 See the [official uv project guide](https://docs.astral.sh/uv/guides/projects/).
+
+## Profile raw lithology wording and report identities
+
+After downloading the configured 19-township data, run:
+
+```bash
+uv run python scripts/profile_raw_lithology.py
+uv run python scripts/investigate_bonded_naming_spatial.py
+uv run python scripts/compare_bonded_descriptions.py
+```
+
+The first script checks the combined interval rows against the per-well files
+and profiles raw wording and report identities. The second investigates exact
+description reuse by bonded name and location concentration using class A/B
+points. The third compares report-level exact-description Dice similarity
+within and between bonded names in matched report groups. They write derived tables and figures to
+`04_analysis/raw_lithology_profile/`. See `FINDINGS.md` for denominators,
+definitions, and limitations. Generated CSVs are ignored by Git; the findings,
+embedded figures, named description example, and JSON summaries are retained.
+Source data are not changed.
 
 ## Test on five wells first
 
