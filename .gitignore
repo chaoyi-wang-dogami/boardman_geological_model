@@ -19,6 +19,15 @@ __pycache__/
 # Generated combined raw interval table
 03_processed/lithology/lithology_all_raw.csv
 
+# Reproducible exploratory outputs; keep the short findings and summary in Git
+04_analysis/raw_lithology_profile/*.csv
+04_analysis/raw_lithology_profile/*.png
+!04_analysis/raw_lithology_profile/vocabulary.png
+!04_analysis/raw_lithology_profile/bonded_vocabulary.png
+!04_analysis/raw_lithology_profile/bonded_within_between_similarity.png
+!04_analysis/raw_lithology_profile/bonded_locations.png
+!04_analysis/raw_lithology_profile/bonded_neighbor_fraction.png
+
 # Notebook checkpoints and local editor files
 .ipynb_checkpoints/
 .vscode/

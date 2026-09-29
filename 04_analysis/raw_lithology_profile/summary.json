@@ -1,0 +1,32 @@
+{
+  "all_reports": 7402,
+  "townships": 19,
+  "intervals": 15586,
+  "interval_reports": 3067,
+  "matched_intervals": 15586,
+  "unmatched_intervals": 0,
+  "reports_without_intervals": 4335,
+  "per_well_files": 7402,
+  "metadata_files": 7402,
+  "per_well_rows": 15586,
+  "per_well_count_mismatches": 0,
+  "source_row_disagreements": 0,
+  "metadata_folder_mismatches": 0,
+  "metadata_well_id_mismatches": 0,
+  "distinct_raw": 3336,
+  "distinct_keys": 3336,
+  "keys_with_variants": 0,
+  "singletons": 2306,
+  "rare_2_to_4": 653,
+  "qc": {
+    "duplicate_full_row": 0,
+    "duplicate_interval_key": 2,
+    "missing_description": 0,
+    "invalid_bound": 0,
+    "nonpositive_thickness": 13,
+    "recorded_thickness_mismatch": 0,
+    "overlap_with_previous": 83,
+    "gap_from_previous": 33
+  },
+  "overlap_strata": 166
+}
