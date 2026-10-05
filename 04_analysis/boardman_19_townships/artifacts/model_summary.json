@@ -1,0 +1,90 @@
+{
+  "gempy_version": "2026.0.3",
+  "python_version": "3.12.14",
+  "source_sha256": {
+    "03_processed/boardman_19_townships/boardman_wells_stratigraphy.csv": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+    "03_processed/boardman_19_townships/boardman_wells_summary.csv": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+    "02_gis/reference/plss_townships.geojson": "e993c325a03acfb5837deb04268eb8d28becb1b9e14d32d2a4dc3e560d85a596"
+  },
+  "source_rows": 1854,
+  "source_reports": 423,
+  "source_gwis_sites": 328,
+  "location_a_or_b_sites": 271,
+  "location_spread_over_25m_sites": 4,
+  "candidates": 273,
+  "selected_contacts": 220,
+  "selected_sites": 160,
+  "contacts_by_surface": {
+    "top_grande_ronde": 16,
+    "top_saddle_mountains": 148,
+    "top_wanapum": 56
+  },
+  "excluded_by_reason": {
+    "location_not_eligible": 35,
+    "no_adjacent_transition": 16,
+    "ambiguous_previous_unit": 2
+  },
+  "model_crs": "EPSG:26911",
+  "vertical_reference": "GWIS source elevation in feet; formal vertical datum unverified",
+  "origin_utm_m": [
+    275814.7781375351,
+    5052281.052975849
+  ],
+  "extent_local_m": [
+    -500.0,
+    50642.58476124774,
+    -500.0,
+    37433.71241944656,
+    -450.0,
+    420.0
+  ],
+  "resolution": [
+    54,
+    40,
+    48
+  ],
+  "unit_index": {
+    "1": "overburden",
+    "2": "saddle_mountains",
+    "3": "wanapum",
+    "4": "grande_ronde_and_older"
+  },
+  "voxel_unit_counts": {
+    "1": 27796,
+    "2": 9895,
+    "3": 25930,
+    "4": 40059
+  },
+  "masked_voxel_unit_counts": {
+    "0": 41589,
+    "1": 2346,
+    "2": 6738,
+    "3": 19204,
+    "4": 33803
+  },
+  "in_sample_nearest_voxel_error_m": {
+    "top_saddle_mountains": {
+      "n": 148,
+      "median_absolute_m": 5.714820000000003,
+      "p90_absolute_m": 17.637040000000017
+    },
+    "top_wanapum": {
+      "n": 56,
+      "median_absolute_m": 11.461959999999998,
+      "p90_absolute_m": 27.37288000000001
+    },
+    "top_grande_ronde": {
+      "n": 16,
+      "median_absolute_m": 12.048759999999998,
+      "p90_absolute_m": 47.758700000000005
+    }
+  },
+  "assumptions": [
+    "First observed unit of each basalt family marks its upper contact only when adjacent to a different interpreted interval.",
+    "Ellensburg interbeds and other sediments are collapsed into broad adjacent units; their geometry is not represented.",
+    "One horizontal orientation per contact surface is assumed; no measured dip is supplied.",
+    "Raw GemPy block is rectangular; a separate voxel array masks outside the township polygons and above a well-elevation-derived approximate land surface.",
+    "The approximate land surface is inverse-distance interpolation of GWIS site elevations, not an independent DEM.",
+    "Model is exploratory and not validated against held-out boreholes."
+  ]
+}

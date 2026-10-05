@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Investigate exact bonded-name phrase reuse and location concentration.
+"""Investigate exact driller-name phrase reuse and location concentration.
 
-Run after profile_raw_lithology.py. Only derived files under
+Run after profile_raw_lithology.py and compare_bonded_descriptions.py. Only derived files under
 04_analysis/raw_lithology_profile are written.
 """
 
@@ -9,33 +9,28 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
 from pathlib import Path
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.colors import to_rgba
+from matplotlib.ticker import PercentFormatter
 import numpy as np
 import pandas as pd
 from pyproj import Transformer
+from driller_analysis_common import selected_drillers, well_units
+from township_location_qc import audit_locations
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MIN_REPORTS = 10
 K = 5
-N_PERMUTATIONS = 999
-SEED = 20260928
 EXAMPLE_NAME = "BRANDON BROWN"
 
 
-def usable_name(values: pd.Series) -> pd.Series:
-    name = values.str.strip()
-    return name.ne("") & ~name.str.upper().str.match(r"^UNKNOWN(?:\s|$)")
-
-
 def nearest_indices(frame: pd.DataFrame) -> np.ndarray:
-    """Return five nearest other *reports*, allowing coincident coordinates."""
+    """Return five nearest other well units, allowing coincident coordinates."""
     lon = frame.longitude.to_numpy(dtype=float)
     lat = frame.latitude.to_numpy(dtype=float)
     # OWRD's queried geometry is WGS84; all points lie in UTM zone 11N.
@@ -43,49 +38,27 @@ def nearest_indices(frame: pd.DataFrame) -> np.ndarray:
     xy = np.column_stack([x, y])
     squared = ((xy[:, None, :] - xy[None, :, :]) ** 2).sum(axis=2)
     np.fill_diagonal(squared, np.inf)
-    # Stable order makes exact-distance ties reproducible by wl_id row order.
+    # Stable order makes exact-distance ties reproducible by well-key row order.
     return np.argsort(squared, axis=1, kind="stable")[:, :K]
 
 
-def neighbor_stats(frame: pd.DataFrame, *, seed: int, stratify: bool) -> pd.DataFrame:
-    """Random-label reference keeps coordinates and label frequencies fixed."""
+def neighbor_stats(frame: pd.DataFrame) -> pd.DataFrame:
+    """Same-name share among five nearest well units, by driller."""
     if len(frame) <= K:
-        raise ValueError("Not enough mapped reports for five nearest neighbours")
+        raise ValueError("Not enough mapped well units for five nearest neighbours")
     frame = frame.reset_index(drop=True)
     neighbors = nearest_indices(frame)
     names, codes = np.unique(frame.bonded_full_name.to_numpy(), return_inverse=True)
     n_by_name = np.bincount(codes, minlength=len(names))
 
-    def score(label_codes: np.ndarray) -> np.ndarray:
-        same_count = (label_codes[:, None] == label_codes[neighbors]).sum(axis=1)
-        return np.bincount(label_codes, weights=same_count, minlength=len(names)) / (K * n_by_name)
-
-    observed = score(codes)
-    simulated = np.empty((N_PERMUTATIONS, len(names)), dtype=float)
-    rng = np.random.default_rng(seed)
-    if stratify:
-        decade = frame.complete_date_iso.str[:3].where(frame.complete_date_iso.ne(""), "missing")
-        strata = (frame.type_of_log + "|" + decade).to_numpy()
-        strata_indices = [np.flatnonzero(strata == value) for value in np.unique(strata)]
-    for i in range(N_PERMUTATIONS):
-        if stratify:
-            shuffled = codes.copy()
-            for indices in strata_indices:
-                shuffled[indices] = rng.permutation(codes[indices])
-        else:
-            shuffled = rng.permutation(codes)
-        simulated[i] = score(shuffled)
-    null_mean = np.mean(simulated, axis=0)
+    same_count = (codes[:, None] == codes[neighbors]).sum(axis=1)
+    observed = np.bincount(codes, weights=same_count, minlength=len(names)) / (K * n_by_name)
     result = pd.DataFrame({
         "bonded_full_name": names,
-        "reports": n_by_name,
+        "well_units": n_by_name,
         "observed_same_name_fraction": observed,
-        "null_mean_fraction": null_mean,
-        "null_median_fraction": np.median(simulated, axis=0),
-        "null_p025_fraction": np.quantile(simulated, 0.025, axis=0),
-        "null_p975_fraction": np.quantile(simulated, 0.975, axis=0),
-        "enrichment_ratio": np.divide(observed, null_mean, out=np.full_like(observed, np.nan), where=null_mean > 0),
-        "one_sided_permutation_p": (1 + (simulated >= observed).sum(axis=0)) / (N_PERMUTATIONS + 1),
+        "driller_share_of_well_units": n_by_name / len(frame),
+        "difference_percentage_points": 100 * (observed - n_by_name / len(frame)),
     })
     return result
 
@@ -101,38 +74,37 @@ def write_named_example(phrases: pd.DataFrame, summary: pd.DataFrame, out: Path)
     lines = [
         f"# {EXAMPLE_NAME}: exact interval descriptions",
         "",
-        "This example comes from the exact `bonded_full_name` value `BRANDON BROWN` in the OWRD well metadata, joined to structured `material_raw` intervals by report ID. It does not include the separate value `BRANDON C BROWN`. A bonded name is associated with a report; the structured data do not establish who wrote each description.",
+        "This example uses the recorded driller name `BRANDON BROWN` and one selected geological report per identified well. It excludes report `565542`, whose coordinates fall outside the study area, plus linked alternative and abandonment-only reports. It does not include `BRANDON C BROWN`. The field does not establish who wrote each description.",
         "",
-        f"Across **{int(stats.reports):,} reports** and **{int(stats.intervals):,} intervals**, this name is associated with **{len(block):,} distinct exact description strings**. **{int(stats.phrases_reused_in_2plus_reports):,}** occur in at least two reports; **{one_report:,}** occur in one report only. Of the latter, **{one_interval:,}** occur in just one interval, and **{one_report - one_interval:,}** recur within their single report.",
+        f"Across **{int(stats.reports):,} identified well units** and **{int(stats.intervals):,} intervals**, this name is associated with **{len(block):,} distinct exact description strings**. **{int(stats.phrases_reused_in_2plus_reports):,}** occur in at least two wells; **{one_report:,}** occur in one well only. Of the latter, **{one_interval:,}** occur in just one interval, and **{one_report - one_interval:,}** recur within their single selected report.",
         "",
-        "These strings are not 539 rock types. Many combine material, colour, hardness, fracturing, and adjoining material; some are abbreviations, spelling variants, or construction notes. That detail is valuable source information but produces a long tail for any future classification. No descriptions are merged or assigned standardized labels here.",
+        f"These strings are not {len(block):,} rock types. Many combine material, colour, hardness, fracturing, and adjoining material; some are abbreviations, spelling variants, or construction notes. That detail is valuable source information but produces a long tail for any future classification. No descriptions are merged or assigned standardized labels here.",
         "",
-        "Each table row is one exact stored `material_raw` string. Report count is the number of distinct report IDs containing it; interval count includes repeat occurrences within a report. This file is regenerated by `uv run python scripts/investigate_bonded_naming_spatial.py`.",
+        "Each table row is one exact stored `material_raw` string. The Wells column counts identified well units containing it; interval count includes repeat occurrences within a selected report. This file is regenerated by `uv run python scripts/investigate_bonded_naming_spatial.py`.",
     ]
     for title, subset in [
-        ("Descriptions used in two or more reports", block[block.report_count >= 2]),
-        ("Descriptions used in one report", block[block.report_count == 1]),
+        ("Descriptions used in two or more wells", block[block.report_count >= 2]),
+        ("Descriptions used in one well", block[block.report_count == 1]),
     ]:
-        lines.extend(["", f"## {title}", "", "| Exact description | Reports | Intervals |", "|---|---:|---:|"])
+        lines.extend(["", f"## {title}", "", "| Exact description | Wells | Intervals |", "|---|---:|---:|"])
         for row in subset.itertuples():
             description = row.material_raw.replace("|", "\\|").replace("`", "\\`")
             lines.append(f"| {description} | {row.report_count} | {row.interval_count} |")
-    (out / "BRANDON_BROWN.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (out.parent / "BRANDON_BROWN.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def reused_phrases(intervals: pd.DataFrame, wells: pd.DataFrame, out: Path) -> pd.DataFrame:
-    merged = intervals.merge(wells[["wl_id", "bonded_full_name"]], left_on="well_id", right_on="wl_id", how="left", validate="many_to_one", indicator=True)
-    if (merged._merge != "both").any():
-        raise ValueError("Interval rows without well metadata")
-    merged["bonded_full_name"] = merged.bonded_full_name.str.strip()
-    merged = merged[usable_name(merged.bonded_full_name) & merged.material_raw.str.strip().ne("")].copy()
+def reused_phrases(intervals: pd.DataFrame, units: pd.DataFrame, cohort: pd.DataFrame,
+                   out: Path) -> pd.DataFrame:
+    merged = intervals.merge(units[["wl_id", "bonded_full_name"]], left_on="well_id",
+                             right_on="wl_id", how="inner", validate="many_to_one")
+    merged = merged[merged.bonded_full_name.isin(cohort.bonded_full_name) & merged.material_raw.str.strip().ne("")].copy()
     reports_by_name = merged.groupby("bonded_full_name").well_id.nunique()
-    eligible_names = set(reports_by_name[reports_by_name >= MIN_REPORTS].index)
-    merged = merged[merged.bonded_full_name.isin(eligible_names)]
+    if set(reports_by_name.index) != set(cohort.bonded_full_name):
+        raise AssertionError("Reuse profile does not cover the selected cohort")
     phrases = merged.groupby(["bonded_full_name", "material_raw"]).agg(
         interval_count=("well_id", "size"), report_count=("well_id", "nunique")
     ).reset_index()
-    phrases["reused_across_reports"] = phrases.report_count.ge(2)
+    phrases["reused_across_wells"] = phrases.report_count.ge(2)
     phrases["name_report_count"] = phrases.bonded_full_name.map(reports_by_name)
     phrases["share_of_name_reports"] = phrases.report_count / phrases.name_report_count
     phrases = phrases.sort_values(["bonded_full_name", "report_count", "interval_count", "material_raw"], ascending=[True, False, False, True])
@@ -141,7 +113,7 @@ def reused_phrases(intervals: pd.DataFrame, wells: pd.DataFrame, out: Path) -> p
     summary_rows = []
     for name, block in phrases.groupby("bonded_full_name"):
         rows = merged[merged.bonded_full_name == name]
-        reused = block[block.reused_across_reports]
+        reused = block[block.reused_across_wells]
         repeated_text = set(reused.material_raw)
         top = block.iloc[0]
         summary_rows.append({
@@ -164,97 +136,120 @@ def reused_phrases(intervals: pd.DataFrame, wells: pd.DataFrame, out: Path) -> p
     return summary
 
 
-def spatial(locations: pd.DataFrame, wells: pd.DataFrame, interval_ids: set[str], out: Path) -> tuple[pd.DataFrame, dict]:
-    if locations.wl_id.duplicated().any() or wells.wl_id.duplicated().any():
-        raise ValueError("Report ID is not unique")
-    if not set(locations.wl_id).issubset(interval_ids):
-        raise ValueError("Location table contains a report absent from the combined interval table")
-    location_cols = ["wl_id", "bonded_full_name", "location_class", "type_of_log", "complete_date_iso", "latitude_dec", "longitude_dec", "tr_key"]
-    mapped = locations.merge(wells[location_cols], on="wl_id", how="left", validate="one_to_one", indicator=True)
-    if (mapped._merge != "both").any():
-        raise ValueError("Location without well metadata")
-    if not (mapped.latitude.eq(mapped.latitude_dec) & mapped.longitude.eq(mapped.longitude_dec)).all():
-        raise ValueError("Location CSV does not match OWRD source latitude/longitude")
-    mapped["latitude"] = pd.to_numeric(mapped.latitude, errors="coerce")
-    mapped["longitude"] = pd.to_numeric(mapped.longitude, errors="coerce")
-    if mapped[["latitude", "longitude"]].isna().any().any() or not mapped.latitude.between(-90, 90).all() or not mapped.longitude.between(-180, 180).all():
-        raise ValueError("Invalid location coordinate")
-    mapped["bonded_full_name"] = mapped.bonded_full_name.str.strip()
-    named = mapped[mapped.location_class.isin(["A", "B"]) & usable_name(mapped.bonded_full_name)].copy().sort_values("wl_id").reset_index(drop=True)
-    primary = neighbor_stats(named, seed=SEED, stratify=False)
-    conditional = neighbor_stats(named, seed=SEED + 1, stratify=True)
-    conditional = conditional.drop(columns=["reports"]).rename(columns={col: "type_decade_" + col for col in conditional if col != "bonded_full_name"})
-    primary = primary.merge(conditional, on="bonded_full_name", validate="one_to_one")
+def spatial(units: pd.DataFrame, cohort: pd.DataFrame, out: Path) -> tuple[pd.DataFrame, dict]:
+    if units.well_key.duplicated().any():
+        raise ValueError("A well appears more than once in the spatial input")
+    names = cohort.bonded_full_name.tolist()
+    named = units[units.location_class.isin(["A", "B"]) & units.bonded_full_name.isin(names)].sort_values("well_key").reset_index(drop=True).copy()
+    named["latitude"] = pd.to_numeric(named.latitude_dec, errors="raise")
+    named["longitude"] = pd.to_numeric(named.longitude_dec, errors="raise")
+    primary = neighbor_stats(named)
+    if set(primary.bonded_full_name) != set(names):
+        raise AssertionError("Spatial analysis does not cover the selected cohort")
 
-    # Coincident report points can create artificial zero-distance neighbours.
-    pair_size = named.groupby(["latitude", "longitude"]).wl_id.transform("size")
+    # Distinct wells can still share coordinates; remove all such wells in a
+    # sensitivity check without modifying their source records.
+    pair_size = named.groupby(["latitude", "longitude"]).well_key.transform("size")
     unique = named[pair_size == 1].copy()
-    unique_stats = neighbor_stats(unique, seed=SEED + 2, stratify=False)
-    unique_stats = unique_stats[["bonded_full_name", "reports", "observed_same_name_fraction", "null_mean_fraction", "enrichment_ratio"]].rename(columns={
-        "reports": "unique_coordinate_reports",
+    unique_stats = neighbor_stats(unique).rename(columns={
+        "well_units": "unique_coordinate_well_units",
         "observed_same_name_fraction": "unique_coordinate_observed_fraction",
-        "null_mean_fraction": "unique_coordinate_null_mean_fraction",
-        "enrichment_ratio": "unique_coordinate_enrichment_ratio",
+        "driller_share_of_well_units": "unique_coordinate_driller_share",
+        "difference_percentage_points": "unique_coordinate_difference_points",
     })
-    primary = primary.merge(unique_stats, on="bonded_full_name", validate="one_to_one")
-    primary = primary[primary.reports >= MIN_REPORTS].sort_values(["reports", "bonded_full_name"], ascending=[False, True])
-    primary.loc[primary.unique_coordinate_reports < MIN_REPORTS, ["unique_coordinate_observed_fraction", "unique_coordinate_null_mean_fraction", "unique_coordinate_enrichment_ratio"]] = np.nan
-    # Benjamini-Hochberg adjustment for the reported set of name-wise tests.
-    pvalues = primary.one_sided_permutation_p.to_numpy()
-    order = np.argsort(pvalues)
-    adjusted_sorted = np.minimum.accumulate((pvalues[order] * len(pvalues) / np.arange(1, len(pvalues) + 1))[::-1])[::-1]
-    adjusted = np.empty_like(adjusted_sorted)
-    adjusted[order] = np.minimum(adjusted_sorted, 1)
-    primary["bh_adjusted_q"] = adjusted
+    primary = primary.merge(unique_stats, on="bonded_full_name", how="left", validate="one_to_one")
+    primary.loc[primary.unique_coordinate_well_units.lt(10),
+                ["unique_coordinate_observed_fraction", "unique_coordinate_driller_share", "unique_coordinate_difference_points"]] = np.nan
+    primary = primary.sort_values(["well_units", "bonded_full_name"], ascending=[False, True])
     primary.to_csv(out / "bonded_spatial_summary.csv", index=False)
 
-    # Plot all source locations faintly; color only A/B names with >=10 points.
-    names = primary.bonded_full_name.tolist()
-    colors = dict(zip(names, plt.get_cmap("tab20").colors[: len(names)]))
-    fig, ax = plt.subplots(figsize=(13, 8))
-    weak = mapped[~mapped.location_class.isin(["A", "B"])]
-    ax.scatter(weak.longitude, weak.latitude, s=8, c="#c8c8c8", alpha=0.35, label=f"Class C/D ({len(weak)})", linewidths=0)
-    other = mapped[mapped.location_class.isin(["A", "B"]) & ~mapped.bonded_full_name.isin(names)]
-    ax.scatter(other.longitude, other.latitude, s=12, c="#777777", alpha=0.45, label=f"Other A/B ({len(other)})", linewidths=0)
-    for name in names:
-        block = named[named.bonded_full_name == name]
-        result = primary.loc[primary.bonded_full_name == name].iloc[0]
-        ax.scatter(block.longitude, block.latitude, s=23, alpha=0.8, c=[colors[name]], linewidths=0,
-                   label=f"{name} ({len(block)}, {result.enrichment_ratio:.1f}×)")
-    lat_span = mapped.latitude.max() - mapped.latitude.min()
-    lon_span = mapped.longitude.max() - mapped.longitude.min()
-    ax.set_xlim(mapped.longitude.min() - 0.03 * lon_span, mapped.longitude.max() + 0.03 * lon_span)
-    ax.set_ylim(mapped.latitude.min() - 0.03 * lat_span, mapped.latitude.max() + 0.03 * lat_span)
-    ax.set_aspect(1 / math.cos(math.radians(mapped.latitude.mean())))
-    ax.set(xlabel="Longitude (WGS84)", ylabel="Latitude (WGS84)", title="Structured-interval reports by exact bonded name")
-    ax.grid(alpha=0.15)
-    ax.legend(title="Bonded name (A/B reports, neighbour enrichment)", bbox_to_anchor=(1.01, 1), loc="upper left", frameon=False, fontsize=8, title_fontsize=9, markerscale=1.4)
-    fig.tight_layout()
-    fig.savefig(out / "bonded_locations.png", dpi=170, bbox_inches="tight")
-    plt.close(fig)
-
-    fig, ax = plt.subplots(figsize=(10, 8))
-    shown = primary.sort_values("enrichment_ratio")
-    ax.barh(shown.bonded_full_name, shown.observed_same_name_fraction, color="#376a8a", label="Observed")
-    ax.scatter(shown.null_mean_fraction, shown.bonded_full_name, marker="|", s=120, color="#bb6d26", label="Random-label mean", zorder=3)
-    ax.set(xlabel="Fraction of five nearest report neighbours with the same bonded name", title="Local same-name concentration (class A/B)")
-    ax.legend()
+    fig, ax = plt.subplots(figsize=(10, max(7, 0.42 * len(primary) + 1.5)))
+    shown = primary.sort_values("observed_same_name_fraction")
+    ax.barh(shown.bonded_full_name, shown.observed_same_name_fraction * 100, color="#376a8a",
+            label="Five nearest wells by the same driller")
+    ax.scatter(shown.driller_share_of_well_units * 100, shown.bonded_full_name, marker="|", s=140,
+               color="#dfaa35", label="This driller's share of all wells", zorder=3)
+    ax.set(xlabel="Spatial Correlation (percentage of five nearest wells by the same driller)",
+           title="Spatial correlation by driller")
+    ax.grid(axis="x", alpha=0.2)
+    ax.legend(loc="lower right")
     fig.tight_layout()
     fig.savefig(out / "bonded_neighbor_fraction.png", dpi=170)
     plt.close(fig)
 
+    ab_dice = pd.read_csv(out / "bonded_ab_within_between_similarity.csv")
+    relationship = primary.merge(ab_dice[["bonded_full_name", "lithology_wells", "within_dice"]],
+                                 on="bonded_full_name", validate="one_to_one")
+    if len(relationship) != len(primary) or not relationship.well_units.eq(relationship.lithology_wells).all():
+        raise ValueError("Figure 5 Dice and spatial scores must use the same A/B wells")
+    relationship = relationship.rename(columns={"within_dice": "ab_within_dice"})
+    relationship.to_csv(out / "bonded_spatial_vocabulary_relationship.csv", index=False)
+    x = relationship.ab_within_dice * 100
+    y = relationship.observed_same_name_fraction * 100
+    pearson = float(x.corr(y))
+    spearman = float(x.rank().corr(y.rank()))
+    fig, ax = plt.subplots(figsize=(11, 7.5))
+    marker_sizes = 4 * (45 + 2 * relationship.well_units)
+    ax.scatter(x, y, s=marker_sizes, facecolors=to_rgba("#376a8a", 0.3),
+               edgecolors="black", linewidths=0.8, zorder=3)
+    ax.set(xlabel="Lithology interpretation consistency",
+           ylabel="Spatial Correlation (percentage of five nearest wells by the same driller)",
+           title="Interpretation consistency and spatial correlation")
+    ax.set_xlim(0, x.max() + 7)
+    ax.set_ylim(0, max(100, y.max() * 1.08))
+    ax.set_yticks(np.arange(0, 101, 20))
+    ax.xaxis.set_major_formatter(PercentFormatter(xmax=100, decimals=0))
+    ax.grid(alpha=0.18)
+    ax.text(0.02, 0.98, f"{len(relationship)} drillers",
+            transform=ax.transAxes, ha="left", va="top", fontsize=9)
+    legend_counts = [10, 44, 112, 176]
+    legend_handles = [
+        ax.scatter([], [], s=4 * (45 + 2 * count),
+                   facecolors=to_rgba("#376a8a", 0.3), edgecolors="black",
+                   linewidths=0.8,
+                   label=f"{count} wells ({count / len(named):.1%})")
+        for count in legend_counts
+    ]
+    ax.legend(handles=legend_handles, title=f"A/B well count (share of {len(named)})",
+              loc="upper right", framealpha=0.95, labelspacing=4.6,
+              handletextpad=4, borderpad=2.2, fontsize=8)
+    # Fixed callout positions keep the dense middle group readable.
+    label_positions = {
+        "J TRENT CASTNER": (21.5, 85),
+        "PETER LARSEN": (8.3, 55),
+        "CHAD N GREGORY": (17.2, 49),
+        "GARRY ZOLLMAN": (28.0, 40),
+        "PAUL SMITH": (10.2, 36),
+        "BRANDON BROWN": (19.7, 35),
+        "TERRENCE JACQUES": (10.5, 41),
+        "BRANDON C BROWN": (10.0, 28),
+        "CHAD GREGORY": (11.0, 16),
+        "BEN DREYER": (4.0, 26),
+        "PATRICK WALLACE": (15.4, 12),
+        "CHAD COURTNEY": (22.2, 9),
+        "LARRY BURD": (23.0, 25),
+        "EDWIN BROWN": (37.4, 8),
+    }
+    for row, size in zip(relationship.itertuples(), marker_sizes):
+        point = (row.ab_within_dice * 100, row.observed_same_name_fraction * 100)
+        label = label_positions.get(row.bonded_full_name, (point[0] + 2, point[1] + 4))
+        ax.annotate(row.bonded_full_name, xy=point, xytext=label,
+                    ha="center", va="center", fontsize=8, zorder=4,
+                    arrowprops={"arrowstyle": "->", "color": "#555555",
+                                "lw": 0.8, "shrinkA": 3, "shrinkB": np.sqrt(size) / 2})
+    fig.tight_layout()
+    fig.savefig(out / "bonded_spatial_vocabulary_relationship.png", dpi=190)
+    plt.close(fig)
+
     meta = {
-        "mapped_interval_reports": len(mapped),
-        "unmapped_interval_reports": len(interval_ids - set(mapped.wl_id)),
-        "location_class_counts": mapped.location_class.value_counts().to_dict(),
-        "named_ab_pool": len(named),
-        "named_ab_values": named.bonded_full_name.nunique(),
-        "eligible_spatial_names": len(primary),
-        "named_ab_reports_at_repeated_coordinates": int((pair_size > 1).sum()),
-        "named_ab_unique_coordinate_pool": len(unique),
-        "permutations": N_PERMUTATIONS,
+        "selected_ab_wells": len(named),
+        "selected_drillers": len(primary),
+        "selected_ab_wells_at_repeated_coordinates": int((pair_size > 1).sum()),
+        "unique_coordinate_pool": len(unique),
         "nearest_neighbors": K,
         "crs_for_distances": "EPSG:32611",
+        "relationship_pearson": pearson,
+        "relationship_spearman": spearman,
     }
     (out / "bonded_investigation_summary.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
     return primary, meta
@@ -265,13 +260,15 @@ def main() -> None:
     parser.add_argument("--root", type=Path, default=ROOT)
     args = parser.parse_args()
     root = args.root.resolve()
-    out = root / "04_analysis/raw_lithology_profile"
+    out = root / "04_analysis/raw_lithology_profile/artifacts"
     out.mkdir(parents=True, exist_ok=True)
     wells = pd.read_csv(root / "01_raw/owrd/wells_raw.csv", dtype=str, keep_default_na=False)
     intervals = pd.read_csv(root / "03_processed/lithology/lithology_all_raw.csv", dtype=str, keep_default_na=False)
-    locations = pd.read_csv(root / "03_processed/wells/well_with_lithology.csv", dtype=str, keep_default_na=False)
-    names = reused_phrases(intervals, wells, out)
-    space, meta = spatial(locations, wells, set(intervals.well_id), out)
+    audit, _, _, _ = audit_locations(root, wells)
+    units, _ = well_units(wells, intervals, audit)
+    cohort = selected_drillers(units)
+    names = reused_phrases(intervals, units, cohort, out)
+    space, meta = spatial(units, cohort, out)
     print(f"Reuse profiles: {len(names)} names; spatial profiles: {len(space)} names")
     print(json.dumps(meta, indent=2))
 

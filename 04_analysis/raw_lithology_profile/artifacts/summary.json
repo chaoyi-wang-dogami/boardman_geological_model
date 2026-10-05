@@ -28,5 +28,25 @@
     "overlap_with_previous": 83,
     "gap_from_previous": 33
   },
-  "overlap_strata": 166
+  "selected_drillers": 14,
+  "well_unit_qc": {
+    "selected_geological_wells": 2916,
+    "untagged_selected_wells_using_report_id": 1670,
+    "selection_status_counts": {
+      "selected": 2916,
+      "linked_other_geology_report": 79,
+      "abandonment_only": 69,
+      "outside_townships": 3
+    },
+    "different_geology_log_wells": 71
+  },
+  "coordinate_qc": {
+    "boundary_source": "BLM National PLSS CadNSDI MapServer/1, Oregon Willamette Meridian; cached GeoJSON",
+    "boundary_sha256": "e993c325a03acfb5837deb04268eb8d28becb1b9e14d32d2a4dc3e560d85a596",
+    "source_coordinates": 7402,
+    "map_fallback_coordinates": 0,
+    "missing_coordinates": 0,
+    "outside_reports": 53,
+    "outside_interval_reports": 3
+  }
 }

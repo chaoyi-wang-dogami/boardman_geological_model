@@ -12,7 +12,6 @@ import csv
 import json
 import re
 from collections import Counter
-from itertools import combinations
 from pathlib import Path
 
 import matplotlib
@@ -21,11 +20,13 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from driller_analysis_common import selected_drillers, well_units
+from township_location_qc import SOURCE, audit_locations, outside_ids
+
 
 ROOT = Path(__file__).resolve().parents[1]
 IDENTITIES = ["owner_name", "bonded_full_name", "bonded_name_company", "bonded_license_nbr"]
 UNKNOWN = {"UNKNOWN", "UNK", "N/A", "NA", "NONE", "NOT KNOWN", "NOT PROVIDED", "?"}
-MIN_WELLS = 10
 
 
 def comparison_key(value: str) -> str:
@@ -45,22 +46,23 @@ def write_csv(frame: pd.DataFrame, path: Path) -> None:
     frame.to_csv(path, index=False)
 
 
-def fmt(value: float | int) -> str:
-    return f"{value:,.0f}"
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
     args = parser.parse_args()
     root = args.root.resolve()
-    out = root / "04_analysis/raw_lithology_profile"
+    out = root / "04_analysis/raw_lithology_profile/artifacts"
     out.mkdir(parents=True, exist_ok=True)
 
     wells_path = root / "01_raw/owrd/wells_raw.csv"
     intervals_path = root / "03_processed/lithology/lithology_all_raw.csv"
     wells = pd.read_csv(wells_path, dtype=str, keep_default_na=False)
     intervals = pd.read_csv(intervals_path, dtype=str, keep_default_na=False)
+    location_audit, _, _, boundary_hash = audit_locations(root, wells)
+    write_csv(location_audit, out / "coordinate_qc.csv")
+    excluded_ids = outside_ids(location_audit)
+    units, well_audit = well_units(wells, intervals, location_audit)
+    write_csv(well_audit, out / "well_report_audit.csv")
     required_wells = {"wl_id", "well_folder", "tr_key", "type_of_log", *IDENTITIES}
     required_intervals = {"well_id", "well_log", "interval_no", "from_ft", "to_ft", "thickness_ft", "material_raw"}
     if required_wells - set(wells) or required_intervals - set(intervals):
@@ -140,31 +142,13 @@ def main() -> None:
     for name, frame in [("raw_descriptions", raw_stats), ("comparison_keys", key_stats), ("collapsed_variants", variants)]:
         write_csv(frame, out / f"{name}.csv")
 
-    # All four fields are independent report attributes. The same interval can
-    # contribute to one value in each role; blank/unknown values are omitted.
-    summaries = []
-    identity_rows = []
-    for field in IDENTITIES:
-        values = wells[field].str.strip()
-        blank = values.eq("")
-        unknown = is_unknown(values)
-        attached = matched.assign(identity_value=matched[field].str.strip())
-        attached = attached[(attached.identity_value != "") & ~is_unknown(attached.identity_value)]
-        counts = attached.groupby("identity_value").agg(interval_count=("well_id", "size"), interval_wells=("well_id", "nunique"))
-        wc = wells.assign(identity_value=values).loc[~(blank | unknown)].groupby("identity_value").agg(all_wells=("wl_id", "nunique"))
-        table = wc.join(counts, how="left").fillna(0).astype(int).reset_index().rename(columns={"identity_value": "value"})
-        table.insert(0, "field", field)
-        identity_rows.append(table)
-        summaries.append({"field": field, "all_wells": len(wells), "blank_wells": int(blank.sum()), "unknown_wells": int(unknown.sum()), "nonblank_distinct_values": values[~(blank | unknown)].nunique(), "interval_wells_with_value": attached.well_id.nunique(), "intervals_with_value": len(attached), "interval_wells_missing_or_unknown": matched.well_id.nunique() - attached.well_id.nunique(), "intervals_missing_or_unknown": len(matched) - len(attached)})
-    identity_counts = pd.concat(identity_rows, ignore_index=True)
-    write_csv(identity_counts.sort_values(["field", "interval_count"], ascending=[True, False]), out / "identity_values.csv")
-    write_csv(pd.DataFrame(summaries), out / "identity_summary.csv")
-
     # Candidate aliases use only identical punctuation-insensitive spelling or
     # a shared bonded license. Neither rule establishes a person's identity.
     alias_rows = []
     for field in IDENTITIES[:3]:
-        table = identity_counts[identity_counts.field == field].copy()
+        values = wells[field].str.strip()
+        table = (wells.assign(value=values).loc[values.ne("") & ~is_unknown(values)]
+                 .groupby("value").agg(all_wells=("wl_id", "nunique")).reset_index())
         table["alias_key"] = table.value.map(identity_key)
         for key, group in table.groupby("alias_key"):
             if key and len(group) > 1:
@@ -175,56 +159,6 @@ def main() -> None:
         if group.name.nunique() > 1:
             alias_rows.append({"field": "bonded_full_name", "basis": "shared bonded_license_nbr; review license reuse and names", "evidence_key": license_no, "values": " | ".join(sorted(group.name)), "all_wells": int(wells[wells.bonded_license_nbr == license_no].shape[0])})
     write_csv(pd.DataFrame(alias_rows, columns=["field", "basis", "evidence_key", "values", "all_wells"]), out / "suspected_aliases.csv")
-
-    # One report supplies at most one value per field. Count a phrase once per
-    # report for well frequency, even if repeated in multiple intervals.
-    profiles = []
-    phrase_rows = []
-    for field in IDENTITIES[:3]:
-        eligible = identity_counts[(identity_counts.field == field) & (identity_counts.interval_wells >= MIN_WELLS)].value
-        field_data = valid[valid[field].str.strip().isin(set(eligible))].copy()
-        field_data["value"] = field_data[field].str.strip()
-        group_phrase = field_data.groupby(["value", "material_raw"]).agg(interval_count=("well_id", "size"), well_count=("well_id", "nunique")).reset_index()
-        prevalence = valid.loc[valid[field].str.strip().ne("") & ~is_unknown(valid[field])].groupby("material_raw")[field].nunique()
-        group_phrase["other_values_use_phrase"] = group_phrase.material_raw.map(prevalence).gt(1)
-        group_phrase.insert(0, "field", field)
-        phrase_rows.append(group_phrase)
-        for value, group in group_phrase.groupby("value"):
-            n_intervals = int(group.interval_count.sum())
-            n_wells = int(field_data.loc[field_data.value == value, "well_id"].nunique())
-            p = group.interval_count / n_intervals
-            top = group.sort_values("interval_count", ascending=False).head(3)
-            profiles.append({"field": field, "value": value, "well_count": n_wells, "interval_count": n_intervals, "vocabulary_size": len(group), "single_interval_phrases": int((group.interval_count == 1).sum()), "phrases_used_in_2plus_wells": int((group.well_count >= 2).sum()), "unique_to_value_phrases": int((~group.other_values_use_phrase).sum()), "shared_phrases": int(group.other_values_use_phrase.sum()), "top_phrase_interval_share": float(p.max()), "simpson_concentration": float((p**2).sum()), "top_phrases": " | ".join(f"{r.material_raw} ({r.interval_count} intervals; {r.well_count} wells)" for r in top.itertuples())})
-    profiles = pd.DataFrame(profiles).sort_values(["field", "well_count"], ascending=[True, False])
-    phrase_frequency = pd.concat(phrase_rows, ignore_index=True).sort_values(["field", "value", "interval_count"], ascending=[True, True, False])
-    write_csv(profiles, out / "naming_profiles.csv")
-    write_csv(phrase_frequency, out / "identity_phrase_frequencies.csv")
-
-    # A pair is comparable only when both logged at least 5 wells of the same
-    # report type in the same township, completion decade, and depth bin. Coarse
-    # covariates; the shared geology of specific intervals is still unverified.
-    stratum_wells = wells.copy()
-    stratum_wells["year"] = pd.to_numeric(stratum_wells.complete_date_iso.str[:4], errors="coerce")
-    stratum_wells["decade"] = (stratum_wells.year // 10 * 10).astype("Int64")
-    depth = pd.to_numeric(stratum_wells.completed_depth, errors="coerce")
-    stratum_wells["depth_bin"] = pd.cut(depth, [-0.01, 100, 300, 600, float("inf")], labels=["0-100", "100-300", "300-600", "600+"])
-    overlap_rows = []
-    for field in ["bonded_full_name", "bonded_name_company"]:
-        candidate = stratum_wells[stratum_wells.wl_id.isin(matched_well_ids)].copy()
-        candidate["value"] = candidate[field].str.strip()
-        candidate = candidate[candidate.value.isin(set(profiles.loc[profiles.field == field, "value"])) & candidate.decade.notna() & candidate.depth_bin.notna()]
-        strata = candidate.groupby(["type_of_log", "tr_key", "decade", "depth_bin", "value"], observed=True).wl_id.nunique().reset_index(name="wells")
-        for (report_type, township, decade, depth_bin), block in strata.groupby(["type_of_log", "tr_key", "decade", "depth_bin"], observed=True):
-            block = block[block.wells >= 5]
-            for a, b in combinations(block.itertuples(), 2):
-                def phrases_for(value: str) -> set[str]:
-                    ids = candidate.loc[(candidate.value == value) & (candidate.type_of_log == report_type) & (candidate.tr_key == township) & (candidate.decade == decade) & (candidate.depth_bin == depth_bin), "wl_id"]
-                    return set(valid.loc[valid.well_id.isin(ids), "material_raw"])
-
-                ap, bp = phrases_for(a.value), phrases_for(b.value)
-                overlap_rows.append({"field": field, "report_type": report_type, "township": township, "decade": int(decade), "completed_depth_bin_ft": str(depth_bin), "value_a": a.value, "wells_a": a.wells, "value_b": b.value, "wells_b": b.wells, "shared_exact_phrases": len(ap & bp), "phrase_jaccard": len(ap & bp) / len(ap | bp) if ap | bp else 0, "example_a_only": " | ".join(sorted(ap - bp)[:3]), "example_b_only": " | ".join(sorted(bp - ap)[:3])})
-    overlap = pd.DataFrame(overlap_rows, columns=["field", "report_type", "township", "decade", "completed_depth_bin_ft", "value_a", "wells_a", "value_b", "wells_b", "shared_exact_phrases", "phrase_jaccard", "example_a_only", "example_b_only"])
-    write_csv(overlap, out / "overlap_review.csv")
 
     inventory = pd.DataFrame([
         {"source": str(wells_path.relative_to(root)), "records": len(wells), "distinct_reports": wells.wl_id.nunique(), "scope": "all three report types, 19 configured townships"},
@@ -237,32 +171,41 @@ def main() -> None:
     by_type["interval_rows"] = by_type.type_of_log.map(matched.type_of_log.value_counts()).fillna(0).astype(int)
     write_csv(by_type, out / "scope_by_report_type.csv")
 
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.5))
+    fig, ax = plt.subplots(figsize=(9, 5.5))
     top = raw_stats.head(15).iloc[::-1]
-    axes[0].barh(top.material_raw, top.interval_count, color="#376a8a")
-    axes[0].set(xlabel="Intervals", title="Most frequent exact descriptions")
-    bins = [1, 2, 3, 5, 10, 20, 50, 100, float("inf")]
-    labels = ["1", "2", "3-4", "5-9", "10-19", "20-49", "50-99", "100+"]
-    bucket = pd.cut(raw_stats.interval_count, bins=[0, *bins[1:]], labels=labels)
-    axes[1].bar(labels, bucket.value_counts().reindex(labels, fill_value=0), color="#b78349")
-    axes[1].set(xlabel="Intervals per exact description", ylabel="Number of descriptions", title="Long tail of descriptions")
-    axes[1].tick_params(axis="x", rotation=45)
+    ax.barh(top.material_raw, top.interval_count, color="#376a8a")
+    ax.set(xlabel="Interval rows", title="Most frequent exact descriptions")
     fig.tight_layout()
     fig.savefig(out / "vocabulary.png", dpi=160)
     plt.close(fig)
 
-    fig, ax = plt.subplots(figsize=(9, 4.5))
-    top_people = profiles[profiles.field == "bonded_full_name"].nlargest(12, "well_count").iloc[::-1]
-    person_phrases = phrase_frequency[phrase_frequency.field == "bonded_full_name"]
-    reused_counts = person_phrases[person_phrases.well_count >= 2].groupby("value").size()
+    cohort = selected_drillers(units)
+    write_csv(cohort, out / "driller_cohort.csv")
+    fig, ax = plt.subplots(figsize=(10, max(6, 0.42 * len(cohort) + 1.5)))
+    person_phrases_all = valid.merge(
+        units[["wl_id", "bonded_full_name"]], left_on="well_id", right_on="wl_id",
+        how="inner", validate="many_to_one", suffixes=("_source", ""),
+    )
+    person_phrases_all = person_phrases_all[person_phrases_all.bonded_full_name.isin(cohort.bonded_full_name)].copy()
+    person_phrases_all["value"] = person_phrases_all.bonded_full_name
+    phrase_counts = person_phrases_all.groupby(["value", "material_raw"]).agg(interval_count=("well_id", "size"), well_count=("well_id", "nunique")).reset_index()
+    top_people = phrase_counts.groupby("value").agg(vocabulary_size=("material_raw", "size")).reset_index().sort_values("vocabulary_size")
+    if len(top_people) != len(cohort):
+        raise ValueError("Cohort and vocabulary profiles disagree")
+    reused_counts = phrase_counts[phrase_counts.well_count >= 2].groupby("value").size()
     reused = top_people.value.map(reused_counts).fillna(0).astype(int)
     one_report = top_people.vocabulary_size - reused
-    ax.barh(top_people.value, reused, color="#376a8a", label="Used in 2+ reports")
-    ax.barh(top_people.value, one_report, left=reused, color="#b9c4cc", label="Used in 1 report")
-    for y, total in enumerate(top_people.vocabulary_size):
+    labels_by_name = cohort.set_index("bonded_full_name").lithology_wells
+    labels = [f"{name} (n={labels_by_name[name]})" for name in top_people.value]
+    ax.barh(labels, reused, color="#376a8a", label="Used in 2+ wells")
+    ax.barh(labels, one_report, left=reused, color="#b9c4cc", label="Used in 1 well")
+    for y, (blue, total) in enumerate(zip(reused, top_people.vocabulary_size)):
+        ax.text(blue / 2 if blue >= 25 else blue + 1, y, str(blue),
+                ha="center" if blue >= 25 else "left", va="center", fontsize=7.5,
+                color="white" if blue >= 25 else "#263746", fontweight="bold")
         ax.text(total + 5, y, str(total), va="center", fontsize=8)
     ax.set_xlim(0, top_people.vocabulary_size.max() * 1.12)
-    ax.set(xlabel="Distinct exact descriptions", title="Vocabulary size and report reuse by bonded name")
+    ax.set(xlabel="Distinct exact descriptions", title="Vocabulary size and reuse by driller")
     ax.legend(loc="lower right", fontsize=8)
     fig.tight_layout()
     fig.savefig(out / "bonded_vocabulary.png", dpi=160)
@@ -275,7 +218,17 @@ def main() -> None:
         "per_well_count_mismatches": len(per_well_count_mismatches), "source_row_disagreements": source_row_disagreements, "metadata_folder_mismatches": metadata_key_mismatches, "metadata_well_id_mismatches": metadata_well_id_mismatches,
         "distinct_raw": len(raw_stats), "distinct_keys": len(key_stats), "keys_with_variants": int((key_stats.raw_variants > 1).sum()),
         "singletons": int((raw_stats.interval_count == 1).sum()), "rare_2_to_4": int(raw_stats.interval_count.between(2, 4).sum()),
-        "qc": {flag: int(ordered[flag].sum()) for flag in flags}, "overlap_strata": len(overlap),
+        "qc": {flag: int(ordered[flag].sum()) for flag in flags}, "selected_drillers": len(cohort),
+        "well_unit_qc": {"selected_geological_wells": len(units),
+                         "untagged_selected_wells_using_report_id": int(units.well_tag_nbr.eq("").sum()),
+                         "selection_status_counts": well_audit.selection_status.value_counts().to_dict(),
+                         "different_geology_log_wells": int(well_audit.loc[well_audit.different_geology_logs_for_well, "well_key"].nunique())},
+        "coordinate_qc": {"boundary_source": SOURCE, "boundary_sha256": boundary_hash,
+                          "source_coordinates": int(location_audit.coordinate_basis.eq("source").sum()),
+                          "map_fallback_coordinates": int(location_audit.coordinate_basis.eq("map_fallback").sum()),
+                          "missing_coordinates": int(location_audit.coordinate_basis.eq("missing").sum()),
+                          "outside_reports": len(excluded_ids),
+                          "outside_interval_reports": int(len(excluded_ids & set(intervals.well_id)))},
     }
     (out / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))

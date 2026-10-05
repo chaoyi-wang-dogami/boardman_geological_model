@@ -1,0 +1,10 @@
+{
+  "selected_ab_wells": 619,
+  "selected_drillers": 14,
+  "selected_ab_wells_at_repeated_coordinates": 16,
+  "unique_coordinate_pool": 603,
+  "nearest_neighbors": 5,
+  "crs_for_distances": "EPSG:32611",
+  "relationship_pearson": -0.2501822830991744,
+  "relationship_spearman": -0.2156216926334733
+}

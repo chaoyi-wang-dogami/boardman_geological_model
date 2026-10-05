@@ -75,6 +75,11 @@ def parse_args() -> argparse.Namespace:
         help="Do not download original scanned well reports.",
     )
     parser.add_argument(
+        "--stratigraphy-only",
+        action="store_true",
+        help="Use saved well inventory; add only missing GWIS stratigraphy files.",
+    )
+    parser.add_argument(
         "--overwrite",
         action="store_true",
         help="Replace existing per-well files.",
@@ -596,6 +601,11 @@ def main() -> int:
         format="%(asctime)s %(levelname)s %(message)s",
         datefmt="%H:%M:%S",
     )
+
+    if args.stratigraphy_only:
+        from download_gwis_stratigraphy import download_stratigraphy
+
+        return download_stratigraphy(root, config, refresh=args.overwrite, limit=args.limit)
 
     overwrite = bool(args.overwrite or config["downloads"].get("overwrite_existing"))
     fetch_lithology_enabled = bool(
