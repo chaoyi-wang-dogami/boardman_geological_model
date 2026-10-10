@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-09",
+  "reason": "User requested that the deduplication plots also live inside iteration 1.",
+  "data_effect": "None: data, archives, rules, status, and original closure date unchanged.",
+  "copy_checks": "At initial addition, all eight image, map, and supporting data files matched the previous map copies. A subsequent HTML background repair is recorded separately.",
+  "copied_files": [
+    {
+      "original_path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/before_after_dedupe.png",
+      "iteration_path": "evidence/plots/before_after/before_after_dedupe.png",
+      "sha256": "7f8f862303368e46bd3cdf5c2d109d54d8b6b1e52adc9c6eb53c5f93511d3090",
+      "size_bytes": 385827
+    },
+    {
+      "original_path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/before_after_dedupe.pdf",
+      "iteration_path": "evidence/plots/before_after/before_after_dedupe.pdf",
+      "sha256": "e9118f5b587380263a0cb5b54d3e86bc9d19eb60e54c896fad93cdf449abc88d",
+      "size_bytes": 76526
+    },
+    {
+      "original_path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/comparison_locations.csv",
+      "iteration_path": "evidence/plots/before_after/comparison_locations.csv",
+      "sha256": "9241116aad636b9a2d1370392e26f24c25430041647833276bd84f27646ff736",
+      "size_bytes": 10563
+    },
+    {
+      "original_path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/duplicate_groups_map.html",
+      "iteration_path": "evidence/plots/duplicate_groups/duplicate_groups_map.html",
+      "sha256": "1f30ba857836694b83cbd20927611a0432cc4f135a491646835e32bdc4d81d3f",
+      "size_bytes": 52616,
+      "original_copy_snapshot_path": "audit/map_background_fix/duplicate_groups_map_before_fix.html",
+      "subsequent_update_record": "audit/map_background_fix/change_record.json"
+    },
+    {
+      "original_path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/duplicate_groups_overview.png",
+      "iteration_path": "evidence/plots/duplicate_groups/duplicate_groups_overview.png",
+      "sha256": "c01d25aa127219492362c112d18dd70d6932485ca6aad52209b3ab2da4b7b341",
+      "size_bytes": 240146
+    },
+    {
+      "original_path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/group_locations.csv",
+      "iteration_path": "evidence/plots/duplicate_groups/group_locations.csv",
+      "sha256": "3509e16c41b6977cbcf99a54abf8c807c855120ebbc8bcc529c0fd10bd6dcd8e",
+      "size_bytes": 8538
+    },
+    {
+      "original_path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/group_locations.geojson",
+      "iteration_path": "evidence/plots/duplicate_groups/group_locations.geojson",
+      "sha256": "586ab45bb358ba706228e57043333156cde8eb10bc59023ac638bb87085aa317",
+      "size_bytes": 31905
+    },
+    {
+      "original_path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/groups.json",
+      "iteration_path": "evidence/plots/duplicate_groups/groups.json",
+      "sha256": "c0a1ce16b6e958b837a5f0bc1846b4f1718e2f7a2c1ab51ded0812e74041e486",
+      "size_bytes": 69667
+    }
+  ],
+  "previous_iteration_manifest": {
+    "path": "evidence/plots/manifest_before_plot_addition.json",
+    "sha256": "436729ea5569812f528d637c3327930895ab9b40f91426c1f508ad34d8d03696"
+  },
+  "previous_iteration_readme": {
+    "path": "evidence/plots/README_before_plot_addition.md",
+    "sha256": "bb63d4e4f9efd91f0b575f1f0b0eecb5a92279771440d954d795c6cc420a0794"
+  },
+  "previous_plot_manifest": {
+    "path": "evidence/plots/plot_manifest_before_addition.json",
+    "sha256": "fe74134eca08a9e5a1a5fb42b9fe0d7a03658c9f4182bedb1c635f915c6cdd53"
+  },
+  "subsequent_updates": [
+    {
+      "date": "2026-10-09",
+      "record": "audit/map_background_fix/change_record.json",
+      "data_effect": "None"
+    }
+  ]
+}

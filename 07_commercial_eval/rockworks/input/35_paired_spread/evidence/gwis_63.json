@@ -1,0 +1,11 @@
+{
+  "gw_site_id": "63",
+  "source_url": "https://apps.wrd.state.or.us/apps/gw/gw_info/gw_info_report/gw_details.aspx?gw_site_id=63",
+  "retrieved_at_utc": "2026-10-06T23:08:02.702874+00:00",
+  "page_sha256": "072a1ba2a5590099c586fbcd42ef753dba3dd8661d4345b4486f6836ee0478cd",
+  "source_ground_elevation_ft": "825.00",
+  "source_vertical_datum": "NGVD1929",
+  "source_elevation_method": "7.5-MINUTE MAP",
+  "source_elevation_accuracy_raw": "5.00",
+  "site_horizontal_datum": "WGS1984"
+}

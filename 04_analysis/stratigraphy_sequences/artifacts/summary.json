@@ -1,0 +1,601 @@
+{
+  "audit_version": "1.0",
+  "audit_script_sha256": "a99ac1122311a1a46e111d53b1acc29b9ba4de794bb23d66e09d5d798c1f825b",
+  "source_directory": "/home/chaoyiwang/workspace/boardman_geological_model/03_processed/boardman_19_townships",
+  "source_sha256": {
+    "boardman_wells_summary.csv": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+    "boardman_wells_stratigraphy.csv": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+    "boardman_wells_lithology.csv": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+    "README.md": "d169376ce0841b0450d97ba9ec1cb740782e5f47ea0ab55bc15c6ff43876352f"
+  },
+  "inventory": {
+    "well_reports": 7402,
+    "township_keys": 19,
+    "county_reports": {
+      "GILL": 1,
+      "MORR": 2553,
+      "UMAT": 4848
+    },
+    "stratigraphy_rows": 1854,
+    "stratigraphy_reports": 423,
+    "stratigraphy_gwis_sites": 328,
+    "shared_site_reports": 166,
+    "shared_gwis_sites": 71,
+    "single_site_reports": 257,
+    "paired_reports": 121,
+    "paired_gwis_sites": 112,
+    "stratigraphy_without_lithology_reports": 302,
+    "lithology_rows": 15586,
+    "lithology_reports": 3067,
+    "stratigraphic_labels": 44,
+    "candidate_site_intervals": 1408,
+    "repeated_linked_interval_copies": 446
+  },
+  "requested_count_checks": {
+    "well_reports": {
+      "expected": 7402,
+      "actual": 7402,
+      "passed": true
+    },
+    "township_keys": {
+      "expected": 19,
+      "actual": 19,
+      "passed": true
+    },
+    "county_reports": {
+      "expected": {
+        "GILL": 1,
+        "MORR": 2553,
+        "UMAT": 4848
+      },
+      "actual": {
+        "GILL": 1,
+        "MORR": 2553,
+        "UMAT": 4848
+      },
+      "passed": true
+    },
+    "stratigraphy_rows": {
+      "expected": 1854,
+      "actual": 1854,
+      "passed": true
+    },
+    "stratigraphy_reports": {
+      "expected": 423,
+      "actual": 423,
+      "passed": true
+    },
+    "stratigraphy_gwis_sites": {
+      "expected": 328,
+      "actual": 328,
+      "passed": true
+    },
+    "shared_site_reports": {
+      "expected": 166,
+      "actual": 166,
+      "passed": true
+    },
+    "shared_gwis_sites": {
+      "expected": 71,
+      "actual": 71,
+      "passed": true
+    },
+    "single_site_reports": {
+      "expected": 257,
+      "actual": 257,
+      "passed": true
+    },
+    "paired_reports": {
+      "expected": 121,
+      "actual": 121,
+      "passed": true
+    },
+    "paired_gwis_sites": {
+      "expected": 112,
+      "actual": 112,
+      "passed": true
+    },
+    "stratigraphy_without_lithology_reports": {
+      "expected": 302,
+      "actual": 302,
+      "passed": true
+    }
+  },
+  "source_schemas": {
+    "boardman_wells_summary.csv": {
+      "fields": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ],
+      "blank_counts": {
+        "well_id": 0,
+        "county": 0,
+        "wl_nbr": 0,
+        "wl_id": 0,
+        "tr_key": 0,
+        "gw_site_id": 5772,
+        "completed_depth_ft": 372,
+        "complete_date": 127,
+        "received_date": 6,
+        "has_lithology": 0,
+        "lithology_count": 0,
+        "has_stratigraphy": 0,
+        "strat_count": 0,
+        "detail_url": 0,
+        "gw_info_url": 5772,
+        "longitude": 0,
+        "latitude": 0,
+        "location_class": 0
+      }
+    },
+    "boardman_wells_stratigraphy.csv": {
+      "fields": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ],
+      "blank_counts": {
+        "well_id": 0,
+        "wl_nbr": 0,
+        "wl_id": 0,
+        "gw_site_id": 0,
+        "start_depth": 0,
+        "end_depth": 0,
+        "start_depth_elev": 5,
+        "end_depth_elev": 5,
+        "depth_thickness": 0,
+        "strat_unit": 0,
+        "sample_source": 483,
+        "picked_by": 26,
+        "est_age": 1854,
+        "est_age_error": 1854,
+        "completed_depth_ft": 92,
+        "complete_date": 21,
+        "latitude": 0,
+        "longitude": 0,
+        "gw_info_url": 0,
+        "source_kind": 0,
+        "scraped_at": 0
+      }
+    },
+    "boardman_wells_lithology.csv": {
+      "fields": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ],
+      "blank_counts": {
+        "well_id": 0,
+        "county": 0,
+        "wl_nbr": 0,
+        "wl_id": 0,
+        "interval_no": 0,
+        "from_ft": 0,
+        "to_ft": 0,
+        "thickness_ft": 0,
+        "material_raw": 0,
+        "static_water_level_raw": 15153,
+        "completed_depth_ft": 88,
+        "complete_date": 3,
+        "latitude": 0,
+        "longitude": 0,
+        "detail_url": 0
+      }
+    }
+  },
+  "township_reports": {
+    "WM2.00N24.00E": 41,
+    "WM2.00N25.00E": 9,
+    "WM2.00N26.00E": 78,
+    "WM2.00N27.00E": 85,
+    "WM2.00N28.00E": 31,
+    "WM3.00N24.00E": 129,
+    "WM3.00N25.00E": 11,
+    "WM3.00N26.00E": 92,
+    "WM3.00N27.00E": 126,
+    "WM3.00N28.00E": 223,
+    "WM4.00N24.00E": 80,
+    "WM4.00N25.00E": 855,
+    "WM4.00N26.00E": 285,
+    "WM4.00N27.00E": 581,
+    "WM4.00N28.00E": 2745,
+    "WM5.00N25.00E": 6,
+    "WM5.00N26.00E": 623,
+    "WM5.00N27.00E": 307,
+    "WM5.00N28.00E": 1095
+  },
+  "issues": {
+    "missing_depth": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_numeric_issue"
+    },
+    "invalid_depth": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_numeric_issue"
+    },
+    "negative_depth": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_numeric_issue"
+    },
+    "reversed_depth": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_numeric_issue"
+    },
+    "zero_thickness": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_numeric_issue"
+    },
+    "thickness_mismatch": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_numeric_issue"
+    },
+    "missing_thickness": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_metadata_gap"
+    },
+    "invalid_thickness": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_numeric_issue"
+    },
+    "missing_elevation": {
+      "findings": 5,
+      "gwis_sites": 1,
+      "well_reports": 1,
+      "source_interval_rows": 5,
+      "classification": "verified_metadata_gap"
+    },
+    "invalid_elevation": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_numeric_issue"
+    },
+    "elevation_thickness_mismatch": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_numeric_issue"
+    },
+    "implied_surface_inconsistent": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "verified_numeric_issue"
+    },
+    "gap": {
+      "findings": 4,
+      "gwis_sites": 3,
+      "well_reports": 3,
+      "source_interval_rows": 7,
+      "classification": "verified_geometry"
+    },
+    "overlap": {
+      "findings": 2,
+      "gwis_sites": 1,
+      "well_reports": 1,
+      "source_interval_rows": 4,
+      "classification": "verified_geometry"
+    },
+    "duplicate_interval": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "review_required"
+    },
+    "repeated_unit": {
+      "findings": 62,
+      "gwis_sites": 44,
+      "well_reports": 56,
+      "source_interval_rows": 179,
+      "classification": "review_required"
+    },
+    "parent_child_mixed": {
+      "findings": 24,
+      "gwis_sites": 9,
+      "well_reports": 13,
+      "source_interval_rows": 51,
+      "classification": "review_required"
+    },
+    "unexpected_order": {
+      "findings": 4,
+      "gwis_sites": 2,
+      "well_reports": 2,
+      "source_interval_rows": 6,
+      "classification": "review_required"
+    },
+    "first_pick_below_zero": {
+      "findings": 16,
+      "gwis_sites": 16,
+      "well_reports": 17,
+      "source_interval_rows": 17,
+      "classification": "coverage_note"
+    },
+    "beyond_report_depth": {
+      "findings": 167,
+      "gwis_sites": 81,
+      "well_reports": 98,
+      "source_interval_rows": 167,
+      "classification": "review_required"
+    },
+    "nonpositive_report_depth": {
+      "findings": 7,
+      "gwis_sites": 7,
+      "well_reports": 7,
+      "source_interval_rows": 24,
+      "classification": "verified_metadata_issue"
+    },
+    "linked_report_conflict": {
+      "findings": 0,
+      "gwis_sites": 0,
+      "well_reports": 0,
+      "source_interval_rows": 0,
+      "classification": "review_required"
+    },
+    "linked_report_metadata_difference": {
+      "findings": 71,
+      "gwis_sites": 71,
+      "well_reports": 166,
+      "source_interval_rows": 785,
+      "classification": "provenance_note"
+    },
+    "lithology_named_unit_disagreement": {
+      "findings": 1,
+      "gwis_sites": 1,
+      "well_reports": 1,
+      "source_interval_rows": 1,
+      "classification": "review_required"
+    },
+    "broad_named_basalt_mixed": {
+      "findings": 17,
+      "gwis_sites": 17,
+      "well_reports": 25,
+      "source_interval_rows": 73,
+      "classification": "review_required"
+    }
+  },
+  "contact_candidate_counts": {
+    "exact_lithology_boundary": 777,
+    "inside_lithology_interval": 188,
+    "outside_lithology_extent": 103
+  },
+  "contact_candidate_rows": 1068,
+  "paired_lithology_rows": 1342,
+  "paired_lithology_rows_with_flags": 11,
+  "contact_distinct_report_depths": 656,
+  "contact_exact_distinct_report_depths": 499,
+  "strat_lithology_overlap_rows": 1389,
+  "literal_lithology_unit_mention_checks": 1,
+  "contact_distinct_depth_counts_by_status": {
+    "inside_lithology_interval": 97,
+    "exact_lithology_boundary": 499,
+    "outside_lithology_extent": 60
+  },
+  "report_metadata_difference_site_counts": {
+    "completed_depth_ft": 59,
+    "complete_date": 71,
+    "latitude": 13,
+    "longitude": 13,
+    "location_class": 8
+  },
+  "naive_representative_report_collapse": {
+    "rule": "Lexicographically first well_id per identical site sequence, used only as a reproducible loss example.",
+    "paired_reports_retained": 96,
+    "paired_reports_lost": 25,
+    "paired_sites_lost": 16
+  },
+  "missing_elevation_site_intervals": 5,
+  "interpreter_labels": {
+    "": 26,
+    "Aaron Orr": 218,
+    "Andrew Wentworth": 60,
+    "Aurora Bouchier": 15,
+    "GSIWS": 8,
+    "JEN WOODY": 136,
+    "JOE KEMPER": 208,
+    "JOSH HACKETT": 262,
+    "JOSH HACKETT/Aaron Orr": 2,
+    "Jen WOody": 1,
+    "Jen Woody": 153,
+    "Josh Hackett": 2,
+    "KARL WOZNIAK": 148,
+    "Karl Wozniak": 137,
+    "T TOLAN": 47,
+    "TERRY TOLAN": 278,
+    "TL Tolan": 10,
+    "Terry Tolan": 27,
+    "USGS": 39,
+    "WALT BURT": 58,
+    "jen Woody": 1,
+    "woodyj1": 18
+  },
+  "interpreter_casefold_groups": {
+    "terry tolan": [
+      "TERRY TOLAN",
+      "Terry Tolan"
+    ],
+    "josh hackett": [
+      "JOSH HACKETT",
+      "Josh Hackett"
+    ],
+    "karl wozniak": [
+      "KARL WOZNIAK",
+      "Karl Wozniak"
+    ],
+    "jen woody": [
+      "JEN WOODY",
+      "Jen WOody",
+      "Jen Woody",
+      "jen Woody"
+    ]
+  },
+  "methods": {
+    "source_row": "CSV record ordinal including header; first data record is 2. Not physical line number.",
+    "depth_arithmetic": "Decimal, exact comparison, positive down; feet follows repository convention; elevation datum unverified.",
+    "site_variants": "Scientific row multisets compared with original strings. Numeric-equivalent and geometry comparisons reported separately. Report fields and acquisition metadata excluded from scientific signature but preserved in source audit and report links.",
+    "interval_matching": "Identical scientific interval signatures paired by occurrence number within each linked report; within-report duplicates never discarded.",
+    "order_screen": "All nonoverlapping ordered interval pairs, partial published order only; unresolved labels and unverified within-facies orders untested; no forced rank for broad Ellensburg or undifferentiated CRBG.",
+    "lithology": "All tops and bottoms retained as candidates. Exact endpoint match or interval containment is geometric evidence, not formation identification. Zero/reversed/missing lithology excluded only from geometric comparison and retained in lithology audit.",
+    "coverage_gaps": "Running maximum bottom; no unit inserted. First pick below zero is a coverage note.",
+    "geological_corrections": "None. Standardized names, corrected tops and bottoms, and reasons are blank."
+  },
+  "references": {
+    "group": "https://www.usgs.gov/observatories/cvo/science/columbia-river-basalt-group-stretches-oregon-idaho",
+    "regional_order": "https://pubs.usgs.gov/wri/1987/4268/report.pdf",
+    "frenchman": "https://ngmdb.usgs.gov/Geolex/UnitRefs/FrenchmanSpringsRefs_5359.html",
+    "sentinel_gap": "https://ngmdb.usgs.gov/Geolex/Units/SentinelGap_16757.html",
+    "sentinel_bluffs": "https://ngmdb.usgs.gov/Geolex/Units/SentinelBluffs_16754.html",
+    "winter_water": "https://pubs.usgs.gov/of/1999/0141/readme.html",
+    "polarity": "https://www.usgs.gov/publications/regional-correlation-grande-ronde-basalt-flows-columbia-river-basalt-group-washington",
+    "priest_rapids": "https://pubs.usgs.gov/of/1981/0797/report.pdf"
+  },
+  "output_tables": {
+    "row_audit.csv": {
+      "rows": 1854,
+      "sha256": "fa695ccc135dc7bb731a742668f83b2703a953b8c2fc76662cd6378578bf22b6"
+    },
+    "findings.csv": {
+      "rows": 380,
+      "sha256": "bf5cd71fd5c4f7edc6df56a34fb17045adea5b6202007a392a516600532822fa"
+    },
+    "site_audit.csv": {
+      "rows": 328,
+      "sha256": "a55916ce0549c2086c261cdf2844f7bfca1bc44c7c07f7869baf926c4939c837"
+    },
+    "sequence_intervals.csv": {
+      "rows": 1408,
+      "sha256": "9f83431f6f787febf0b9df276a8517a93b65ea0ba1ab2afab503a79886987e92"
+    },
+    "site_report_links.csv": {
+      "rows": 423,
+      "sha256": "317bd39133ce267687e4a52a15035f021760ea982751e66da809da668d0fb98f"
+    },
+    "unit_frequency.csv": {
+      "rows": 44,
+      "sha256": "83580e75ad0895b769c3397f6b8dfa4c9851b24887316d5140dde9615755432c"
+    },
+    "unit_interpreter_frequency.csv": {
+      "rows": 253,
+      "sha256": "1c9727ee8a393095c874376e3afb49bfdc22bedd0b86ca8d089e24c42204aa5c"
+    },
+    "hierarchy_draft.csv": {
+      "rows": 48,
+      "sha256": "04885afacfb9ad3ad8b1d1703679d71691c5954567ff4dcf42740ef811867117"
+    },
+    "observed_transitions.csv": {
+      "rows": 1080,
+      "sha256": "5b9f283b44785a24be91bad6185a9208120926403585c40d93ccb0b4c4ce00f1"
+    },
+    "contact_lithology_candidates.csv": {
+      "rows": 1068,
+      "sha256": "f788e27da6e63d22f201e871caa02d69877d2089cebfc4eb18ca543090ed7100"
+    },
+    "strat_lithology_overlaps.csv": {
+      "rows": 1389,
+      "sha256": "d8aa0021baf9fe23078d3b117083c848f2788538611fb5c7faef6149d2680c36"
+    },
+    "paired_lithology_audit.csv": {
+      "rows": 1342,
+      "sha256": "f82ce0e03f8a5684f48c5ca88bb1748593d88e2ba6ccead87c6c19cfbb1fd6d6"
+    },
+    "lithology_named_unit_checks.csv": {
+      "rows": 1,
+      "sha256": "bbf52db89f5e85cdbbb553e8622cac131a745b9b6472feae58eee464c1946278"
+    }
+  },
+  "literal_lithology_name_patterns": {
+    "EllensburgFm.Selah": "\\bselah\\b",
+    "EllensburgFm.Mabton": "\\bmabton\\b",
+    "EllensburgFm.RattlesnakeRidge": "\\brattlesnake[\\s-]+ridge\\b",
+    "EllensburgFm.Vantage": "\\bvantage\\b",
+    "EllensburgFm.Quincy-SquawCreek": "\\bquincy[\\s-]+squaw[\\s-]+creek\\b",
+    "EllensburgFm.SquawCreek": "(?<!quincy-)\\bsquaw[\\s-]+creek\\b",
+    "EllensburgFm.Byron": "\\bbyron\\b",
+    "Crbg.Smb.ElephantMtn": "\\belephant[\\s-]+(?:mountain|mtn)\\b",
+    "Crbg.Smb.Pomona": "\\bpomona\\b",
+    "Crbg.Smb.Umatilla": "\\bumatilla\\b",
+    "Crbg.Wb.PriestRapids.Lolo": "\\blolo\\b",
+    "Crbg.Wb.PriestRapids.Rosalia": "\\brosalia\\b",
+    "Crbg.Wb.FrenchmanSprings.Ginkgo": "\\bginkgo\\b",
+    "Crbg.Wb.FrenchmanSprings.SilverFalls": "\\bsilver[\\s-]+falls\\b",
+    "Crbg.Wb.FrenchmanSprings.SandHollow": "\\bsand[\\s-]+hollow\\b",
+    "Crbg.Wb.FrenchmanSprings.SentinelGap": "\\bsentinel[\\s-]+gap\\b",
+    "Crbg.Grb.N2.SentinelBluffs": "\\bsentinel[\\s-]+bluffs\\b",
+    "Crbg.Grb.N2.WinterWater": "\\bwinter[\\s-]*water\\b",
+    "AlkaliCanyonFm": "\\balkali[\\s-]+canyon\\b"
+  },
+  "source_hashes_unchanged": true
+}

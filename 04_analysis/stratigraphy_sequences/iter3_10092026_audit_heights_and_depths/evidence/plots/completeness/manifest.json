@@ -1,0 +1,135 @@
+{
+  "purpose": "Read-only audit maps",
+  "inputs": [
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/well_completeness.csv",
+      "sha256": "70b25f72d3206f7d090f28934e87d8eb9385abbef6bec5bd953f74a8a95e6da6"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/interval_findings.csv",
+      "sha256": "6fda87ac02a7e5d7f82efe5fb4f67ce0bb2c0f19656efdf5cfad68bb61538c5e"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/checks.json",
+      "sha256": "3be80c2390af60f20d6c2ab2b2b684b3c1115cca452cddcc0665a7c94f96396d"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/classification_rules.json",
+      "sha256": "aafde4867eb85dc2276fcc271a225fbd8cd86423236b363bc5e46f3160f592a3"
+    }
+  ],
+  "sources": [
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/scripts/build_audit_maps.py",
+      "sha256": "b3915a3cecc5a2701399a00df3afd6f1cd77c9cebff07cad0806e5031c30e11d"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/scripts/map_geometry.py",
+      "sha256": "9694fe602a245c840ec7f6fcdb43055423a04edc605834060119678c64d84fa0"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/scripts/audit_map.js",
+      "sha256": "fd7e6e97b37f862d6de33914b7cfb82f35dc297a85dfdf4a4599eaf2a6841b23"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/scripts/audit_map_template.html",
+      "sha256": "4f1754377e22cbbe051b3fdffa94e4ac18f11eea347c923e9eba9053b69c011d"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "README.md",
+      "sha256": "a4b8a0f1e3a45038a8cb56874806b487d1aad1f8e8ce2a8b8ebef9efee730f1c"
+    },
+    {
+      "path": "audit_completeness.pdf",
+      "sha256": "93efecc7a04600fec1e69ab8979d4eea6d63987b4af8449d31dceb609da9e7b8"
+    },
+    {
+      "path": "audit_completeness.png",
+      "sha256": "cc2ee08985c313684423d251bd5c554f417ac007fa8feec6c9e10d79947cdc89"
+    },
+    {
+      "path": "audit_locations.geojson",
+      "sha256": "15d0531975df74014a5b14ae9711e88e6f688d99c6871eb89ce7e813448edd3d"
+    },
+    {
+      "path": "audit_locations.json",
+      "sha256": "bf47674946dfafacbad5b4a441b162a4d94d17960fb514016f8277deae7ffa74"
+    },
+    {
+      "path": "audit_map.html",
+      "sha256": "573e394827fe08990278606e24628bc32ebe18798eeb9ace22ae70a485036b97"
+    }
+  ],
+  "categories": {
+    "numeric": {
+      "numeric_complete": {
+        "label": "Numeric fields complete",
+        "color": "#238443"
+      },
+      "missing_elevation": {
+        "label": "Missing interval elevations",
+        "color": "#e18a16"
+      },
+      "missing_depth": {
+        "label": "Missing or invalid depths",
+        "color": "#c9343d"
+      },
+      "inconsistent": {
+        "label": "Discrepancy to review",
+        "color": "#8451b5"
+      }
+    },
+    "ground": {
+      "recorded_linked_site": {
+        "label": "Recorded at linked site",
+        "color": "#2463a6"
+      },
+      "calculated_only": {
+        "label": "Calculated candidate only",
+        "color": "#e18a16"
+      },
+      "missing": {
+        "label": "No ground height available",
+        "color": "#c9343d"
+      }
+    },
+    "reference": {
+      "site_reference_available": {
+        "label": "Saved site reference available",
+        "color": "#2463a6"
+      },
+      "not_found": {
+        "label": "No saved site reference found",
+        "color": "#88949b"
+      }
+    }
+  },
+  "bounds_lon_lat": [
+    -119.9524615504,
+    -119.16917472959999,
+    45.5667976428,
+    45.9581655872
+  ],
+  "scale_bar_metres": 5000,
+  "software": {
+    "matplotlib": "3.10.7+dfsg1",
+    "leaflet": "1.9.4"
+  },
+  "data_modified": false,
+  "checks": {
+    "well_count": "pass",
+    "category_counts_match_audit": "pass",
+    "coordinates_valid": "pass",
+    "source_hashes_unchanged": "pass"
+  }
+}

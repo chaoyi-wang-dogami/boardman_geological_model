@@ -1,0 +1,89 @@
+{
+  "result": "pass",
+  "counts": {
+    "summary": {
+      "input": 7311,
+      "working": 332,
+      "archived": 6979
+    },
+    "stratigraphy": {
+      "input": 1427,
+      "working": 1427,
+      "archived": 0
+    },
+    "lithology": {
+      "input": 15459,
+      "working": 1215,
+      "archived": 14244
+    }
+  },
+  "working_wells": 332,
+  "excluded_wells": 6979,
+  "working_wells_with_lithology": 100,
+  "working_wells_without_lithology": 232,
+  "excluded_wells_with_lithology": 2946,
+  "excluded_wells_without_lithology": 4033,
+  "input_townships": [
+    "WM2.00N24.00E",
+    "WM2.00N25.00E",
+    "WM2.00N26.00E",
+    "WM2.00N27.00E",
+    "WM2.00N28.00E",
+    "WM3.00N24.00E",
+    "WM3.00N25.00E",
+    "WM3.00N26.00E",
+    "WM3.00N27.00E",
+    "WM3.00N28.00E",
+    "WM4.00N24.00E",
+    "WM4.00N25.00E",
+    "WM4.00N26.00E",
+    "WM4.00N27.00E",
+    "WM4.00N28.00E",
+    "WM5.00N25.00E",
+    "WM5.00N26.00E",
+    "WM5.00N27.00E",
+    "WM5.00N28.00E"
+  ],
+  "working_townships": [
+    "WM2.00N24.00E",
+    "WM2.00N25.00E",
+    "WM2.00N26.00E",
+    "WM2.00N27.00E",
+    "WM2.00N28.00E",
+    "WM3.00N24.00E",
+    "WM3.00N25.00E",
+    "WM3.00N26.00E",
+    "WM3.00N27.00E",
+    "WM3.00N28.00E",
+    "WM4.00N24.00E",
+    "WM4.00N25.00E",
+    "WM4.00N26.00E",
+    "WM4.00N27.00E",
+    "WM4.00N28.00E",
+    "WM5.00N26.00E",
+    "WM5.00N27.00E",
+    "WM5.00N28.00E"
+  ],
+  "townships_without_retained_stratigraphy": [
+    "WM5.00N25.00E"
+  ],
+  "source_row_links": 24197,
+  "checks": {
+    "parent_complete_and_input_hashes": "pass",
+    "summary_well_ids_unique_nonblank": "pass",
+    "input_interval_foreign_keys": "pass",
+    "summary_flags_and_counts_match_actual_intervals": "pass",
+    "selection_matches_actual_stratigraphy_ids": "pass",
+    "working_and_archive_well_ids_partition_input": "pass",
+    "all_headers_values_and_row_order_preserved": "pass",
+    "working_and_archive_intervals_follow_well_selection": "pass",
+    "every_input_occurrence_preserved_once": "pass",
+    "every_output_occurrence_linked_once": "pass",
+    "parent_and_baseline_source_hashes_verified": "pass",
+    "every_output_occurrence_matches_parent_and_baseline": "pass",
+    "stratigraphy_byte_identical": "pass",
+    "exclusion_reasons_recorded": "pass",
+    "deduplication_representatives_and_links_retained": "pass",
+    "parent_inputs_unchanged": "pass"
+  }
+}

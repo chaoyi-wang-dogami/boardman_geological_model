@@ -1,0 +1,15 @@
+[
+  {
+    "decision_id": "ITER3_READ_ONLY_AUDIT",
+    "decided_by": "User",
+    "date": "2026-10-09",
+    "status": "accepted",
+    "scope": "Start the read-only audit and generate static/interactive maps. No data modifications are authorized.",
+    "authorization": "User answered: Start the audit and generate maps."
+  },
+  {
+    "decision_id": "ITER3_ACTIONS_NOT_SELECTED",
+    "status": "pending",
+    "scope": "Choose source-backed height/depth corrections only after reviewing phase 1 findings."
+  }
+]

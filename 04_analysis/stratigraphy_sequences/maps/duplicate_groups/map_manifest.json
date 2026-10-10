@@ -1,0 +1,122 @@
+{
+  "purpose": "Exploratory view of frozen iteration 0 before deduplication; this generator does not modify well records.",
+  "created_local": "2026-10-08T18:03:29-07:00",
+  "inputs": [
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_summary.csv",
+      "sha256": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_stratigraphy.csv",
+      "sha256": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0"
+    }
+  ],
+  "statistics": {
+    "groups": 71,
+    "well_records": 166,
+    "single_location_groups": 58,
+    "multiple_location_groups": 13,
+    "recorded_positions": 84
+  },
+  "nearby_pairs": [
+    {
+      "site_a": "1077",
+      "site_b": "13353",
+      "distance_m": 72.26894914792389,
+      "point_a": [
+        45.79313379,
+        -119.2789871
+      ],
+      "point_b": [
+        45.79249788,
+        -119.27917966
+      ],
+      "identical_interpretations": false
+    },
+    {
+      "site_a": "135",
+      "site_b": "680",
+      "distance_m": 87.44176115183244,
+      "point_a": [
+        45.83650912,
+        -119.3311562
+      ],
+      "point_b": [
+        45.83573577,
+        -119.33136083
+      ],
+      "identical_interpretations": false
+    }
+  ],
+  "distance_method": "Haversine, mean Earth radius 6371008.8 m; nearest stored coordinates between groups.",
+  "overview_scale": {
+    "length_m": 5000,
+    "reference_latitude": 45.60965661344,
+    "start_longitude": -119.39277818168,
+    "end_longitude": -119.3284990380873
+  },
+  "software": {
+    "matplotlib": "3.10.7+dfsg1",
+    "leaflet": "1.9.4, browser CDN"
+  },
+  "sources": [
+    {
+      "path": "build_map.py",
+      "sha256": "3cda1da7a183024d6aea85fe7130718b6f3dc903cfbe93246ad1b98527180578"
+    },
+    {
+      "path": "map.js",
+      "sha256": "f680a807cd4a7f1630af6a477f9e75c5ead199dc6343d1ddbd9417977b2cdea5"
+    },
+    {
+      "path": "map_template.html",
+      "sha256": "6202e9260e8d9910c9dfc56017983d96e6cef0e7176ff68e031dcefb16dd0d90"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "duplicate_groups_map.html",
+      "sha256": "2e858c4d291bac7636264d1f66df843c8613e592fcd19ac578b7a3f939ca4d21"
+    },
+    {
+      "path": "duplicate_groups_overview.png",
+      "sha256": "c01d25aa127219492362c112d18dd70d6932485ca6aad52209b3ab2da4b7b341"
+    },
+    {
+      "path": "groups.json",
+      "sha256": "c0a1ce16b6e958b837a5f0bc1846b4f1718e2f7a2c1ab51ded0812e74041e486"
+    },
+    {
+      "path": "group_locations.csv",
+      "sha256": "3509e16c41b6977cbcf99a54abf8c807c855120ebbc8bcc529c0fd10bd6dcd8e"
+    },
+    {
+      "path": "group_locations.geojson",
+      "sha256": "586ab45bb358ba706228e57043333156cde8eb10bc59023ac638bb87085aa317"
+    }
+  ],
+  "checks": {
+    "snapshot_input_hashes": "pass",
+    "group_count_71": "pass",
+    "well_count_166": "pass",
+    "single_location_groups_58": "pass",
+    "nearby_pairs_2": "pass",
+    "nearby_interpretations_differ": "pass",
+    "overview_scale_length_5000_m": "pass"
+  },
+  "basemap": {
+    "provider": "USGS The National Map",
+    "service": "USGSTopo",
+    "tile_url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
+    "max_native_zoom": 16,
+    "alternative": "Wells only"
+  },
+  "visualization_updates": [
+    {
+      "date": "2026-10-09",
+      "reason": "Repair blocked background tiles in local preview; add Wells only selection and tile loading failure messages.",
+      "audit_path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/change_record.json",
+      "data_effect": "None"
+    }
+  ]
+}

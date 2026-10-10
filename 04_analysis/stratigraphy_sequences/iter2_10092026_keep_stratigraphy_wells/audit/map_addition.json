@@ -1,0 +1,140 @@
+{
+  "date": "2026-10-09",
+  "added_local": "2026-10-09T10:03:23-07:00",
+  "reason": "User requested static before/after and interactive maps for iteration 2.",
+  "data_effect": "None: no data filtering rerun; original inputs, outputs, archives, decisions, checks, status, and completion time unchanged.",
+  "before": "Iteration 1 working well summary",
+  "after": "Iteration 2 working well summary",
+  "statistics": {
+    "before_well_ids": 7311,
+    "after_well_ids": 332,
+    "excluded_well_ids": 6979,
+    "before_recorded_locations": 3747,
+    "after_recorded_locations": 332,
+    "missing_or_invalid_coordinates": 0,
+    "closer_before_well_ids": 7308,
+    "closer_excluded_well_ids": 6976,
+    "before_outside_closer_view": 3,
+    "after_with_lithology": 100,
+    "after_without_lithology": 232
+  },
+  "map_directory": "evidence/plots/well_filter",
+  "preserved_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/manifest_before_map_addition.json",
+      "sha256": "fc10b98b950fe5e3fa88f72c56a5211ce4f0320df7157f3a2de0186bf09fe686",
+      "size_bytes": 18201
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/README_before_map_addition.md",
+      "sha256": "681b5c0e208d511c3775559a369d45a1c8b9d8ffa57bd29c7534465d3bcdb447",
+      "size_bytes": 5925
+    }
+  ],
+  "generated_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/well_filter/README.md",
+      "sha256": "ef2937cd9f19644de18b4214d0f2c2ac6c9e602df048b6a10f49e094036d341f",
+      "size_bytes": 2882
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/well_filter/before_after_filter.pdf",
+      "sha256": "88c367ad0d4277a04fed5268a655e70413b7b391985fe5fb59d8e69b5760bac0",
+      "size_bytes": 91637
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/well_filter/before_after_filter.png",
+      "sha256": "8fac562ac6e83ca816b4f0067f3ff3febd823a7764897ae9b9117a8473a56965",
+      "size_bytes": 562796
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/well_filter/manifest.json",
+      "sha256": "39aaafff0069a939b6b63c5479c39cb1f0d006cc065e676b1eb60c5660987e63",
+      "size_bytes": 4981
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/well_filter/well_filter_map.html",
+      "sha256": "1df1803bc036acf3f56b00769b8d704d1fffc09eba0f347298fb76d4d4e5f9ca",
+      "size_bytes": 4481029
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/well_filter/well_locations.csv",
+      "sha256": "dff495a22ab8af7a667ea02ef47907532998c55c7c8266feda20a29d961dda6e",
+      "size_bytes": 2912299
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/well_filter/well_locations.geojson",
+      "sha256": "2c119276d5f419d685fd2b9c0f6c5c60b61b5aa310d3db64028b9be9e13c6bf8",
+      "size_bytes": 2920255
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/well_filter/well_locations.json",
+      "sha256": "0de70075554ffde1e84746a2ca5286f7c1f70f991238b22e6761affc8cadf67c",
+      "size_bytes": 5463534
+    }
+  ],
+  "source_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/build_filter_maps.py",
+      "sha256": "2253484cf49d31979b6d35a3d3cb0ceb6b9da2322306c04759d41b11a1947415",
+      "size_bytes": 14927
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/filter_map.js",
+      "sha256": "7d56de02d061135d210a7228fa656d891f572b98692c71ab01ff30e78c7d6e51",
+      "size_bytes": 6813
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/filter_map_template.html",
+      "sha256": "ad02d6f00c29828b4607ee9833802047503d2a6703301e293846eff62895daa7",
+      "size_bytes": 5104
+    }
+  ],
+  "verification": {
+    "browser_result": "audit/browser_map_checks.json",
+    "real_usgs_tiles_and_all_views": "pass",
+    "simulated_tile_and_library_failures": "pass",
+    "javascript_syntax": "pass",
+    "static_plot_visually_reviewed": "pass"
+  },
+  "recorded_locations_outside_closer_view": [
+    {
+      "well_id": "UMAT_0056512",
+      "latitude": "45.7418",
+      "longitude": "-118.23041",
+      "tr_key": "WM4.00N28.00E",
+      "status": "excluded",
+      "parent_summary_record": 4843
+    },
+    {
+      "well_id": "UMAT_0056939",
+      "latitude": "45.61288",
+      "longitude": "-118.80354",
+      "tr_key": "WM4.00N28.00E",
+      "status": "excluded",
+      "parent_summary_record": 5065
+    },
+    {
+      "well_id": "MORR_0052543",
+      "latitude": "43.836665",
+      "longitude": "-119.618872",
+      "tr_key": "WM4.00N26.00E",
+      "status": "excluded",
+      "parent_summary_record": 6195
+    }
+  ],
+  "coordinate_note": "These three positions remain unmodified and appear in the full-extent panels and interactive data; no claim that they are geographically accurate."
+}

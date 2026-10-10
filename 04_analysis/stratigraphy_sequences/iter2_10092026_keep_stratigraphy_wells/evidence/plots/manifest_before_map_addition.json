@@ -1,0 +1,591 @@
+{
+  "schema_version": "1.0-draft",
+  "iteration_number": 2,
+  "directory_name": "iter2_10092026_keep_stratigraphy_wells",
+  "purpose": "Keep wells with stratigraphy, with associated lithology where present; archive all excluded original rows.",
+  "status": "Complete",
+  "timezone": "America/Los_Angeles",
+  "started_local": "2026-10-09T09:49:57-07:00",
+  "closed_local": "2026-10-09T09:55:12-07:00",
+  "parent_iterations": [
+    "iter1_10082026_dedupe_strat_reports"
+  ],
+  "workflow_documents": [
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/workflow/SOP.md",
+      "sha256": "052409aeb679511b629db402fe320a521942c8b55e73d73b230e360bb56af900"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/workflow/ACTION_PLAN.md",
+      "sha256": "47d9afa438550f60a090b1d357b67990620dcd1a7ae6a75ba88dbdb04b21957b"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/workflow/DATA_FORMAT.md",
+      "sha256": "983a74c79d5a7cd2ddf89196a3bae63e938ea05d394803f0fc6edb9b9b196b40"
+    }
+  ],
+  "inputs": [
+    {
+      "file_id": "input_summary",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_summary.csv",
+      "role": "source",
+      "sha256": "18133acee080ef1c09c18aee3d5bb71089dd4f9a9c6d26c53bcc2f489b78f523",
+      "size_bytes": 1552591,
+      "row_count": 7311,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "parent_iteration": "iter1_10082026_dedupe_strat_reports"
+    },
+    {
+      "file_id": "input_stratigraphy",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_stratigraphy.csv",
+      "role": "source",
+      "sha256": "46aa2f64131da1fb76a90cba94cc9f66165e7135fabfa0ee65782aac510efd71",
+      "size_bytes": 402005,
+      "row_count": 1427,
+      "headers": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "parent_iteration": "iter1_10082026_dedupe_strat_reports"
+    },
+    {
+      "file_id": "input_lithology",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_lithology.csv",
+      "role": "source",
+      "sha256": "7da857371ee81bb2feaf8e084ed81223752186c5f37a8c945fd31ffca8006f7f",
+      "size_bytes": 2827835,
+      "row_count": 15459,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "parent_iteration": "iter1_10082026_dedupe_strat_reports"
+    },
+    {
+      "file_id": "parent_source_row_links",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/source_row_links.csv",
+      "role": "provenance",
+      "sha256": "459f8e052182724945f28c944eed2a8da8c6452c9f3d67ab8f727bf2d8798261",
+      "size_bytes": 6696967,
+      "row_count": 24842,
+      "headers": [
+        "output_file",
+        "output_record",
+        "output_well_id",
+        "original_well_id",
+        "representative_well_id",
+        "source_file",
+        "source_sha256",
+        "source_record",
+        "role"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "parent_iteration": "iter1_10082026_dedupe_strat_reports"
+    },
+    {
+      "file_id": "parent_representative_well_metadata",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/representative_well_metadata.csv",
+      "role": "provenance",
+      "sha256": "0becd1e12052fb8810cce3e11a76ab3251c08af5d25a91e7a15e4a9f3aed8a3f",
+      "size_bytes": 9776,
+      "row_count": 71,
+      "headers": [
+        "well_id",
+        "gw_site_id",
+        "group_id",
+        "deduped_well_count",
+        "deduped_well_ids_json",
+        "retained_distant_well_ids_json",
+        "original_metadata_archive",
+        "removed_record_details"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "parent_iteration": "iter1_10082026_dedupe_strat_reports"
+    },
+    {
+      "file_id": "parent_deduped_well_links",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/deduped_well_links.csv",
+      "role": "provenance",
+      "sha256": "8787bc67c2181832090ad90f554dcf500cbee4794f9185a917c1212cf5cc6354",
+      "size_bytes": 35178,
+      "row_count": 91,
+      "headers": [
+        "representative_well_id",
+        "removed_well_id",
+        "gw_site_id",
+        "distance_to_representative_m",
+        "removed_county",
+        "removed_wl_nbr",
+        "removed_wl_id",
+        "removed_tr_key",
+        "removed_gw_site_id",
+        "removed_completed_depth_ft",
+        "removed_complete_date",
+        "removed_received_date",
+        "removed_has_lithology",
+        "removed_lithology_count",
+        "removed_has_stratigraphy",
+        "removed_strat_count",
+        "removed_detail_url",
+        "removed_gw_info_url",
+        "removed_longitude",
+        "removed_latitude",
+        "removed_location_class",
+        "summary_source_record",
+        "summary_source_sha256"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "parent_iteration": "iter1_10082026_dedupe_strat_reports"
+    },
+    {
+      "file_id": "parent_stratigraphy_duplicate_links",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/stratigraphy_duplicate_links.csv",
+      "role": "provenance",
+      "sha256": "7480890326e27d48aa025d4939c3f28b84be3b08417a782d1493cc65f759346b",
+      "size_bytes": 47577,
+      "row_count": 427,
+      "headers": [
+        "representative_well_id",
+        "removed_well_id",
+        "gw_site_id",
+        "surviving_output_record",
+        "representative_source_record",
+        "removed_source_record",
+        "source_sha256",
+        "interval_occurrence_number"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "parent_iteration": "iter1_10082026_dedupe_strat_reports"
+    },
+    {
+      "file_id": "parent_manifest",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/manifest.json",
+      "role": "provenance",
+      "sha256": "ce52349a468c2b9fc807db6be436005a51b3577170824e82bb32011410420d9c",
+      "size_bytes": 21922,
+      "parent_iteration": "iter1_10082026_dedupe_strat_reports"
+    }
+  ],
+  "outputs": [
+    {
+      "file_id": "complete_release_summary",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_summary.csv",
+      "role": "complete_release",
+      "sha256": "85f537d3bc07205eed0fe40d9e74e46ed1987eaaacd4ca24626053d2024a6a8c",
+      "size_bytes": 95315,
+      "row_count": 332,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ","
+    },
+    {
+      "file_id": "archive_summary",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/removed_records/boardman_wells_summary.csv",
+      "role": "archive",
+      "sha256": "c0109da538d1a7990b583dde8222cdde70408369f728f62e52c710c964ad250b",
+      "size_bytes": 1457486,
+      "row_count": 6979,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ","
+    },
+    {
+      "file_id": "complete_release_stratigraphy",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_stratigraphy.csv",
+      "role": "complete_release",
+      "sha256": "46aa2f64131da1fb76a90cba94cc9f66165e7135fabfa0ee65782aac510efd71",
+      "size_bytes": 402005,
+      "row_count": 1427,
+      "headers": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ","
+    },
+    {
+      "file_id": "archive_stratigraphy",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/removed_records/boardman_wells_stratigraphy.csv",
+      "role": "archive",
+      "sha256": "c023ab53d679099bf3065008da558180d40795cad21ad4113c99181e79637949",
+      "size_bytes": 247,
+      "row_count": 0,
+      "headers": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ","
+    },
+    {
+      "file_id": "complete_release_lithology",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_lithology.csv",
+      "role": "complete_release",
+      "sha256": "6e4ce4cd1b54c6082554ff423d889fb01656a38668454c35c3884372ebb84b6d",
+      "size_bytes": 226363,
+      "row_count": 1215,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ","
+    },
+    {
+      "file_id": "archive_lithology",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/removed_records/boardman_wells_lithology.csv",
+      "role": "archive",
+      "sha256": "304d975649e5847974a11d1ea8b07f8f65261a474030537384f81551c16a4645",
+      "size_bytes": 2601639,
+      "row_count": 14244,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ","
+    }
+  ],
+  "coordinate_references": {
+    "horizontal": null,
+    "vertical": null,
+    "horizontal_units": null,
+    "vertical_units": null,
+    "depth_reference": null
+  },
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.14.4",
+      "libraries": "Standard library"
+    }
+  ],
+  "method_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/filter_wells.py",
+      "sha256": "e27e8c963fdea492f56876552dfb51cff5ee256e94c59ab7a6364bc2b7aad8c7"
+    }
+  ],
+  "audit_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/checks.json",
+      "sha256": "1b9d220d91317a58041fcd08791302eefdd5d38c92c9c8cd3c8ef58f50b52871"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/decisions.json",
+      "sha256": "a87bbe6be4398d641defa99e4ecfb25a2de4fbe9b57ddbefcaf0134553e676bf"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/excluded_wells.csv",
+      "sha256": "4d88e6e5be4e23529b8c31bd02c037a84e35146024cec2a4e3b7a4c5769eef69"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/source_row_links.csv",
+      "sha256": "8944ecc8f497728adf4c71ef822cfad41c8c9e108725cb49d41cd5ecdf812717"
+    }
+  ],
+  "decision_ids": [
+    "ITER2_KEEP_STRATIGRAPHY"
+  ],
+  "open_issue_ids": [],
+  "verification_summary": {
+    "result": "pass",
+    "counts": {
+      "summary": {
+        "input": 7311,
+        "working": 332,
+        "archived": 6979
+      },
+      "stratigraphy": {
+        "input": 1427,
+        "working": 1427,
+        "archived": 0
+      },
+      "lithology": {
+        "input": 15459,
+        "working": 1215,
+        "archived": 14244
+      }
+    },
+    "working_wells": 332,
+    "excluded_wells": 6979,
+    "working_wells_with_lithology": 100,
+    "working_wells_without_lithology": 232,
+    "excluded_wells_with_lithology": 2946,
+    "excluded_wells_without_lithology": 4033,
+    "input_townships": [
+      "WM2.00N24.00E",
+      "WM2.00N25.00E",
+      "WM2.00N26.00E",
+      "WM2.00N27.00E",
+      "WM2.00N28.00E",
+      "WM3.00N24.00E",
+      "WM3.00N25.00E",
+      "WM3.00N26.00E",
+      "WM3.00N27.00E",
+      "WM3.00N28.00E",
+      "WM4.00N24.00E",
+      "WM4.00N25.00E",
+      "WM4.00N26.00E",
+      "WM4.00N27.00E",
+      "WM4.00N28.00E",
+      "WM5.00N25.00E",
+      "WM5.00N26.00E",
+      "WM5.00N27.00E",
+      "WM5.00N28.00E"
+    ],
+    "working_townships": [
+      "WM2.00N24.00E",
+      "WM2.00N25.00E",
+      "WM2.00N26.00E",
+      "WM2.00N27.00E",
+      "WM2.00N28.00E",
+      "WM3.00N24.00E",
+      "WM3.00N25.00E",
+      "WM3.00N26.00E",
+      "WM3.00N27.00E",
+      "WM3.00N28.00E",
+      "WM4.00N24.00E",
+      "WM4.00N25.00E",
+      "WM4.00N26.00E",
+      "WM4.00N27.00E",
+      "WM4.00N28.00E",
+      "WM5.00N26.00E",
+      "WM5.00N27.00E",
+      "WM5.00N28.00E"
+    ],
+    "townships_without_retained_stratigraphy": [
+      "WM5.00N25.00E"
+    ],
+    "source_row_links": 24197,
+    "checks": {
+      "parent_complete_and_input_hashes": "pass",
+      "summary_well_ids_unique_nonblank": "pass",
+      "input_interval_foreign_keys": "pass",
+      "summary_flags_and_counts_match_actual_intervals": "pass",
+      "selection_matches_actual_stratigraphy_ids": "pass",
+      "working_and_archive_well_ids_partition_input": "pass",
+      "all_headers_values_and_row_order_preserved": "pass",
+      "working_and_archive_intervals_follow_well_selection": "pass",
+      "every_input_occurrence_preserved_once": "pass",
+      "every_output_occurrence_linked_once": "pass",
+      "parent_and_baseline_source_hashes_verified": "pass",
+      "every_output_occurrence_matches_parent_and_baseline": "pass",
+      "stratigraphy_byte_identical": "pass",
+      "exclusion_reasons_recorded": "pass",
+      "deduplication_representatives_and_links_retained": "pass",
+      "parent_inputs_unchanged": "pass"
+    }
+  },
+  "review": {
+    "operator": "Codex",
+    "reviewer": "Codex, with a separate CSV read-back and hash verification after execution",
+    "reviewed_local": "2026-10-09T09:55:12-07:00",
+    "outcome": "Accepted: user-authorized stratigraphy-availability filter applied; all 16 execution checks and separate output accounting, links, ancestor data hashes, and overwrite protection verified. Geological reliability review is deferred."
+  },
+  "notes": "Selection uses actual stratigraphy rows by well_id, checked against summary flags. Lithology is optional. Original columns, values, and occurrence order are preserved. No geological reliability judgment or boundary correction is applied.",
+  "input_evidence": [
+    {
+      "path_base": "iteration_directory",
+      "path": "inputs/parent_manifest_snapshot.json",
+      "sha256": "ce52349a468c2b9fc807db6be436005a51b3577170824e82bb32011410420d9c"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "inputs/input_files.csv",
+      "sha256": "343647c8a3fa3d92c10effa90ca25ce49174ccf6ac9608c2aef5455d684857d4"
+    }
+  ],
+  "documentation_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "README.md",
+      "sha256": "681b5c0e208d511c3775559a369d45a1c8b9d8ffa57bd29c7534465d3bcdb447"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "purpose": "Before-and-after visualization of the completed iteration 2 stratigraphy-availability filter; no data changes.",
+  "created_local": "2026-10-09T10:01:09-07:00",
+  "inputs": [
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/manifest_before_map_addition.json",
+      "sha256": "fc10b98b950fe5e3fa88f72c56a5211ce4f0320df7157f3a2de0186bf09fe686"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_summary.csv",
+      "sha256": "18133acee080ef1c09c18aee3d5bb71089dd4f9a9c6d26c53bcc2f489b78f523"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_summary.csv",
+      "sha256": "85f537d3bc07205eed0fe40d9e74e46ed1987eaaacd4ca24626053d2024a6a8c"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/removed_records/boardman_wells_summary.csv",
+      "sha256": "c0109da538d1a7990b583dde8222cdde70408369f728f62e52c710c964ad250b"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_stratigraphy.csv",
+      "sha256": "46aa2f64131da1fb76a90cba94cc9f66165e7135fabfa0ee65782aac510efd71"
+    }
+  ],
+  "sources": [
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/scripts/build_filter_maps.py",
+      "sha256": "2253484cf49d31979b6d35a3d3cb0ceb6b9da2322306c04759d41b11a1947415"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/scripts/filter_map.js",
+      "sha256": "7d56de02d061135d210a7228fa656d891f572b98692c71ab01ff30e78c7d6e51"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/scripts/filter_map_template.html",
+      "sha256": "ad02d6f00c29828b4607ee9833802047503d2a6703301e293846eff62895daa7"
+    }
+  ],
+  "statistics": {
+    "before_well_ids": 7311,
+    "after_well_ids": 332,
+    "excluded_well_ids": 6979,
+    "before_recorded_locations": 3747,
+    "after_recorded_locations": 332,
+    "missing_or_invalid_coordinates": 0,
+    "closer_before_well_ids": 7308,
+    "closer_excluded_well_ids": 6976,
+    "before_outside_closer_view": 3,
+    "after_with_lithology": 100,
+    "after_without_lithology": 232
+  },
+  "full_extent_lon_lat": [
+    -120.01957039999999,
+    -118.09787960000001,
+    43.6687526352,
+    46.1034819248
+  ],
+  "closer_extent_lon_lat": [
+    -119.9524615504,
+    -119.16917472959999,
+    45.5667976428,
+    45.9581655872
+  ],
+  "plot_coordinates": "Recorded longitude/latitude displayed as geographic degrees; source datum unverified.",
+  "scale_bars_metres": {
+    "full": 20000,
+    "closer": 5000
+  },
+  "distance_method": "Spherical distance at the bar latitude; mean Earth radius 6371008.8 m.",
+  "basemap": {
+    "provider": "USGS The National Map",
+    "service": "USGSTopo",
+    "max_native_zoom": 16,
+    "alternative": "Wells only"
+  },
+  "software": {
+    "python": "3.14.4",
+    "matplotlib": "3.10.7+dfsg1",
+    "leaflet": "1.9.4, browser CDN"
+  },
+  "outputs": [
+    {
+      "path": "before_after_filter.png",
+      "sha256": "8fac562ac6e83ca816b4f0067f3ff3febd823a7764897ae9b9117a8473a56965",
+      "size_bytes": 562796
+    },
+    {
+      "path": "before_after_filter.pdf",
+      "sha256": "88c367ad0d4277a04fed5268a655e70413b7b391985fe5fb59d8e69b5760bac0",
+      "size_bytes": 91637
+    },
+    {
+      "path": "well_filter_map.html",
+      "sha256": "1df1803bc036acf3f56b00769b8d704d1fffc09eba0f347298fb76d4d4e5f9ca",
+      "size_bytes": 4481029
+    },
+    {
+      "path": "well_locations.csv",
+      "sha256": "dff495a22ab8af7a667ea02ef47907532998c55c7c8266feda20a29d961dda6e",
+      "size_bytes": 2912299
+    },
+    {
+      "path": "well_locations.json",
+      "sha256": "0de70075554ffde1e84746a2ca5286f7c1f70f991238b22e6761affc8cadf67c",
+      "size_bytes": 5463534
+    },
+    {
+      "path": "well_locations.geojson",
+      "sha256": "2c119276d5f419d685fd2b9c0f6c5c60b61b5aa310d3db64028b9be9e13c6bf8",
+      "size_bytes": 2920255
+    },
+    {
+      "path": "README.md",
+      "sha256": "ef2937cd9f19644de18b4214d0f2c2ac6c9e602df048b6a10f49e094036d341f",
+      "size_bytes": 2882
+    }
+  ],
+  "checks": {
+    "frozen_input_hashes": "pass",
+    "well_id_partitions": "pass",
+    "retained_and_archived_values_unchanged": "pass",
+    "retained_ids_equal_actual_stratigraphy_ids": "pass",
+    "all_wells_have_valid_geographic_coordinates": "pass",
+    "scale_lengths_verified": "pass",
+    "input_hashes_unchanged_after_plotting": "pass"
+  }
+}

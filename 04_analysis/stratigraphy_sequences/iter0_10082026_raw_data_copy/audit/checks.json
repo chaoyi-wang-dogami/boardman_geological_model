@@ -1,0 +1,302 @@
+{
+  "iteration_number": 0,
+  "checked_local": "2026-10-08T17:18:28-07:00",
+  "scope": "Snapshot integrity and baseline inventory only; not geological quality.",
+  "result": "pass",
+  "checks": [
+    {
+      "check_id": "boardman_wells_summary.csv:sha256_copy_matches_source",
+      "expected": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+      "actual": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_summary.csv:bytes_copy_matches_source",
+      "expected": true,
+      "actual": true,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_summary.csv:source_unchanged_after_copy",
+      "expected": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+      "actual": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_summary.csv:file_size",
+      "expected": 1578541,
+      "actual": 1578541,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_summary.csv:headers",
+      "expected": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ],
+      "actual": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ],
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_summary.csv:row_count_preserved",
+      "expected": 7402,
+      "actual": 7402,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_summary.csv:baseline_row_count",
+      "expected": 7402,
+      "actual": 7402,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_summary.csv:baseline_source_hash",
+      "expected": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+      "actual": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_summary.csv:consistent_csv_field_count",
+      "expected": 0,
+      "actual": 0,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_stratigraphy.csv:sha256_copy_matches_source",
+      "expected": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+      "actual": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_stratigraphy.csv:bytes_copy_matches_source",
+      "expected": true,
+      "actual": true,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_stratigraphy.csv:source_unchanged_after_copy",
+      "expected": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+      "actual": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_stratigraphy.csv:file_size",
+      "expected": 521575,
+      "actual": 521575,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_stratigraphy.csv:headers",
+      "expected": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ],
+      "actual": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ],
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_stratigraphy.csv:row_count_preserved",
+      "expected": 1854,
+      "actual": 1854,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_stratigraphy.csv:baseline_row_count",
+      "expected": 1854,
+      "actual": 1854,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_stratigraphy.csv:baseline_source_hash",
+      "expected": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+      "actual": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_stratigraphy.csv:consistent_csv_field_count",
+      "expected": 0,
+      "actual": 0,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_lithology.csv:sha256_copy_matches_source",
+      "expected": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+      "actual": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_lithology.csv:bytes_copy_matches_source",
+      "expected": true,
+      "actual": true,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_lithology.csv:source_unchanged_after_copy",
+      "expected": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+      "actual": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_lithology.csv:file_size",
+      "expected": 2851475,
+      "actual": 2851475,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_lithology.csv:headers",
+      "expected": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ],
+      "actual": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ],
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_lithology.csv:row_count_preserved",
+      "expected": 15586,
+      "actual": 15586,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_lithology.csv:baseline_row_count",
+      "expected": 15586,
+      "actual": 15586,
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_lithology.csv:baseline_source_hash",
+      "expected": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+      "actual": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+      "status": "pass"
+    },
+    {
+      "check_id": "boardman_wells_lithology.csv:consistent_csv_field_count",
+      "expected": 0,
+      "actual": 0,
+      "status": "pass"
+    },
+    {
+      "check_id": "input_file_count",
+      "expected": 3,
+      "actual": 3,
+      "status": "pass"
+    },
+    {
+      "check_id": "output_file_count",
+      "expected": 3,
+      "actual": 3,
+      "status": "pass"
+    },
+    {
+      "check_id": "directory_uses_actual_local_start_date",
+      "expected": "iter0_10082026_raw_data_copy",
+      "actual": "iter0_10082026_raw_data_copy",
+      "status": "pass"
+    }
+  ]
+}

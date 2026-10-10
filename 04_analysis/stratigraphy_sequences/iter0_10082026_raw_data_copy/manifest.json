@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.0-draft",
+  "iteration_number": 0,
+  "directory_name": "iter0_10082026_raw_data_copy",
+  "purpose": "Freeze unchanged copies of the three authoritative processed CSVs.",
+  "status": "Complete",
+  "timezone": "America/Los_Angeles",
+  "started_local": "2026-10-08T17:18:28-07:00",
+  "closed_local": "2026-10-08T17:19:46-07:00",
+  "parent_iterations": [],
+  "workflow_documents": [
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/SOP.md",
+      "sha256": "64bfda737f71c9b23bd1b393438be1454d5ea25d150bcecf89ceb6bd1cd308bb",
+      "version": "Workflow draft 1, October 8, 2026"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/DATA_FORMAT.md",
+      "sha256": "a8a907c7d2211d68879aa0f3578170ffe1b27ed30a48e5629dfcfd3a61fba21b",
+      "version": "Workflow draft 1, October 8, 2026"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/templates/ITERATION_README.md",
+      "sha256": "59bcfd2a6456eef36b51c8a59ddc38b926fc6f7d9205fc601587d8c5a840724e",
+      "version": "Workflow draft 1, October 8, 2026"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/templates/manifest.example.json",
+      "sha256": "14b9816974eda877c3db22c629773084dd5d08de16083545992e181b5fde3a0c",
+      "version": "Workflow draft 1, October 8, 2026"
+    }
+  ],
+  "inputs": [
+    {
+      "file_id": "input_001",
+      "path_base": "repository_root",
+      "path": "03_processed/boardman_19_townships/boardman_wells_summary.csv",
+      "role": "source",
+      "sha256": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+      "size_bytes": 1578541,
+      "row_count": 7402,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ],
+      "parent_iteration": null,
+      "encoding": "UTF-8",
+      "delimiter": ","
+    },
+    {
+      "file_id": "input_002",
+      "path_base": "repository_root",
+      "path": "03_processed/boardman_19_townships/boardman_wells_stratigraphy.csv",
+      "role": "source",
+      "sha256": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+      "size_bytes": 521575,
+      "row_count": 1854,
+      "headers": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ],
+      "parent_iteration": null,
+      "encoding": "UTF-8",
+      "delimiter": ","
+    },
+    {
+      "file_id": "input_003",
+      "path_base": "repository_root",
+      "path": "03_processed/boardman_19_townships/boardman_wells_lithology.csv",
+      "role": "source",
+      "sha256": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+      "size_bytes": 2851475,
+      "row_count": 15586,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ],
+      "parent_iteration": null,
+      "encoding": "UTF-8",
+      "delimiter": ","
+    }
+  ],
+  "outputs": [
+    {
+      "file_id": "output_001",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_summary.csv",
+      "role": "complete_release",
+      "sha256": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+      "size_bytes": 1578541,
+      "row_count": 7402,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ],
+      "parent_iteration": null,
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "source_file_id": "input_001"
+    },
+    {
+      "file_id": "output_002",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_stratigraphy.csv",
+      "role": "complete_release",
+      "sha256": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+      "size_bytes": 521575,
+      "row_count": 1854,
+      "headers": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ],
+      "parent_iteration": null,
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "source_file_id": "input_002"
+    },
+    {
+      "file_id": "output_003",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_lithology.csv",
+      "role": "complete_release",
+      "sha256": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+      "size_bytes": 2851475,
+      "row_count": 15586,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ],
+      "parent_iteration": null,
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "source_file_id": "input_003"
+    }
+  ],
+  "coordinate_references": {
+    "horizontal": null,
+    "vertical": null,
+    "horizontal_units": null,
+    "vertical_units": null,
+    "depth_reference": null
+  },
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.14.4",
+      "libraries": "Standard library only"
+    }
+  ],
+  "method_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/create_snapshot.py",
+      "sha256": "1a4b2399e4557325d28cf6bdb965ab67113e14226e6e857aef160569ccc22e85"
+    }
+  ],
+  "audit_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/checks.json",
+      "sha256": "b43727cf110dd651590b57c057bed3de5a80d0dfb9a333951959e5143f8e75da"
+    }
+  ],
+  "decision_ids": [],
+  "open_issue_ids": [],
+  "verification_summary": {
+    "result": "pass",
+    "passed": 30,
+    "total": 30
+  },
+  "review": {
+    "operator": "Codex",
+    "reviewer": null,
+    "reviewed_local": "2026-10-08T17:19:46-07:00",
+    "outcome": "All 30 snapshot checks passed. Independently re-read copies and source hashes, verified recorded inventory and artifact/document hashes, and checked documentation links. Snapshot closure authorized by the user; no geological review or decisions."
+  },
+  "notes": "Raw means unchanged current processed inputs. No cleaning, interpretation, or coordinate/height conversion. References are preserved as recorded; null coordinate_references mean not evaluated by this snapshot iteration. Completed snapshot files are retained unchanged by workflow convention.",
+  "baseline_audit": {
+    "path_base": "repository_root",
+    "path": "04_analysis/stratigraphy_sequences/artifacts/summary.json",
+    "sha256": "07c7301b311ab47afe3b5d3a404401d819672facbd0a578b8d8ebad2df9302e3",
+    "role": "existing_evidence"
+  },
+  "documentation_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "README.md",
+      "sha256": "07c7cb6526f44811539e814f11e72e5e51d985be2763b26be354f7d12b34d488"
+    }
+  ]
+}

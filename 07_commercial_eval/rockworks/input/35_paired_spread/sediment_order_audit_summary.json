@@ -1,0 +1,103 @@
+{
+  "source_sha256": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+  "depth_units": "feet as recorded",
+  "method": "Compare every targeted sediment interval with every CRBG interval in each report; count each report and GWIS site separately. Linked reports are not independent evidence.",
+  "references": {
+    "alkali": "https://pubs.oregon.gov/dogami/og/OGv43n10.pdf",
+    "geolex": "https://ngmdb.usgs.gov/Geolex/UnitRefs/AlkaliCanyonRefs_4537.html",
+    "burns": "https://www.usgs.gov/publications/three-dimensional-model-geologic-framework-columbia-plateau-regional-aquifer-system",
+    "interflood_loess": "https://www.usgs.gov/publications/case-periodic-colossal-jokulhlaups-pleistocene-glacial-lake-missoula",
+    "rockworks": "https://help.rockware.com/rockworks/WebHelp/table_stratigraphy.htm"
+  },
+  "scopes": {
+    "selected_35": {
+      "AlkaliCanyonFm": {
+        "cooccurring_reports": 11,
+        "cooccurring_gwis_sites": 11,
+        "reports_not_entirely_above_basalt": []
+      },
+      "MissoulaFlood": {
+        "cooccurring_reports": 14,
+        "cooccurring_gwis_sites": 14,
+        "reports_not_entirely_above_basalt": []
+      },
+      "Sediment.AlluvialFan": {
+        "cooccurring_reports": 1,
+        "cooccurring_gwis_sites": 1,
+        "reports_not_entirely_above_basalt": []
+      },
+      "Sediment.Loess": {
+        "cooccurring_reports": 4,
+        "cooccurring_gwis_sites": 4,
+        "reports_not_entirely_above_basalt": []
+      },
+      "Sediment.PostCrb": {
+        "cooccurring_reports": 12,
+        "cooccurring_gwis_sites": 12,
+        "reports_not_entirely_above_basalt": []
+      }
+    },
+    "full_19_townships": {
+      "AlkaliCanyonFm": {
+        "cooccurring_reports": 139,
+        "cooccurring_gwis_sites": 106,
+        "reports_not_entirely_above_basalt": []
+      },
+      "MissoulaFlood": {
+        "cooccurring_reports": 158,
+        "cooccurring_gwis_sites": 133,
+        "reports_not_entirely_above_basalt": []
+      },
+      "Sediment.AlluvialFan": {
+        "cooccurring_reports": 1,
+        "cooccurring_gwis_sites": 1,
+        "reports_not_entirely_above_basalt": []
+      },
+      "Sediment.Loess": {
+        "cooccurring_reports": 29,
+        "cooccurring_gwis_sites": 24,
+        "reports_not_entirely_above_basalt": []
+      },
+      "Sediment.PostCrb": {
+        "cooccurring_reports": 166,
+        "cooccurring_gwis_sites": 115,
+        "reports_not_entirely_above_basalt": [
+          "UMAT_0002049"
+        ]
+      }
+    }
+  },
+  "example_repeat": {
+    "well_id": "UMAT_0002307",
+    "sequence_ft": [
+      [
+        "Sediment.MissoulaFlood.Gravel",
+        0.0,
+        38.0
+      ],
+      [
+        "Sediment.MissoulaFlood.Silt",
+        38.0,
+        50.0
+      ],
+      [
+        "Sediment.MissoulaFlood.Gravel",
+        50.0,
+        53.0
+      ]
+    ]
+  },
+  "weathered_flow_top_prevalence": {
+    "source_label": "Crbg.Undifferentiated.WeatheredFlowTop",
+    "intervals": 19,
+    "reports": 19,
+    "gwis_sites": 13,
+    "all_stratigraphy_reports": 423,
+    "all_stratigraphy_gwis_sites": 328,
+    "selected_reports": [
+      "MORR_0052293"
+    ],
+    "min_thickness_ft": 1.0,
+    "max_thickness_ft": 348.0
+  }
+}

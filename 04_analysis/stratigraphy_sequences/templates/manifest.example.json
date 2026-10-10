@@ -1,0 +1,47 @@
+{
+  "template_only": true,
+  "schema_version": "1.0-draft",
+  "iteration_number": null,
+  "directory_name": "iter<number>_<MMDDYYYY>_<concise_action>",
+  "purpose": "Replace with the iteration's specific purpose",
+  "status": "Planned",
+  "timezone": "America/Los_Angeles",
+  "started_local": null,
+  "closed_local": null,
+  "parent_iterations": [],
+  "workflow_documents": [],
+  "inputs": [
+    {
+      "file_id": "input_001",
+      "path_base": "repository_root",
+      "path": "REPLACE_WITH_EXACT_INPUT_PATH",
+      "role": "source",
+      "sha256": null,
+      "size_bytes": null,
+      "row_count": null,
+      "headers": [],
+      "parent_iteration": null
+    }
+  ],
+  "outputs": [],
+  "coordinate_references": {
+    "horizontal": null,
+    "vertical": null,
+    "horizontal_units": null,
+    "vertical_units": null,
+    "depth_reference": null
+  },
+  "software": [],
+  "method_files": [],
+  "audit_files": [],
+  "decision_ids": [],
+  "open_issue_ids": [],
+  "verification_summary": null,
+  "review": {
+    "operator": null,
+    "reviewer": null,
+    "reviewed_local": null,
+    "outcome": null
+  },
+  "notes": "Template only. Fill source hashes before processing, use the same file fields for outputs, identify output role as complete_release/addition/change_list/candidate/model/evidence, and remove template_only when populated. Manifest paths are explicit; do not hash the manifest into itself."
+}

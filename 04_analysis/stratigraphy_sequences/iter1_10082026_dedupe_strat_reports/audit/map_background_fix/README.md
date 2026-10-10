@@ -1,0 +1,9 @@
+# Interactive background repair — October 9, 2026
+
+The user saw OpenStreetMap's blocked tile images in the locally opened interactive map. The exact server-side reason was not independently established. Local previews can omit the page address that [OpenStreetMap's tile policy](https://operations.osmfoundation.org/policies/tiles/) requires.
+
+Both interactive HTML copies now use the [USGS topographic service](https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer). The generator's JavaScript, HTML template, and provider metadata were updated. A **Wells only** choice hides the background while preserving the well controls, and failed tile requests produce a clear message. The background uses native tiles through zoom 16 and enlarges them at closer scales, consistent with the service's advertised maximum display scale. Group data were reused without rerunning the geological-data workflow or static-plot generator.
+
+[change_record.json](change_record.json) inventories the preserved files and records the display change. The files ending in `before_fix` are historical snapshots; the archived HTML is retained as evidence and its relative image links describe its original directory. [browser_checks.json](browser_checks.json) records Chromium checks against the current iteration HTML opened with `file://`: real USGS tile loads, search/filter/popup/reset, switching backgrounds, simulated tile failures, and the local static fallback when Leaflet cannot load. The browser checker and its dependencies ran from temporary storage, without adding dependencies to the repository.
+
+No well coordinates, duplicate groups, static plots, deduplication decisions, working CSVs, or archived CSVs changed. The original iteration completion date remains unchanged; this repair is a later display update.

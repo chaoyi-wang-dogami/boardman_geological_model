@@ -1,0 +1,20 @@
+{
+  "live": {
+    "pass": true,
+    "local_file_origin": true,
+    "real_usgs_tiles_200": 25,
+    "all_category_counts_verified": true,
+    "search_reset_and_source_record_popups": true,
+    "page_errors": []
+  },
+  "tile_failure": {
+    "pass": true,
+    "clear_message": true,
+    "wells_only_works": true
+  },
+  "library_failure": {
+    "pass": true,
+    "static_png_available": true,
+    "controls_disabled": true
+  }
+}

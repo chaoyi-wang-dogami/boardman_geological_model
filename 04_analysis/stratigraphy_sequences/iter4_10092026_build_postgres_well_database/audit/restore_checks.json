@@ -1,0 +1,308 @@
+{
+  "database": "boardman_iter4_restore",
+  "passed": true,
+  "checks": [
+    {
+      "check": "original well IDs",
+      "passed": true,
+      "actual": 7402,
+      "expected": 7402
+    },
+    {
+      "check": "original interval occurrences",
+      "passed": true,
+      "actual": [
+        {
+          "kind": "lithology",
+          "n": 15586
+        },
+        {
+          "kind": "stratigraphy",
+          "n": 1854
+        }
+      ],
+      "expected": [
+        {
+          "kind": "lithology",
+          "n": 15586
+        },
+        {
+          "kind": "stratigraphy",
+          "n": 1854
+        }
+      ]
+    },
+    {
+      "check": "iteration 0 well values and occurrence counts",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "iteration 0 stratigraphy values and occurrence counts",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "iteration 0 lithology values and occurrence counts",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "iteration 1 well values and occurrence counts",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "iteration 1 stratigraphy values and occurrence counts",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "iteration 1 lithology values and occurrence counts",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "iteration 2 well values and occurrence counts",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "iteration 2 stratigraphy values and occurrence counts",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "iteration 2 lithology values and occurrence counts",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "working well count",
+      "passed": true,
+      "actual": 332,
+      "expected": 332
+    },
+    {
+      "check": "working interval counts",
+      "passed": true,
+      "actual": [
+        {
+          "kind": "lithology",
+          "n": 1215
+        },
+        {
+          "kind": "stratigraphy",
+          "n": 1427
+        }
+      ],
+      "expected": [
+        {
+          "kind": "lithology",
+          "n": 1215
+        },
+        {
+          "kind": "stratigraphy",
+          "n": 1427
+        }
+      ]
+    },
+    {
+      "check": "all unique CSV files round trip",
+      "passed": true,
+      "actual": 45,
+      "expected": 45
+    },
+    {
+      "check": "CSV records verified",
+      "passed": true,
+      "actual": 150010,
+      "expected": 150010
+    },
+    {
+      "check": "stored source files reconstruct exactly",
+      "passed": true,
+      "actual": 211,
+      "expected": 211
+    },
+    {
+      "check": "input paths and hashes unchanged",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check": "all foreign keys validated",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "check": "well membership identity matches",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "check": "interval membership identity matches",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "check": "duplicate survivor links",
+      "passed": true,
+      "actual": 91,
+      "expected": 91
+    },
+    {
+      "check": "duplicate interval links",
+      "passed": true,
+      "actual": 427,
+      "expected": 427
+    },
+    {
+      "check": "current archived well states",
+      "passed": true,
+      "actual": [
+        {
+          "state": "deduplicated",
+          "n": 91
+        },
+        {
+          "state": "excluded_no_stratigraphy",
+          "n": 6979
+        },
+        {
+          "state": "working",
+          "n": 332
+        }
+      ],
+      "expected": [
+        {
+          "state": "deduplicated",
+          "n": 91
+        },
+        {
+          "state": "excluded_no_stratigraphy",
+          "n": 6979
+        },
+        {
+          "state": "working",
+          "n": 332
+        }
+      ]
+    },
+    {
+      "check": "findings retained",
+      "passed": true,
+      "actual": 163,
+      "expected": 163
+    },
+    {
+      "check": "no findings silently resolved",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "check": "ground candidates not adopted",
+      "passed": true,
+      "actual": 2844,
+      "expected": 2844
+    },
+    {
+      "check": "recorded height sources",
+      "passed": true,
+      "actual": 35,
+      "expected": 35
+    },
+    {
+      "check": "recorded height well associations",
+      "passed": true,
+      "actual": 36,
+      "expected": 36
+    },
+    {
+      "check": "numeric categories",
+      "passed": true,
+      "actual": [
+        {
+          "numeric_category": "inconsistent",
+          "n": 66
+        },
+        {
+          "numeric_category": "missing_depth",
+          "n": 19
+        },
+        {
+          "numeric_category": "missing_elevation",
+          "n": 1
+        },
+        {
+          "numeric_category": "numeric_complete",
+          "n": 246
+        }
+      ],
+      "expected": [
+        {
+          "numeric_category": "inconsistent",
+          "n": 66
+        },
+        {
+          "numeric_category": "missing_depth",
+          "n": 19
+        },
+        {
+          "numeric_category": "missing_elevation",
+          "n": 1
+        },
+        {
+          "numeric_category": "numeric_complete",
+          "n": 246
+        }
+      ]
+    },
+    {
+      "check": "working geometries",
+      "passed": true,
+      "actual": 332,
+      "expected": 332
+    },
+    {
+      "check": "five affected wells retained",
+      "passed": true,
+      "actual": 5,
+      "expected": 5
+    },
+    {
+      "check": "zero-thickness lithology remains",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "check": "no geological value changes",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "check": "historical update blocked",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    }
+  ],
+  "source_files_verified": 211,
+  "source_records_verified": 150010
+}

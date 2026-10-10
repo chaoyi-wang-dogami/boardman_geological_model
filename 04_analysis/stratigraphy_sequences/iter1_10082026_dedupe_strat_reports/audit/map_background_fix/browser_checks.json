@@ -1,0 +1,25 @@
+{
+  "live": {
+    "pass": true,
+    "origin": "file://",
+    "groups": 71,
+    "well_records": 166,
+    "usgs_tiles_200": 16,
+    "no_osm_requests": true,
+    "filter_search_popup_reset_and_background_switch": "pass",
+    "console_errors": []
+  },
+  "tile_failure": {
+    "pass": true,
+    "simulated": "USGS tile requests aborted",
+    "groups_remain": 71,
+    "clear_message": true,
+    "wells_only_works": true
+  },
+  "library_failure": {
+    "pass": true,
+    "simulated": "Leaflet CDN requests aborted",
+    "static_overview_loaded": true,
+    "controls_disabled": true
+  }
+}

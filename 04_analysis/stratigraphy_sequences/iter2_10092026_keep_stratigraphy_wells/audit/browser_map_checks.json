@@ -1,0 +1,31 @@
+{
+  "live": {
+    "pass": true,
+    "origin": "file://",
+    "real_usgs_tiles_200": 25,
+    "default_after": 332,
+    "before": 7311,
+    "excluded": 6979,
+    "combined": 7311,
+    "lithology_filters": "pass",
+    "search_popup_reset": "pass",
+    "township_search": "5 excluded IDs in WM5.00N25.00E",
+    "shared_coordinates_do_not_inflate_or_reduce_well_counts": "pass",
+    "wells_only": "pass",
+    "no_osm_requests": true,
+    "page_errors": []
+  },
+  "tile_failure": {
+    "pass": true,
+    "simulated": "USGS requests aborted",
+    "clear_message": true,
+    "retained_wells_remain": 332,
+    "wells_only": "pass"
+  },
+  "library_failure": {
+    "pass": true,
+    "simulated": "Leaflet CDN requests aborted",
+    "static_png_loaded": true,
+    "controls_disabled": true
+  }
+}

@@ -1,0 +1,131 @@
+BOARDMAN: 35 PAIRED WELL REPORTS FOR ROCKWORKS
+Prepared 2026-10-06. Workbook: boardman_35_paired_spread_rockworks.xls
+
+SAMPLE AND SOURCE RULES
+35 distinct well_id values and 35 distinct gw_site_id values. All have both
+lithology and stratigraphy in the authoritative processed CSVs. No online
+lithology or PDF transcription was added. The processed CSVs were not changed;
+their before/after SHA256 hashes were verified and recorded in manifest.json.
+
+The complete paired pool has 121 reports / 112 GWIS sites and covers only
+13 of the 19 townships. The sample includes every township with paired data.
+It starts at the western extent, selects the farthest available site in an
+unrepresented township until all 13 are covered, then fills remaining slots
+by farthest-point sampling in EPSG:26911 metres. This is a reproducible greedy
+coverage heuristic, not proof of a globally optimal spatial design. Quality
+flags and location class break spatial ties; locations are not silently moved.
+Reports with missing/nonpositive completion depth are not sampled because
+RockWorks requires Total Depth; these remain in paired_pool_selection_audit.csv.
+Every selected report's selection step, reason, distance and flags are recorded.
+
+Each borehole is a REPORT PROXY named by exact well_id. It is not a newly
+adjudicated physical-borehole identity. A site appears only once in this sample.
+
+COORDINATES AND UNITS
+Horizontal project/input coordinates: EPSG:26911, NAD83 / UTM zone 11N, metres.
+Vertical project/input coordinates: NAVD88, metres. Output units: metres.
+All depth values: metres, positive downward from the ground elevation.
+Original depths in feet remain in Source Lithology / Source Stratigraphy.
+Conversion: international foot x 0.3048. Depths themselves do not receive a
+vertical-datum shift; the ground reference elevation does.
+
+Report longitude/latitude uses the existing repository WGS84 convention.
+The selected GWIS pages independently disclose WGS1984 for their site
+coordinates; this does not independently survey each report coordinate.
+34 selected sites disclose NAVD1988; site 63 (UMAT_0000450) discloses NGVD1929.
+Every processed depth-plus-contact-elevation agrees with the corresponding
+live GWIS land-surface elevation. Site 63: 825 ft = 251.460 m NGVD29;
+NOAA NCAT / VERTCON 3.0 returns 252.492 m NAVD88 (+1.032 m).
+The service reports 0.002 m transformation sigma, which is not the accuracy
+of the original source ground elevation. The grid query uses report WGS84
+longitude/latitude transformed by PROJ to NAD83 geographic coordinates;
+NAD83(1986) is the NCAT grid-location convention, not a surveyed realization.
+The exact query, response, source accuracy, and evidence are retained.
+
+IMPORT INTO A NEW DISPOSABLE ROCKWORKS PROJECT
+1. Create the project with NAD83 / UTM zone 11 North and metre horizontal,
+   vertical and output units. Use ground Elevation as the depth reference.
+   No downhole survey is supplied; vertical-hole geometry is a display assumption.
+2. Open Borehole Manager > File > Import > Excel > Row Based.
+3. Select the genuine .xls workbook. Map only these import worksheets:
+   Location, Lithology, Stratigraphy, Lith Type, Strat Type, IText Type, IText.
+   All other worksheets are audit records; leave them unmapped.
+4. Input coordinates are already projected in the project CRS, with metre
+   elevations/depths. Do not choose longitude/latitude or apply another conversion.
+5. Location mapping:
+   Bore -> Name; Easting -> Easting; Northing -> Northing;
+   Elevation -> ground Elevation; TD -> Total Depth; Comments -> Comments.
+   Symbol and Color can remain at defaults.
+   If the wizard requires Collar Elevation, map the same Elevation field to
+   Collar Elevation as a documented ground-reference display assumption.
+   Do not invent a casing/rig elevation offset.
+6. Before import, create custom TEXT Location fields for well_id, wl_id and
+   gw_site_id, and explicitly map those columns. Other source/location columns
+   may be mapped to custom fields. Identifiers are also retained in Comments
+   and the source sheets, but that is not a substitute for verifying native fields.
+7. Lithology mapping, in this order:
+   Bore, Depth-1 -> Depth to Top, Depth-2 -> Depth to Base,
+   Lithology -> Keyword, Description -> Description.
+8. Stratigraphy mapping, in this order:
+   Bore, Depth-1 -> Depth to Top, Depth-2 -> Depth to Base,
+   Stratigraphy -> Formation, Comment -> Comment.
+   Explicitly map the fifth Comment column using Show Block Mapping.
+   Import BOTH top and base; do not calculate bases from tops.
+9. Types sheets use the documented nine-column layout, including blank style
+   columns. Lithology keywords are opaque codes for EXACT raw descriptions;
+   Lithology Dictionary is the reversible lookup. They are not geological classes.
+   Configure desired display patterns/colors after import.
+10. IText mapping: Bore, Type, Depth1, Depth2, Value.
+    It retains interval provenance in two separate tracks. Verify JSON text
+    lengths and export preservation in the installed build.
+11. Disable Infer Partial Units, Infer Missing Contacts, Insert Missing Units,
+    and Create Pinchouts. Do not consolidate intervals or fix depths automatically.
+12. Export immediately before editing. Check 35 boreholes, 453 Lithology rows,
+    154 Stratigraphy rows and 607 IText rows, identifiers, labels, text and depths.
+    Record the actual RockWorks build, license and import settings/screenshots.
+
+GEOLOGICAL REVIEW LIMITS
+The Strat Type G-Values are stable lexical registry codes, NOT an approved
+young-to-old stratigraphic order. This package supports import and observed
+log review; do not interpolate surfaces or solids until a geologist reviews
+the type order and parent/child handling. A .general label means supported
+parent with unresolved detail, not an extra physical layer beside its children.
+The normalization crosswalk uses labels with observed dot-separated children
+in the full stratigraphy dataset; leaves are unchanged. Source labels remain
+verbatim in Source Stratigraphy, Comments and IText. Review Label Map.
+
+Repeated units and interval anomalies remain unchanged and flagged.
+15 selected reports have one or more flags. Seven have intervals beyond the
+reported completion depth; three repeat a stratigraphic label; one has
+overlapping lithology. Some flags overlap within a report. The native TD is
+the reported depth converted to metres, not extended to accommodate picks.
+RockWorks may warn or limit drawing beyond TD: record the behavior, do not
+silently clip source rows or extend the reported borehole.
+Source endings, including at TD, are interval endpoints/candidate contacts;
+they do not prove a geological unit base or absence below termination.
+No predicted or human-reviewed contacts are included. Source lithology and
+source interpretations remain distinguishable through provenance tracks.
+The earlier site-940 overlap case is not in this revised paired-only sample,
+because that report has no processed lithology. No midpoint edits were applied.
+
+VALIDATION AND REPRODUCTION
+The file is BIFF8/OLE .xls, not a renamed .xlsx or CSV. Every written cell was
+read back with independent xlrd, including identifier text types and numeric
+depth/elevation types. This does not prove an actual RockWorks import: the
+Windows application is not available in this environment.
+
+From repository root, install scoped Excel libraries if needed:
+  uv pip install --target 07_commercial_eval/rockworks/scripts/.deps xlwt==1.3.0 xlrd==2.0.2
+Then run:
+  .venv/bin/python 07_commercial_eval/rockworks/scripts/build_spread_sample.py
+Evidence is cached; subsequent runs reuse the recorded metadata/NOAA responses.
+The script requires repository requests, lxml and pyproj dependencies.
+
+REFERENCES
+https://help.rockware.com/rockworks/WebHelp/xls_to_bh_detail.htm
+https://help.rockware.com/rockworks/WebHelp/xls_to_bh.htm
+https://help.rockware.com/rockworks/WebHelp/xls_to_bh3.htm
+https://help.rockware.com/rockworks/WebHelp/strat_rules.htm
+https://www.ngs.noaa.gov/web_services/ncat/index.shtml
+https://www.ngs.noaa.gov/web_services/ncat/lat-long-height-service.shtml
+Per-site GWIS URLs, retrieval times and page hashes: datum_audit.json.

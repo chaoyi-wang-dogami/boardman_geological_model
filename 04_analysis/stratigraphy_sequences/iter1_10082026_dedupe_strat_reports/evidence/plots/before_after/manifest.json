@@ -1,0 +1,105 @@
+{
+  "purpose": "Before/after visualization recorded inside iteration 1; deduplication data unchanged.",
+  "created_local": "2026-10-08T18:06:49-07:00",
+  "scope": {
+    "groups": 71,
+    "before_records": 166,
+    "after_records": 75,
+    "before_locations": 84,
+    "after_locations": 75,
+    "removed_records": 91,
+    "representatives": 71,
+    "farther_records": 4
+  },
+  "scales": [
+    {
+      "panel": "before",
+      "length_m": 5000,
+      "latitude": 45.60965661344,
+      "start_longitude": -119.36008247578,
+      "end_longitude": -119.2958033321873
+    },
+    {
+      "panel": "after",
+      "length_m": 5000,
+      "latitude": 45.60965661344,
+      "start_longitude": -119.36008247578,
+      "end_longitude": -119.2958033321873
+    }
+  ],
+  "marker_encoding": "Filled area proportional to record count; outlines encode removal/retention status.",
+  "inputs": [
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_summary.csv",
+      "sha256": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_summary.csv",
+      "sha256": "18133acee080ef1c09c18aee3d5bb71089dd4f9a9c6d26c53bcc2f489b78f523"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/removed_records/boardman_wells_summary.csv",
+      "sha256": "fc560d6ca8ac1d6ce8474d104b19e2a57ebeb5e73f3217c0133560615dc60d02"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/well_group_membership.csv",
+      "sha256": "90664cda8c29d37479b31f561f558b614323c59bf0857f14ad36300ab97fd565"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/checks.json",
+      "sha256": "820691dbe10691b262697510b2307b4e0a9610fc3fda0872a30c26ea759b7561"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/manifest_before_plot_addition.json",
+      "sha256": "436729ea5569812f528d637c3327930895ab9b40f91426c1f508ad34d8d03696",
+      "role": "generation_time_iteration_manifest_snapshot"
+    }
+  ],
+  "sources": [
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/plot_before_after.py",
+      "sha256": "618688f0d3c22f3ab4ef5a95beead93fd663ee68c54886b2061e767cf34b872f",
+      "role": "original_generator"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/scripts/plot_before_after.py",
+      "sha256": "a51bd1e333e5623ab6cfdfca5caa928cb32450900882cca2bb564be55d0f7756",
+      "role": "reproduction_method"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "before_after_dedupe.png",
+      "sha256": "7f8f862303368e46bd3cdf5c2d109d54d8b6b1e52adc9c6eb53c5f93511d3090"
+    },
+    {
+      "path": "before_after_dedupe.pdf",
+      "sha256": "e9118f5b587380263a0cb5b54d3e86bc9d19eb60e54c896fad93cdf449abc88d"
+    },
+    {
+      "path": "comparison_locations.csv",
+      "sha256": "9241116aad636b9a2d1370392e26f24c25430041647833276bd84f27646ff736"
+    }
+  ],
+  "software": {
+    "matplotlib": "3.10.7+dfsg1"
+  },
+  "checks": {
+    "frozen_input_hashes_match": "pass",
+    "record_actions_match_archive_and_survivors": "pass",
+    "surviving_row_values_unchanged": "pass",
+    "group_and_location_counts": "pass",
+    "input_hashes_unchanged_after_plotting": "pass"
+  },
+  "documentation_updates": [
+    {
+      "date": "2026-10-09",
+      "reason": "Added an unchanged copy of the plots/data inside iteration 1; generation-time iteration manifest is now retained as a snapshot."
+    }
+  ],
+  "copied_into_iteration_date": "2026-10-09",
+  "original_location": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after",
+  "original_plot_manifest_snapshot": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/plot_manifest_before_addition.json"
+}

@@ -1,0 +1,8 @@
+{
+  "recorded_at": "2026-10-09T17:23:59.129607-07:00",
+  "database": "boardman_iter4_restore",
+  "restore_verified": true,
+  "checks_passed": 34,
+  "temporary_database_removed": true,
+  "working_database_retained": "boardman"
+}

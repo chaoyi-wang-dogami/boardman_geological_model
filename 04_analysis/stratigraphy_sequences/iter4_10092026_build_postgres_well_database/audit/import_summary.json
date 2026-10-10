@@ -1,0 +1,29 @@
+{
+  "source_files": 211,
+  "source_locations": 234,
+  "source_records": 150010,
+  "wells": 7402,
+  "intervals": 17440,
+  "well_versions": 22115,
+  "interval_versions": 50339,
+  "record_lineage": 47612,
+  "findings": 163,
+  "ground_height_candidates": 2844,
+  "ground_height_sources": 35,
+  "well_height_links": 36,
+  "duplicate_wells": 91,
+  "duplicate_intervals": 427,
+  "changes": 0,
+  "working_wells": 332,
+  "working_intervals": [
+    {
+      "kind": "lithology",
+      "n": 1215
+    },
+    {
+      "kind": "stratigraphy",
+      "n": 1427
+    }
+  ],
+  "geological_values_changed": 0
+}

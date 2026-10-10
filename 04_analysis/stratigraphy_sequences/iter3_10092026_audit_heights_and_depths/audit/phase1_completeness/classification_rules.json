@@ -1,0 +1,21 @@
+{
+  "numeric_priority": [
+    "missing_depth",
+    "missing_elevation",
+    "inconsistent",
+    "numeric_complete"
+  ],
+  "numeric_complete": "Required completion and interval depths/elevations present, with no flagged numeric/sequence discrepancy. Does not establish a verified height reference.",
+  "ground_height_priority": [
+    "recorded_linked_site",
+    "calculated_only",
+    "missing"
+  ],
+  "recorded_linked_site": "Existing cached ground height linked through gw_site_id; not automatically a verified height for this well or its interval elevations.",
+  "calculated_only": "Depth plus elevation yields an implied height, assuming ground-based depths and the repository feet convention; not adopted.",
+  "arithmetic_tolerance_ft": "0.01",
+  "zero_is_missing": false,
+  "negative_elevation_is_invalid": false,
+  "sentinel_policy": "No undocumented finite number is silently treated as a missing-value code.",
+  "reference_policy": "Core CSVs lack interval height-reference fields. Cached site reference strings remain separate and are not assigned to interval elevations."
+}

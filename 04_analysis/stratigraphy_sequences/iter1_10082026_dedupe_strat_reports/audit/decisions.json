@@ -1,0 +1,32 @@
+[
+  {
+    "decision_id": "ITER1_WITHIN_GROUP",
+    "decision": "Only compare copies within the same site and identical complete scientific interval collection.",
+    "decided_by": "User",
+    "status": "accepted"
+  },
+  {
+    "decision_id": "ITER1_100_METRES",
+    "decision": "Remove matching copies within 100 m of the selected representative; retain records more than 100 m away. No chaining through intermediate wells.",
+    "decided_by": "User",
+    "status": "accepted"
+  },
+  {
+    "decision_id": "ITER1_LOCATION_CHOICE",
+    "decision": "Use the most common recorded coordinate pair. When there is no single most common pair, use the location of the alphabetically first well_id among the equally common pairs.",
+    "decided_by": "User",
+    "status": "accepted"
+  },
+  {
+    "decision_id": "ITER1_EXISTING_REPRESENTATIVE",
+    "decision": "Latest instruction selects a surviving existing representative well. This supersedes the earlier proposal to create new well IDs. Select the alphabetically first well at the chosen location and preserve its row values.",
+    "decided_by": "User; existing representative implemented from latest instruction",
+    "status": "accepted"
+  },
+  {
+    "decision_id": "ITER1_REMOVED_LITHOLOGY",
+    "decision": "Archive removed wells' lithology under original IDs without transferring it to the representative. An existing surviving well retains its own original lithology.",
+    "decided_by": "User",
+    "status": "accepted"
+  }
+]

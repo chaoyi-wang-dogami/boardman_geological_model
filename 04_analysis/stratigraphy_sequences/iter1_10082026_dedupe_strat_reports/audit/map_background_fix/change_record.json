@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-09",
+  "reason": "User reported OpenStreetMap 403 Access blocked tiles in the local interactive map.",
+  "confirmed_problem": "Blocked background images displayed; the old JavaScript used tile.openstreetmap.org.",
+  "possible_cause": "Local preview may omit the valid Referer expected by OpenStreetMap; exact cause not established.",
+  "provider": "USGS The National Map / USGSTopo",
+  "tile_url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
+  "provider_metadata_url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer?f=pjson",
+  "changes": [
+    "Replace background provider in both HTML copies and generator sources.",
+    "Add Wells only background option and tile error/status messages.",
+    "Preserve previous map, source scripts, and manifests; update file hashes."
+  ],
+  "data_effect": "None: well data, group locations, static plots, archives, decisions, status, and closure date unchanged.",
+  "preserved_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/duplicate_groups_map_before_fix.html",
+      "sha256": "1f30ba857836694b83cbd20927611a0432cc4f135a491646835e32bdc4d81d3f",
+      "size_bytes": 52616
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/iteration_manifest_before_fix.json",
+      "sha256": "b289bb56f9ef79f5b799a17528745d14fc0815048470789beaa42b6ee979c0e1",
+      "size_bytes": 18910
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/iteration_map_manifest_before_fix.json",
+      "sha256": "86605396ffb954b4e7ed911da18b6515655172d233e59df621dedddfdc53835e",
+      "size_bytes": 3525
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/iteration_readme_before_fix.md",
+      "sha256": "2fbd4026aef30f9ac0689bb73767e8a5dc741379124fe5563f61b940408c67c9",
+      "size_bytes": 8023
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/map_before_fix.js",
+      "sha256": "65a3a5c4f5fc7c9a57386b7c9b1b3229bc256b55e13daa3df270bf3b4cfaf9ae",
+      "size_bytes": 5557
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/map_template_before_fix.html",
+      "sha256": "b80166cd0fb44bdf7ae3bb84a32a688386f211f9fbe2719bfcd8714a91d50aae",
+      "size_bytes": 4781
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/original_map_manifest_before_fix.json",
+      "sha256": "cb5867c07512e37ae88d7bf63bc871dc35c0f77f6249a372dc56bd90383affdf",
+      "size_bytes": 3111
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/plot_addition_before_fix.json",
+      "sha256": "e9eb8d4f150b13a11fc914f242308891ae83c77249f52a6a1137a6ce72feb1af",
+      "size_bytes": 3414
+    }
+  ],
+  "updated_html": [
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/duplicate_groups_map.html",
+      "sha256": "2e858c4d291bac7636264d1f66df843c8613e592fcd19ac578b7a3f939ca4d21"
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/duplicate_groups/duplicate_groups_map.html",
+      "sha256": "2e858c4d291bac7636264d1f66df843c8613e592fcd19ac578b7a3f939ca4d21"
+    }
+  ],
+  "verification": {
+    "browser_checks": "audit/map_background_fix/browser_checks.json",
+    "javascript_syntax": "pass: node --check map.js",
+    "unchanged_iteration_outputs": "pass: original hashes",
+    "unchanged_group_data_and_static_overview": "pass: original map output hashes",
+    "both_html_copies_match": "pass"
+  }
+}

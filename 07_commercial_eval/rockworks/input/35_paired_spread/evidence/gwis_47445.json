@@ -1,0 +1,11 @@
+{
+  "gw_site_id": "47445",
+  "source_url": "https://apps.wrd.state.or.us/apps/gw/gw_info/gw_info_report/gw_details.aspx?gw_site_id=47445",
+  "retrieved_at_utc": "2026-10-06T23:18:40.399008+00:00",
+  "page_sha256": "0262d8e680ad7dac1e3b6ebd1707902e6e4d1d34e19a0cbbd0bc9f664eceab15",
+  "source_ground_elevation_ft": "815.40",
+  "source_vertical_datum": "NAVD1988",
+  "source_elevation_method": "LIDAR",
+  "source_elevation_accuracy_raw": "4.00",
+  "site_horizontal_datum": "WGS1984"
+}

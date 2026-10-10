@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boardman · duplicate stratigraphy groups</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f8f7f3;color:#253345;font:15px/1.5 system-ui,sans-serif}
+header{padding:20px 24px 14px;border-bottom:1px solid #dedfd9}h1{font-size:25px;line-height:1.2;margin:0 0 8px}header p{margin:0;color:#536174}
+main{display:grid;grid-template-columns:330px 1fr;height:calc(100vh - 112px);min-height:560px}aside{padding:18px;overflow:auto;border-right:1px solid #dedfd9}
+#map{height:100%;min-height:480px;background:#e9eee9;display:none}.map-area{min-width:0;overflow:hidden;position:relative}#fallback{width:100%;height:100%;overflow:auto;padding:16px}#fallback img{width:100%;height:auto}
+button,input,select{font:inherit;border:1px solid #c5ccd1;border-radius:6px;background:white;padding:7px 10px}button{cursor:pointer;color:#253345}button:hover{background:#edf2f8}input,select{width:100%}label{display:block;margin:12px 0 5px;font-size:13px;font-weight:600}.row{display:flex;gap:8px;margin:12px 0}.row button{flex:1}.legend{margin:16px 0;font-size:13px}.legend div{margin:6px 0}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px}.blue{background:#2463a6}.orange{background:#c77716}.red{background:#bb3046}
+.pair{display:block;width:100%;margin:7px 0;text-align:left;font-size:13px}.note{font-size:12px;color:#647184;margin-top:16px}#group-list button{width:100%;text-align:left;margin:4px 0;font-size:13px}#group-list small{display:block;color:#647184}.popup{min-width:220px;max-height:330px;overflow:auto}.popup ul{padding-left:18px}.popup li{margin:7px 0}.popup small{display:block;color:#647184}a{color:#2463a6}#radius{width:auto}#visible-count{font-size:13px;color:#647184}
+.leaflet-control-scale-line{font-size:13px;line-height:1.3;padding:4px 8px;background:rgba(255,255,255,.95);border-color:#253345}
+@media(max-width:780px){main{grid-template-columns:1fr;height:auto}aside{border-right:0}#map{height:65vh}#group-list{max-height:180px;overflow:auto}.map-area{min-height:450px}}
+</style>
+</head>
+<body>
+<header><h1>Boardman · duplicate stratigraphy groups</h1><p>71 groups · 166 well records · 58 groups share one location · 13 have differing locations</p></header>
+<main>
+<aside>
+<div class="legend"><div><span class="dot blue"></span>One shared location within the group</div><div><span class="dot orange"></span>Locations differ within the group</div><div><span class="dot red"></span>Different groups within 100 metres</div></div>
+<label for="background">Background map</label><select id="background"><option value="usgs">USGS topographic map</option><option value="none">Wells only</option></select>
+<p id="background-status" class="note" role="status" aria-live="polite">Loading the USGS topographic background…</p>
+<label for="filter">Show groups</label><select id="filter"><option value="all">All 71 groups</option><option value="same">58 groups with one location</option><option value="different">13 groups with differing locations</option></select>
+<label for="search">Find a site ID or well ID</label><input id="search" type="search" placeholder="e.g. 1077 or UMAT_0002562">
+<label><input id="radius" type="checkbox"> Show 100 m circles around recorded locations</label>
+<div class="row"><button id="fit">Fit visible groups</button><button id="reset">Reset</button></div>
+<strong>Nearby group pairs</strong><div id="pair-list"></div>
+<p class="note">These two pairs have different complete stratigraphy records. Lines use the nearest recorded locations between groups.</p>
+<div id="visible-count"></div><div id="group-list"></div>
+<p class="note">Each dot represents one coordinate pair; coincident well records are listed together. Click a dot or group to inspect. Orange dashed lines connect locations in the same group; they do not select a replacement location.</p>
+<p class="note">This map shows the original iteration 0 records before deduplication. Iteration 1 contains the current working release. Recorded coordinates have not been independently checked. The USGS background and interactive library need an internet connection. Choose “Wells only” to view the points without background tiles.</p>
+<a href="duplicate_groups_overview.png">Open static overview</a> · <a href="group_locations.geojson" download>GeoJSON</a>
+</aside>
+<section class="map-area"><div id="map" aria-label="Map of duplicate interpretation groups"></div><div id="fallback"><p id="fallback-note">Loading the interactive map. The static overview below is available without a basemap connection.</p><img src="duplicate_groups_overview.png" alt="Overview of 71 duplicate interpretation groups with detailed views of the two pairs within 100 metres."></div></section>
+</main>
+<script type="application/json" id="group-data">__GROUP_DATA__</script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>__MAP_JS__</script>
+</body>
+</html>

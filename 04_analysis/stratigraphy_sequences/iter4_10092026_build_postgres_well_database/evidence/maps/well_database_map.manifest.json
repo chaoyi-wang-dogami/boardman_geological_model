@@ -1,0 +1,11 @@
+{
+  "generated_at_utc": "2026-10-10T00:18:39.753322+00:00",
+  "source": "PostgreSQL queries; no CSV reads",
+  "database": "boardman",
+  "working_wells": 332,
+  "all_well_ids": 7402,
+  "html_sha256": "24c00da53b9e5b1b6be2c4dc341580c13bc67cef341a41ff830717de59c4c06a",
+  "embedded_payload_sha256": "22dd62dfd6e93c82d3e21b060d3555ed4ca9b689b392e143299a860a4182d955",
+  "snapshot": true,
+  "external_services": "Optional USGS background tiles only; map library embedded locally"
+}

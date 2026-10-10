@@ -1,0 +1,11 @@
+[
+  {
+    "decision_id": "ITER2_KEEP_STRATIGRAPHY",
+    "date": "2026-10-09",
+    "status": "accepted",
+    "decided_by": "User",
+    "decision": "Keep wells with at least one stratigraphy row; lithology is optional. Archive wells without stratigraphy and all associated records. Preserve original values and well IDs.",
+    "supersedes": "Earlier proposal to require both lithology and stratigraphy; that proposal was not executed.",
+    "authorization": "User approved the revised plan and instructed: Sure, start iteration 2."
+  }
+]

@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boardman · depth and elevation audit</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f8f7f3;color:#253345;font:15px/1.5 system-ui,sans-serif}header{padding:18px 24px;border-bottom:1px solid #dedfd9}h1{font-size:25px;margin:0 0 5px}header p{margin:0;color:#536174}main{display:grid;grid-template-columns:350px 1fr;height:calc(100vh - 112px);min-height:600px}aside{padding:18px;overflow:auto;border-right:1px solid #dedfd9}.map-area{min-width:0;overflow:hidden}#map{height:100%;min-height:500px;background:#e9eee9;display:none}#fallback{padding:16px;overflow:auto;height:100%}#fallback img{width:100%;height:auto}button,input,select{font:inherit;border:1px solid #c5ccd1;border-radius:6px;background:white;padding:7px 10px;color:#253345}button{cursor:pointer}button:hover{background:#edf2f8}input,select{width:100%}label{display:block;margin:12px 0 5px;font-size:13px;font-weight:600}.row{display:flex;gap:8px;margin:12px 0}.row button{flex:1}.legend{font-size:13px}.legend div{margin:6px 0}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px}.note{font-size:12px;color:#647184}.popup{min-width:260px;max-height:400px;overflow:auto}.popup ul{padding-left:18px}.popup li{margin:6px 0}.popup small{color:#647184}a{color:#2463a6}#visible-count{margin:15px 0;font-weight:600;font-size:13px}#well-list button{width:100%;text-align:left;margin:4px 0;font-size:13px}#well-list small{display:block;color:#647184}.leaflet-control-scale-line{font-size:13px;padding:4px 8px;background:rgba(255,255,255,.95);border-color:#253345}@media(max-width:780px){main{grid-template-columns:1fr;height:auto}#map{height:65vh}#well-list{max-height:180px;overflow:auto}.map-area{min-height:450px}}
+</style></head><body>
+<header><h1>Boardman · iteration 3 completeness audit</h1><p>332 well IDs · Read-only audit of iteration 2 · No data corrections applied</p></header>
+<main><aside>
+<label for="view">Audit view</label><select id="view"><option value="numeric">Depth/elevation completeness</option><option value="ground">Ground-height information</option><option value="reference">Saved site height-reference information</option></select>
+<div id="legend" class="legend"></div>
+<label for="category">Show category</label><select id="category"></select>
+<label for="search">Find a well ID, site ID, or township</label><input id="search" type="search" placeholder="e.g. MORR_0000561">
+<label for="background">Background map</label><select id="background"><option value="usgs">USGS topographic map</option><option value="none">Wells only</option></select>
+<p id="background-status" class="note" role="status" aria-live="polite">Loading the USGS background…</p>
+<div class="row"><button id="fit">Fit visible wells</button><button id="reset">Reset</button></div>
+<div id="visible-count" role="status" aria-live="polite"></div><div id="well-list"></div><p id="list-note" class="note"></p>
+<p class="note">Green describes numeric completeness, not geological reliability or a confirmed height reference. A well can have several issues; click its point or list entry for all findings.</p>
+<p class="note">Calculated ground heights are candidates only. Saved ground heights belong to linked GWIS sites; six linked well coordinates differ from the saved site coordinates. No site height or reference has been assigned to the working intervals.</p>
+<p class="note">The core CSVs contain no explicit ground-height column or interval height-reference field. All 332 interval height references remain unverified. Units follow the repository feet convention. Recorded coordinates are displayed unchanged.</p>
+<a href="audit_completeness.png">Static map</a> · <a href="audit_completeness.pdf">PDF</a> · <a href="audit_locations.geojson" download>GeoJSON</a>
+</aside><section class="map-area"><div id="map" aria-label="Well completeness audit map"></div><div id="fallback"><p id="fallback-note">Loading the interactive library. The static map is available below.</p><img src="audit_completeness.png" alt="Maps of depth/elevation completeness and ground-height information."></div></section></main>
+<script type="application/json" id="audit-data">__AUDIT_DATA__</script><script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script>__MAP_JS__</script></body></html>

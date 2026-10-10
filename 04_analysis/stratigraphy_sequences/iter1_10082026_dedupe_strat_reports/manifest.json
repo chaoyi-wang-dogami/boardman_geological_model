@@ -1,0 +1,655 @@
+{
+  "schema_version": "1.0-draft",
+  "iteration_number": 1,
+  "directory_name": "iter1_10082026_dedupe_strat_reports",
+  "purpose": "Remove identical nearby stratigraphy copies while keeping existing representative well IDs and all original removed records.",
+  "status": "Complete",
+  "timezone": "America/Los_Angeles",
+  "started_local": "2026-10-08T18:00:41-07:00",
+  "closed_local": "2026-10-08T18:03:29-07:00",
+  "parent_iterations": [
+    "iter0_10082026_raw_data_copy"
+  ],
+  "workflow_documents": [
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/workflow/SOP.md",
+      "sha256": "052409aeb679511b629db402fe320a521942c8b55e73d73b230e360bb56af900"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/workflow/ACTION_PLAN.md",
+      "sha256": "1165dd00ea4ae66811db31b7f9ed57891d56e250f944e6490f960109b378e7a3"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/workflow/DATA_FORMAT.md",
+      "sha256": "983a74c79d5a7cd2ddf89196a3bae63e938ea05d394803f0fc6edb9b9b196b40"
+    }
+  ],
+  "inputs": [
+    {
+      "file_id": "input_summary",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_summary.csv",
+      "role": "source",
+      "sha256": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+      "size_bytes": 1578541,
+      "row_count": 7402,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ],
+      "parent_iteration": "iter0_10082026_raw_data_copy",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "source_file_id": "input_001"
+    },
+    {
+      "file_id": "input_stratigraphy",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_stratigraphy.csv",
+      "role": "source",
+      "sha256": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+      "size_bytes": 521575,
+      "row_count": 1854,
+      "headers": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ],
+      "parent_iteration": "iter0_10082026_raw_data_copy",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "source_file_id": "input_002"
+    },
+    {
+      "file_id": "input_lithology",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_lithology.csv",
+      "role": "source",
+      "sha256": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+      "size_bytes": 2851475,
+      "row_count": 15586,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ],
+      "parent_iteration": "iter0_10082026_raw_data_copy",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "source_file_id": "input_003"
+    }
+  ],
+  "outputs": [
+    {
+      "file_id": "complete_release_summary",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_summary.csv",
+      "role": "complete_release",
+      "sha256": "18133acee080ef1c09c18aee3d5bb71089dd4f9a9c6d26c53bcc2f489b78f523",
+      "size_bytes": 1552591,
+      "row_count": 7311,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ]
+    },
+    {
+      "file_id": "archive_summary",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/removed_records/boardman_wells_summary.csv",
+      "role": "archive",
+      "sha256": "fc560d6ca8ac1d6ce8474d104b19e2a57ebeb5e73f3217c0133560615dc60d02",
+      "size_bytes": 26160,
+      "row_count": 91,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ]
+    },
+    {
+      "file_id": "complete_release_stratigraphy",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_stratigraphy.csv",
+      "role": "complete_release",
+      "sha256": "46aa2f64131da1fb76a90cba94cc9f66165e7135fabfa0ee65782aac510efd71",
+      "size_bytes": 402005,
+      "row_count": 1427,
+      "headers": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ]
+    },
+    {
+      "file_id": "archive_stratigraphy",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/removed_records/boardman_wells_stratigraphy.csv",
+      "role": "archive",
+      "sha256": "c17c3c088588d7f914e310fc77a854175a8d7c5b32a301907eba9e104ed095e1",
+      "size_bytes": 119817,
+      "row_count": 427,
+      "headers": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ]
+    },
+    {
+      "file_id": "complete_release_lithology",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_lithology.csv",
+      "role": "complete_release",
+      "sha256": "7da857371ee81bb2feaf8e084ed81223752186c5f37a8c945fd31ffca8006f7f",
+      "size_bytes": 2827835,
+      "row_count": 15459,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ]
+    },
+    {
+      "file_id": "archive_lithology",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/removed_records/boardman_wells_lithology.csv",
+      "role": "archive",
+      "sha256": "213f0cd81799761c413827228c8066a091b8852770719ce32a484c66737ad8cf",
+      "size_bytes": 23807,
+      "row_count": 127,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ]
+    },
+    {
+      "file_id": "representative_metadata",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/representative_well_metadata.csv",
+      "role": "metadata",
+      "sha256": "0becd1e12052fb8810cce3e11a76ab3251c08af5d25a91e7a15e4a9f3aed8a3f",
+      "size_bytes": 9776,
+      "row_count": 71,
+      "headers": [
+        "well_id",
+        "gw_site_id",
+        "group_id",
+        "deduped_well_count",
+        "deduped_well_ids_json",
+        "retained_distant_well_ids_json",
+        "original_metadata_archive",
+        "removed_record_details"
+      ]
+    }
+  ],
+  "coordinate_references": {
+    "horizontal": null,
+    "vertical": null,
+    "horizontal_units": null,
+    "vertical_units": null,
+    "depth_reference": null
+  },
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.14.4",
+      "libraries": "Standard library"
+    }
+  ],
+  "method_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/dedupe.py",
+      "sha256": "05b714e559af843f88d1af831494ae42ce9d71f30c8f92114ef85a0704aa2cea"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/plot_before_after.py",
+      "sha256": "a51bd1e333e5623ab6cfdfca5caa928cb32450900882cca2bb564be55d0f7756"
+    }
+  ],
+  "audit_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/checks.json",
+      "sha256": "820691dbe10691b262697510b2307b4e0a9610fc3fda0872a30c26ea759b7561"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/decisions.json",
+      "sha256": "df711942087bad2b8993e5d1da81af62854963bdde79f78fc0ff167c84d270ca"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/deduped_well_links.csv",
+      "sha256": "8787bc67c2181832090ad90f554dcf500cbee4794f9185a917c1212cf5cc6354"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/groups.csv",
+      "sha256": "53461254b8037442a3add69e0909b77a8e8b7ed9f970243e0ae7f04ee5ce9170"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/source_row_links.csv",
+      "sha256": "459f8e052182724945f28c944eed2a8da8c6452c9f3d67ab8f727bf2d8798261"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/stratigraphy_duplicate_links.csv",
+      "sha256": "7480890326e27d48aa025d4939c3f28b84be3b08417a782d1493cc65f759346b"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/well_group_membership.csv",
+      "sha256": "90664cda8c29d37479b31f561f558b614323c59bf0857f14ad36300ab97fd565"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/plot_addition.json",
+      "sha256": "122e28400d3269fa76b71ed49ab026d46f3d8b5570a09608bcbdb616950e08d9"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/README.md",
+      "sha256": "8cd628e91ca1851e3083bef39b5c24ba6e753d4ebe6869645005d841574c720d",
+      "size_bytes": 1822
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/browser_checks.json",
+      "sha256": "b87fd2b24e6760804a5224d81f4264243ee7298144457ee848087b734fed910c",
+      "size_bytes": 581
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/change_record.json",
+      "sha256": "a905c8151f27e9b118b86f485f85dfe9774969ad6039fdb76d8fac0ae2f457c8",
+      "size_bytes": 3799
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/duplicate_groups_map_before_fix.html",
+      "sha256": "1f30ba857836694b83cbd20927611a0432cc4f135a491646835e32bdc4d81d3f",
+      "size_bytes": 52616
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/iteration_manifest_before_fix.json",
+      "sha256": "b289bb56f9ef79f5b799a17528745d14fc0815048470789beaa42b6ee979c0e1",
+      "size_bytes": 18910
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/iteration_map_manifest_before_fix.json",
+      "sha256": "86605396ffb954b4e7ed911da18b6515655172d233e59df621dedddfdc53835e",
+      "size_bytes": 3525
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/iteration_readme_before_fix.md",
+      "sha256": "2fbd4026aef30f9ac0689bb73767e8a5dc741379124fe5563f61b940408c67c9",
+      "size_bytes": 8023
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/map_before_fix.js",
+      "sha256": "65a3a5c4f5fc7c9a57386b7c9b1b3229bc256b55e13daa3df270bf3b4cfaf9ae",
+      "size_bytes": 5557
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/map_template_before_fix.html",
+      "sha256": "b80166cd0fb44bdf7ae3bb84a32a688386f211f9fbe2719bfcd8714a91d50aae",
+      "size_bytes": 4781
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/original_map_manifest_before_fix.json",
+      "sha256": "cb5867c07512e37ae88d7bf63bc871dc35c0f77f6249a372dc56bd90383affdf",
+      "size_bytes": 3111
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/map_background_fix/plot_addition_before_fix.json",
+      "sha256": "e9eb8d4f150b13a11fc914f242308891ae83c77249f52a6a1137a6ce72feb1af",
+      "size_bytes": 3414
+    }
+  ],
+  "decision_ids": [
+    "ITER1_WITHIN_GROUP",
+    "ITER1_100_METRES",
+    "ITER1_LOCATION_CHOICE",
+    "ITER1_EXISTING_REPRESENTATIVE",
+    "ITER1_REMOVED_LITHOLOGY"
+  ],
+  "open_issue_ids": [],
+  "verification_summary": {
+    "result": "pass",
+    "counts": {
+      "summary": {
+        "input": 7402,
+        "retained": 7311,
+        "archived": 91
+      },
+      "stratigraphy": {
+        "input": 1854,
+        "retained": 1427,
+        "archived": 427
+      },
+      "lithology": {
+        "input": 15586,
+        "retained": 15459,
+        "archived": 127
+      }
+    },
+    "duplicate_groups": 71,
+    "group_records": 166,
+    "representatives": 71,
+    "removed_wells": 91,
+    "groups_without_one_most_common_location": 9,
+    "distant_records_retained": [
+      "UMAT_0001205",
+      "UMAT_0058282",
+      "UMAT_0056176",
+      "UMAT_0057516"
+    ],
+    "surviving_wells_with_stratigraphy": 332,
+    "checks": {
+      "input_hashes": "pass",
+      "complete_sequence_matching_with_occurrence_counts": "pass",
+      "original_headers_preserved": "pass",
+      "retained_and_archived_rows_read_back_unchanged": "pass",
+      "all_original_rows_accounted_for": "pass",
+      "primary_keys_unique": "pass",
+      "active_and_archived_wells_partition_inputs": "pass",
+      "active_foreign_keys": "pass",
+      "archive_foreign_keys": "pass",
+      "summary_counts_and_flags": "pass",
+      "every_removal_within_100m": "pass",
+      "distant_records_retained": "pass",
+      "representatives_preserved": "pass",
+      "every_removed_interval_linked_to_surviving_occurrence": "pass",
+      "source_hashes_unchanged": "pass"
+    }
+  },
+  "review": {
+    "operator": "Codex",
+    "reviewer": null,
+    "reviewed_local": "2026-10-08T18:03:29-07:00",
+    "outcome": "User-approved rules applied. All 15 data checks passed; independent closure verified output/audit hashes, each removed-well mapping and archived metadata, full row provenance coverage, current documentation links, and unchanged authoritative source hashes."
+  },
+  "notes": "No new well IDs. Group by site and identical complete scientific intervals. Choose the most frequent recorded coordinate pair; if frequencies tie, use the location of the alphabetically first well_id among those locations. Keep the alphabetically first well_id at the chosen location. Remove only other matching records within 100 m of that surviving well. Archive removed lithology without attaching it to survivors. Source depths, elevations, labels, IDs, and dates are not repaired or reinterpreted.",
+  "distance_method": "Haversine; mean Earth radius 6371008.8 m. Inclusive 100 m cutoff from representative coordinates.",
+  "documentation_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "README.md",
+      "sha256": "945d6a71fa687adb69ef7a2be115e33be4f8a2a4a658177e9402bbf4da7dbf35"
+    }
+  ],
+  "documentation_updates": [
+    {
+      "date": "2026-10-09",
+      "reason": "User requested that the deduplication plots also live inside iteration 1.",
+      "audit_file": "audit/plot_addition.json",
+      "previous_manifest_path": "evidence/plots/manifest_before_plot_addition.json",
+      "previous_manifest_sha256": "436729ea5569812f528d637c3327930895ab9b40f91426c1f508ad34d8d03696"
+    },
+    {
+      "date": "2026-10-09",
+      "reason": "Repair blocked interactive map background; add Wells only mode and failure messages. No deduplication data changed.",
+      "audit_file": "audit/map_background_fix/change_record.json",
+      "previous_manifest_path": "audit/map_background_fix/iteration_manifest_before_fix.json",
+      "previous_manifest_sha256": "b289bb56f9ef79f5b799a17528745d14fc0815048470789beaa42b6ee979c0e1"
+    }
+  ],
+  "supplemental_artifacts": [
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/README_before_plot_addition.md",
+      "sha256": "bb63d4e4f9efd91f0b575f1f0b0eecb5a92279771440d954d795c6cc420a0794",
+      "size_bytes": 6525,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/before_after/README.md",
+      "sha256": "0820a52006c2f0514738c98964a9f5b52ccd5b84521046426dac00536c884407",
+      "size_bytes": 2443,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/before_after/before_after_dedupe.pdf",
+      "sha256": "e9118f5b587380263a0cb5b54d3e86bc9d19eb60e54c896fad93cdf449abc88d",
+      "size_bytes": 76526,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/before_after/before_after_dedupe.png",
+      "sha256": "7f8f862303368e46bd3cdf5c2d109d54d8b6b1e52adc9c6eb53c5f93511d3090",
+      "size_bytes": 385827,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/before_after/comparison_locations.csv",
+      "sha256": "9241116aad636b9a2d1370392e26f24c25430041647833276bd84f27646ff736",
+      "size_bytes": 10563,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/before_after/manifest.json",
+      "sha256": "67f357a019be8b0cdd3f54e49b7da97b06be73e36980e322bff1635c09afc498",
+      "size_bytes": 4109,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/duplicate_groups/README.md",
+      "sha256": "0f444f4e802c303b304f63ef4a4b690b1e4bfd8d79f11d583e70dac87aeccb18",
+      "size_bytes": 2008,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/duplicate_groups/duplicate_groups_map.html",
+      "sha256": "2e858c4d291bac7636264d1f66df843c8613e592fcd19ac578b7a3f939ca4d21",
+      "size_bytes": 54492,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/duplicate_groups/duplicate_groups_overview.png",
+      "sha256": "c01d25aa127219492362c112d18dd70d6932485ca6aad52209b3ab2da4b7b341",
+      "size_bytes": 240146,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/duplicate_groups/group_locations.csv",
+      "sha256": "3509e16c41b6977cbcf99a54abf8c807c855120ebbc8bcc529c0fd10bd6dcd8e",
+      "size_bytes": 8538,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/duplicate_groups/group_locations.geojson",
+      "sha256": "586ab45bb358ba706228e57043333156cde8eb10bc59023ac638bb87085aa317",
+      "size_bytes": 31905,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/duplicate_groups/groups.json",
+      "sha256": "c0a1ce16b6e958b837a5f0bc1846b4f1718e2f7a2c1ab51ded0812e74041e486",
+      "size_bytes": 69667,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/duplicate_groups/map_manifest.json",
+      "sha256": "638aac8dc6296240897564c3cabf7a7ac0e564edd046046af08d0171060c3990",
+      "size_bytes": 4149,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/manifest_before_plot_addition.json",
+      "sha256": "436729ea5569812f528d637c3327930895ab9b40f91426c1f508ad34d8d03696",
+      "size_bytes": 14174,
+      "role": "plot_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/plot_manifest_before_addition.json",
+      "sha256": "fe74134eca08a9e5a1a5fb42b9fe0d7a03658c9f4182bedb1c635f915c6cdd53",
+      "size_bytes": 3059,
+      "role": "plot_evidence"
+    }
+  ]
+}

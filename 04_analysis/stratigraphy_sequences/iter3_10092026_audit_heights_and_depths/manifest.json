@@ -1,0 +1,920 @@
+{
+  "schema_version": "1.0-draft",
+  "iteration_number": 3,
+  "directory_name": "iter3_10092026_audit_heights_and_depths",
+  "purpose": "Audit elevation, ground height, and depth completeness before deciding on any modifications.",
+  "status": "Awaiting review",
+  "timezone": "America/Los_Angeles",
+  "started_local": "2026-10-09T10:32:10-07:00",
+  "closed_local": null,
+  "parent_iterations": [
+    "iter2_10092026_keep_stratigraphy_wells"
+  ],
+  "workflow_documents": [
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/workflow/SOP.md",
+      "sha256": "052409aeb679511b629db402fe320a521942c8b55e73d73b230e360bb56af900"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/workflow/ACTION_PLAN.md",
+      "sha256": "c0b4e714997955390f729ccb54749b2f86331b2e9ceab94f13216861609ff267"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/workflow/DATA_FORMAT.md",
+      "sha256": "709ae66182ab7cfc256ed30760693f4a1a4e66876fc6e19636b2bc08567087b1"
+    }
+  ],
+  "inputs": [
+    {
+      "file_id": "input_summary",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_summary.csv",
+      "role": "source",
+      "sha256": "85f537d3bc07205eed0fe40d9e74e46ed1987eaaacd4ca24626053d2024a6a8c",
+      "size_bytes": 95315,
+      "row_count": 332,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "tr_key",
+        "gw_site_id",
+        "completed_depth_ft",
+        "complete_date",
+        "received_date",
+        "has_lithology",
+        "lithology_count",
+        "has_stratigraphy",
+        "strat_count",
+        "detail_url",
+        "gw_info_url",
+        "longitude",
+        "latitude",
+        "location_class"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "parent_iteration": "iter2_10092026_keep_stratigraphy_wells"
+    },
+    {
+      "file_id": "input_stratigraphy",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_stratigraphy.csv",
+      "role": "source",
+      "sha256": "46aa2f64131da1fb76a90cba94cc9f66165e7135fabfa0ee65782aac510efd71",
+      "size_bytes": 402005,
+      "row_count": 1427,
+      "headers": [
+        "well_id",
+        "wl_nbr",
+        "wl_id",
+        "gw_site_id",
+        "start_depth",
+        "end_depth",
+        "start_depth_elev",
+        "end_depth_elev",
+        "depth_thickness",
+        "strat_unit",
+        "sample_source",
+        "picked_by",
+        "est_age",
+        "est_age_error",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "gw_info_url",
+        "source_kind",
+        "scraped_at"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "parent_iteration": "iter2_10092026_keep_stratigraphy_wells"
+    },
+    {
+      "file_id": "input_lithology",
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_lithology.csv",
+      "role": "source",
+      "sha256": "6e4ce4cd1b54c6082554ff423d889fb01656a38668454c35c3884372ebb84b6d",
+      "size_bytes": 226363,
+      "row_count": 1215,
+      "headers": [
+        "well_id",
+        "county",
+        "wl_nbr",
+        "wl_id",
+        "interval_no",
+        "from_ft",
+        "to_ft",
+        "thickness_ft",
+        "material_raw",
+        "static_water_level_raw",
+        "completed_depth_ft",
+        "complete_date",
+        "latitude",
+        "longitude",
+        "detail_url"
+      ],
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "parent_iteration": "iter2_10092026_keep_stratigraphy_wells"
+    },
+    {
+      "file_id": "evidence_gwis_10022.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_10022.json",
+      "sha256": "6ca7392dd4d230b769745d766cae2731c420ce0ad8b8237cafb9a44d3dfe0cb1",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_10022.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_10022.html.gz",
+      "sha256": "f9af69146e805a833eb7b42d54ea991156960368da5cc86353cc6eb5a54c0a7f",
+      "size_bytes": 671248,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_10306.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_10306.json",
+      "sha256": "10fc26d315a7dee37c46b0276c049d115a22d5c3cf6adfc3531361a5a0b3a25d",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_10306.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_10306.html.gz",
+      "sha256": "74bbadcfcf4b853b8e18474e3150389a4dfdbabcba338854a1d50fd346493990",
+      "size_bytes": 747378,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_1057.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_1057.json",
+      "sha256": "9be7b26220d66eff55a6929abe50dedd83b50fad28b39c275fc0e1dcda0ad5ae",
+      "size_bytes": 481,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_1057.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_1057.html.gz",
+      "sha256": "44a97b8283d508825c86ec27c925a1e8e18072c2da30987fe274025940cf7135",
+      "size_bytes": 826714,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_1065.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_1065.json",
+      "sha256": "ec5e59d4d5e7ae9e5fea8d37a55ab4f46e07ad3a2c456772cf83acc79a9be4cb",
+      "size_bytes": 481,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_1065.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_1065.html.gz",
+      "sha256": "e7972c8fcd2ed014fa97c3fbdc2e8dcac5e1bb19b5aa6b66e81a641eb8e57a91",
+      "size_bytes": 754089,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_117.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_117.json",
+      "sha256": "36c50615b7b7cfb2bf53a1fecc9fca4747bdd0e493d138e28aaea83cc0d446e9",
+      "size_bytes": 479,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_117.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_117.html.gz",
+      "sha256": "6c3e4696dea91a505869324be440a0b593628b5e173c9527af71decc83ddb258",
+      "size_bytes": 812933,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_131.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_131.json",
+      "sha256": "73240d3b7b30dd369963feaa7e354a70afc1c6b690f70326b843bd0bfb7da77d",
+      "size_bytes": 479,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_131.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_131.html.gz",
+      "sha256": "e4dd7144e120bea4b20eeb2ffe319c36f3639523623dc92377323430ee5a8a20",
+      "size_bytes": 519646,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_14479.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_14479.json",
+      "sha256": "fe7ab761ae146d6e8e5f911b4613fe8bf27bb25064ae8f0505cb38e9a5d7e1d7",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_14479.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_14479.html.gz",
+      "sha256": "2f2fe248aba96f69b009664fc5d8d5be7730d71762d02581965464672388877d",
+      "size_bytes": 784165,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_14827.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_14827.json",
+      "sha256": "68c83e444e81a780132b3536408d432bb637ea9fc7840539fad848d535e59e69",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_14827.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_14827.html.gz",
+      "sha256": "30c7c93465a222233bba00f41a433eaf32cf42c399ce7125856b905881e8f0a0",
+      "size_bytes": 949186,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_15840.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_15840.json",
+      "sha256": "87ea2df34de600f27ee64a558b8e014277387074a979c9bd50b15e0c5b8f63ee",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_15840.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_15840.html.gz",
+      "sha256": "d7daa7e667790d880c6e629b642cfd7c86c25dc59a03b32b35ede7ab2a622c9d",
+      "size_bytes": 1141861,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_16225.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16225.json",
+      "sha256": "466e639c94a723a2246ab09470f4e58dcf5815a2d096a741a9e2fed34fe277d1",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_16225.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16225.html.gz",
+      "sha256": "1d20769f015ed5dcd2b59a5f67b1f4762eb970b3399919d1e01a9fcb0d98e823",
+      "size_bytes": 731266,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_16227.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16227.json",
+      "sha256": "9cc37b0a5f3efbe25906027560c2db5e8e480eb73aed877bc265c4ee3bc66a1f",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_16227.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16227.html.gz",
+      "sha256": "abfb6778337f3794873bb93fe209f9a6357f5d6da399ddf31d4b6a72dfa581de",
+      "size_bytes": 946378,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_16343.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16343.json",
+      "sha256": "6465b664f9d47f68f776cbf8050cf2b4258599d8e87939c5747baddba24c31b5",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_16343.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16343.html.gz",
+      "sha256": "a3081f08dbb0104f4bd8dd24e3e2ff7a3a3a2f40a751447e72bae72b48525e68",
+      "size_bytes": 755627,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_17305.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17305.json",
+      "sha256": "1a094e4dbe3dea9bbe6646be447dbcde453f60f8898935ce7008ac4314be6c27",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_17305.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17305.html.gz",
+      "sha256": "450230c18a7b3e07eb9684de5e3e5a766fbdeee8bf726636cc520f8f0eb22861",
+      "size_bytes": 615608,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_17675.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17675.json",
+      "sha256": "c5d4584ed15115f626158ac7e5d89719a84f21220990462c172a6b4196ce0601",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_17675.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17675.html.gz",
+      "sha256": "d771c520ff3afa26009b7a3a7706b4dc6b9897105b4bbc5f10de6870c837f660",
+      "size_bytes": 783945,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_17693.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17693.json",
+      "sha256": "6fd9b8969195641d9b2e0550de365dd5ac1aa007c5d5508f8ac06448c4dbd200",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_17693.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17693.html.gz",
+      "sha256": "6cdddcc07b7130d1aa21a1e4b7213275303fbe959dac169627e56c2103f62ea5",
+      "size_bytes": 886519,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_18400.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_18400.json",
+      "sha256": "cb7078479c67552aee33c85836876a37545bd37e7fd14e089d19a3a140b6f89e",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_18400.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_18400.html.gz",
+      "sha256": "4620710ebd62826012484c09316bf431cd3f7a8c6e3264af2ec1722175ac8b27",
+      "size_bytes": 764651,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_19596.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_19596.json",
+      "sha256": "fc548490e44a810a10b066a69fe82d04c11b0ecf614c465d947755754e549cb6",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_19596.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_19596.html.gz",
+      "sha256": "08b68e8529eb247723d21539df0e481a9aa3a51d935f0e6162ba3c29d1b8e48d",
+      "size_bytes": 938458,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_20491.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_20491.json",
+      "sha256": "d068c270169382f990c944e9275ab7df749bb9b05cd892d4311c49585e239530",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_20491.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_20491.html.gz",
+      "sha256": "671ce28b48589c93bfb976a1fad4c6c9e03782f6b385df0684ac0b3399e4c2a4",
+      "size_bytes": 978194,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_35035.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_35035.json",
+      "sha256": "010df27e649caee25ef0bd034a6e45d35891091ea953867ec459e181e5a2f23e",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_35035.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_35035.html.gz",
+      "sha256": "22249346ed0d0ea7925c98741ffa4e247c15c51c274aec4cd01d18c5cc318d51",
+      "size_bytes": 851781,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_45231.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_45231.json",
+      "sha256": "4a596719d7fec8758b5d8a22c70de16be95ebdfd880d400c2cb0108462e1008f",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_45231.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_45231.html.gz",
+      "sha256": "a9ccef103ee87b0e6850dfac82f0b8d67a1d4952fbf59a5b8ee9f58d20a85be5",
+      "size_bytes": 1090489,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_45994.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_45994.json",
+      "sha256": "83d69972c912832c06642b0a3d3f5b09cdd236d89c1fc81c1ca7d4b22f51118b",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_45994.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_45994.html.gz",
+      "sha256": "21a03f9a9b54d5dcb39fe8e34c8419a05b817b0820e661ca6c1a25d8eb95da8b",
+      "size_bytes": 571274,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_46062.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46062.json",
+      "sha256": "6eea2957f4c3754d75b77b923b7316f9ff1e93b2d6e295f6edadbd73e4da093c",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_46062.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46062.html.gz",
+      "sha256": "18c9c0631cae871ef615740e0a7274741fd0b401f2453b895011458372d894ef",
+      "size_bytes": 648435,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_46106.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46106.json",
+      "sha256": "c0ecc252c5ab0c413f83bef5a5a473c171a87ffce705ad10f76265ed1c80a88e",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_46106.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46106.html.gz",
+      "sha256": "88a475dde3bdab7886892355f9f988e31420efeaa12df546008b36fcfdbf9cbb",
+      "size_bytes": 886057,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_46778.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46778.json",
+      "sha256": "99ea215969d7a68022512c4918cbc11c5d3333f8afa6444173b492daaa046a0a",
+      "size_bytes": 484,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_46778.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46778.html.gz",
+      "sha256": "14c53858e49976f9499cd178f6c4e59e783dcc844bff7f8308d78de2257913cd",
+      "size_bytes": 845414,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_46946.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46946.json",
+      "sha256": "7eaf461045c65b6ea9e91330a575e0757aa01ba6afac0eed9417c48ee9e28dab",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_46946.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46946.html.gz",
+      "sha256": "85aef4f7ae79d5d2ab633e8a1960c41434b55f74be7adf9a14a0c9167c8edbce",
+      "size_bytes": 1145470,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_47445.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_47445.json",
+      "sha256": "9cd4b3333c0a5a46ad3d9b01d3790561a5e82c68ebf60845f302bbbd1f780ff1",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_47445.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_47445.html.gz",
+      "sha256": "45df119026715b2b4a242981288ecbb01ad4622a5ce65c471ee5bff691546d33",
+      "size_bytes": 815445,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_49180.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49180.json",
+      "sha256": "5c54e00bb490f7517752de6fd45ac6b0847b15f206f36b1388ac320828b03f81",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_49180.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49180.html.gz",
+      "sha256": "c3ff9fa32577e823a60a3782f80333d8921e62aff1f57ec762c7da8f51534704",
+      "size_bytes": 1053462,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_49263.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49263.json",
+      "sha256": "b86a4bc4d64d6241230ebb490abda1b92cb5dcb2b147e49444e718f492af7196",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_49263.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49263.html.gz",
+      "sha256": "558358949117e3cba13c744d7f34889f3b665ddecf86a6ddb368368d588920c4",
+      "size_bytes": 943677,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_49264.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49264.json",
+      "sha256": "0f95d09269b14899881812079a216a2b73d50251801fdec42bebbc610ea2e03d",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_49264.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49264.html.gz",
+      "sha256": "aac4e8b9d937e446444a68b1ee4810229727e62fbe2d343aead1929e0f74121b",
+      "size_bytes": 602898,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_49265.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49265.json",
+      "sha256": "1b591b17858a47c3e1e236fbfdd90c5791683c238c5d009d124a05101d76ced1",
+      "size_bytes": 483,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_49265.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49265.html.gz",
+      "sha256": "69807d75cac92fc21dc3af46dc38e6c22e427469292ba0295d1f30a8655e853c",
+      "size_bytes": 961567,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_49268.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49268.json",
+      "sha256": "f9b5e178543256bc981ea6ab7525c0b3dc3746ce72f966c8ff0e9ecf79008155",
+      "size_bytes": 486,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_49268.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49268.html.gz",
+      "sha256": "f4005bc830d2ec2371e547426fbf96a7adf6567e42a8dff4cb63c2ed3a4db712",
+      "size_bytes": 717687,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_63.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_63.json",
+      "sha256": "cc37169d0942505872ef4f15006a7d040fc03992038afa9252f2665e091a87d0",
+      "size_bytes": 486,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_63.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_63.html.gz",
+      "sha256": "578ddbad4182cb45ff9983569ec86272226e1991eaee6cb502c0c7ff9ba57e48",
+      "size_bytes": 958346,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_680.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_680.json",
+      "sha256": "238a9ba480991b43f950cb65c582625f43cf7ea53bd2d710ad1fad3284b28e58",
+      "size_bytes": 479,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_680.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_680.html.gz",
+      "sha256": "dc2e3df88cbb40e19f3eb6aac7b61ce414176723fce32919b8435e99c611479f",
+      "size_bytes": 682036,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_79.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_79.json",
+      "sha256": "177a1d280d9e609cb9b835d88414b980f972694af06d8b22c96f2eb0431dcd89",
+      "size_bytes": 477,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_79.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_79.html.gz",
+      "sha256": "eac2e742e8bcd80cc17a8f0d095a4f1c38b04b4a6e890fd6da1d68196d14566e",
+      "size_bytes": 812989,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_956.json",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_956.json",
+      "sha256": "fddea3bd011c773cbb2170f9757ef9c218503e1f5704a7bc59069a0d8e35b18c",
+      "size_bytes": 479,
+      "role": "existing_source_evidence"
+    },
+    {
+      "file_id": "evidence_gwis_956.html.gz",
+      "path_base": "repository_root",
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_956.html.gz",
+      "sha256": "0e7747f3acda0bb4e1656083df27a1455a25f531ba520ffd37659324dc5d48be",
+      "size_bytes": 836621,
+      "role": "existing_source_evidence"
+    }
+  ],
+  "outputs": [],
+  "coordinate_references": {
+    "horizontal": null,
+    "vertical": null,
+    "horizontal_units": null,
+    "vertical_units": null,
+    "depth_reference": null
+  },
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.14.4",
+      "libraries": "Standard library; plots use Matplotlib"
+    }
+  ],
+  "method_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/audit_heights_and_depths.py",
+      "sha256": "c46bb0e7e033eddf993457d207a49925c0411225480b0104d0cb71a8c8e8f39f"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/audit_map.js",
+      "sha256": "fd7e6e97b37f862d6de33914b7cfb82f35dc297a85dfdf4a4599eaf2a6841b23"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/audit_map_template.html",
+      "sha256": "4f1754377e22cbbe051b3fdffa94e4ac18f11eea347c923e9eba9053b69c011d"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/build_audit_maps.py",
+      "sha256": "b3915a3cecc5a2701399a00df3afd6f1cd77c9cebff07cad0806e5031c30e11d"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "scripts/map_geometry.py",
+      "sha256": "9694fe602a245c840ec7f6fcdb43055423a04edc605834060119678c64d84fa0"
+    }
+  ],
+  "audit_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/phase1_completeness/FINDINGS.md",
+      "sha256": "068628cce12831f14a8c26fa8222769e728b37ad874e95acbed95e5efd2a9ab2"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/phase1_completeness/browser_checks.json",
+      "sha256": "56ef8cff3fd5c116b7b7352a892ba1310fe3b61a039f1ca6ec5153bb0cefefe9"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/phase1_completeness/cached_ground_height_sources.csv",
+      "sha256": "1fe65db24471bae809a8bedf7ea9c2a5fb5fa86a90db51b52a10b9cde4304005"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/phase1_completeness/checks.json",
+      "sha256": "3be80c2390af60f20d6c2ab2b2b684b3c1115cca452cddcc0665a7c94f96396d"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/phase1_completeness/classification_rules.json",
+      "sha256": "aafde4867eb85dc2276fcc271a225fbd8cd86423236b363bc5e46f3160f592a3"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/phase1_completeness/decisions.json",
+      "sha256": "af245989beb66ddd0a13253fdbcdd0683785cbf8795db209da988b29516f1b8d"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/phase1_completeness/ground_height_candidates.csv",
+      "sha256": "3974baa28a2e95112e024b2a63d3e6dce45ed4e75db9b8cf3e102f39d920ecdd"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/phase1_completeness/interval_findings.csv",
+      "sha256": "6fda87ac02a7e5d7f82efe5fb4f67ce0bb2c0f19656efdf5cfad68bb61538c5e"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/phase1_completeness/manifest.json",
+      "sha256": "a6cb8f1882911e91b644401d4bbafd13e9339e85ea1f8964382820d83edfd96c"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "audit/phase1_completeness/well_completeness.csv",
+      "sha256": "70b25f72d3206f7d090f28934e87d8eb9385abbef6bec5bd953f74a8a95e6da6"
+    }
+  ],
+  "decision_ids": [
+    "ITER3_READ_ONLY_AUDIT"
+  ],
+  "open_issue_ids": [
+    "ITER3_ACTIONS_NOT_SELECTED"
+  ],
+  "verification_summary": {
+    "result": "pass",
+    "counts": {
+      "wells": 332,
+      "stratigraphy_intervals": 1427,
+      "lithology_intervals": 1215,
+      "numeric_categories": {
+        "numeric_complete": 246,
+        "inconsistent": 66,
+        "missing_elevation": 1,
+        "missing_depth": 19
+      },
+      "ground_height_categories": {
+        "calculated_only": 295,
+        "missing": 1,
+        "recorded_linked_site": 36
+      },
+      "missing_completion_depth_wells": 19,
+      "missing_elevation_wells": 1,
+      "wells_with_flagged_mismatches": 66,
+      "issue_counts": {
+        "interval_below_recorded_completion": 127,
+        "missing_or_invalid_interval_elevation": 10,
+        "missing_completion_depth": 19,
+        "stratigraphy_depth_overlap": 2,
+        "stratigraphy_depth_gap": 4,
+        "nonpositive_interval_thickness": 1
+      },
+      "issue_well_counts": {
+        "interval_below_recorded_completion": 64,
+        "missing_completion_depth": 19,
+        "missing_or_invalid_interval_elevation": 1,
+        "nonpositive_interval_thickness": 1,
+        "stratigraphy_depth_gap": 3,
+        "stratigraphy_depth_overlap": 1
+      },
+      "implied_ground_height_available_wells": 331,
+      "cached_ground_height_sites": 35,
+      "cached_ground_height_wells": 36,
+      "cached_source_coordinates_match_wells": 30,
+      "interval_vertical_reference_not_recorded_wells": 332,
+      "core_explicit_ground_height_fields": 0,
+      "ground_height_candidate_occurrences": 2844,
+      "finding_occurrences": 163
+    },
+    "arithmetic_tolerance_ft": "0.01",
+    "checks": {
+      "parent_output_hashes": "pass",
+      "well_ids_unique": "pass",
+      "interval_ids_join_summary": "pass",
+      "one_audit_row_per_well": "pass",
+      "exclusive_map_category_totals": "pass",
+      "csv_read_back": "pass",
+      "cached_pages_match_saved_hashes_and_ground_fields": "pass",
+      "all_source_hashes_unchanged": "pass",
+      "parent_manifest_unchanged": "pass"
+    }
+  },
+  "review": {
+    "operator": "Codex",
+    "reviewer": "Codex read-back and provenance checks; user action decisions pending",
+    "outcome": "Audit phase complete. No data modifications or geological acceptance.",
+    "reviewed_local": "2026-10-09T10:32:10-07:00"
+  },
+  "notes": "Audit phase only. No working CSV release or data modifications. Candidate ground heights are audit evidence, not adopted values. Iteration 2 remains the current working data. Keep iteration 3 open pending action decisions.",
+  "supplemental_artifacts": [
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/completeness/README.md",
+      "sha256": "a4b8a0f1e3a45038a8cb56874806b487d1aad1f8e8ce2a8b8ebef9efee730f1c",
+      "role": "audit_map_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/completeness/audit_completeness.pdf",
+      "sha256": "93efecc7a04600fec1e69ab8979d4eea6d63987b4af8449d31dceb609da9e7b8",
+      "role": "audit_map_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/completeness/audit_completeness.png",
+      "sha256": "cc2ee08985c313684423d251bd5c554f417ac007fa8feec6c9e10d79947cdc89",
+      "role": "audit_map_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/completeness/audit_locations.geojson",
+      "sha256": "15d0531975df74014a5b14ae9711e88e6f688d99c6871eb89ce7e813448edd3d",
+      "role": "audit_map_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/completeness/audit_locations.json",
+      "sha256": "bf47674946dfafacbad5b4a441b162a4d94d17960fb514016f8277deae7ffa74",
+      "role": "audit_map_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/completeness/audit_map.html",
+      "sha256": "573e394827fe08990278606e24628bc32ebe18798eeb9ace22ae70a485036b97",
+      "role": "audit_map_evidence"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "evidence/plots/completeness/manifest.json",
+      "sha256": "c803a0e3477448fb319fd00d3b321048576ec9dcd3aeb66ddcd3eda2753c7e19",
+      "role": "audit_map_evidence"
+    }
+  ],
+  "documentation_files": [
+    {
+      "path_base": "iteration_directory",
+      "path": "README.md",
+      "sha256": "3a48b808be15ef43cc1dfa0f0384b1fec44a7fbc2b6d15d385229d06578fa5f8"
+    }
+  ],
+  "input_evidence": [
+    {
+      "path_base": "iteration_directory",
+      "path": "inputs/input_files.csv",
+      "sha256": "e601930ed7926cafe5d16f59b8deecff5617a5e0faddfb3d5c84f7f8d6045872"
+    },
+    {
+      "path_base": "iteration_directory",
+      "path": "inputs/parent_manifest_snapshot.json",
+      "sha256": "4d5e382b5161535863ec55e2bf45460f4feb7d969f0df277c5e1664542e3b172"
+    }
+  ],
+  "phase_status": {
+    "phase1_completeness": "Complete",
+    "action_phase": "Not started; user decision required"
+  }
+}

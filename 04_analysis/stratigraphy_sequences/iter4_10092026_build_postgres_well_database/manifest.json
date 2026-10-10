@@ -1,0 +1,1931 @@
+{
+  "iteration_number": 4,
+  "directory_name": "iter4_10092026_build_postgres_well_database",
+  "purpose": "Migrate well data, iteration history and read-only audit to PostgreSQL/PostGIS and generate an interactive HTML snapshot",
+  "status": "Complete",
+  "started_at_local": "2026-10-09T17:08:38.011590-07:00",
+  "completed_at_local": "2026-10-09T17:23:59.129607-07:00",
+  "timezone": "America/Los_Angeles",
+  "parents": [
+    {
+      "iteration_number": 2,
+      "role": "Unchanged accepted working data"
+    },
+    {
+      "iteration_number": 3,
+      "role": "Read-only audit and evidence; action phase remains pending"
+    },
+    {
+      "iteration_number": 0,
+      "role": "Original records and source occurrence identity"
+    },
+    {
+      "iteration_number": 1,
+      "role": "Deduplication history and survivor links"
+    }
+  ],
+  "working_release": 4,
+  "working_values_inherited_from": 2,
+  "counts": {
+    "source_files": 211,
+    "source_locations": 234,
+    "source_records": 150010,
+    "wells": 7402,
+    "intervals": 17440,
+    "well_versions": 22115,
+    "interval_versions": 50339,
+    "record_lineage": 47612,
+    "findings": 163,
+    "ground_height_candidates": 2844,
+    "ground_height_sources": 35,
+    "well_height_links": 36,
+    "duplicate_wells": 91,
+    "duplicate_intervals": 427,
+    "changes": 0,
+    "working_wells": 332,
+    "working_intervals": [
+      {
+        "kind": "lithology",
+        "n": 1215
+      },
+      {
+        "kind": "stratigraphy",
+        "n": 1427
+      }
+    ],
+    "geological_values_changed": 0
+  },
+  "changes": {
+    "geological_values_changed": 0,
+    "well_selection_changed": false,
+    "height_candidates_adopted": 0,
+    "source_coordinate_and_height_references_verified": false
+  },
+  "coordinate_and_unit_policy": {
+    "map_geometry": "Supplied longitude/latitude displayed using EPSG:4326 assumption; source horizontal reference unverified",
+    "depth_and_height": "Original feet convention retained alongside raw strings; vertical references not adopted or converted"
+  },
+  "infrastructure": {
+    "tool_version": "v001",
+    "image": {
+      "image_tag": "postgis/postgis:17-3.5",
+      "image_digest": "postgis/postgis@sha256:01a6a70e41e6c4467c8f55f6063555ed72db2d6662cd0d571040d42eadaeb6f6"
+    },
+    "container": "boardman-stratigraphy-db",
+    "volume": "boardman_stratigraphy_pgdata",
+    "host": "127.0.0.1",
+    "port": 55432,
+    "database": "boardman",
+    "credentials": "Excluded; private ignored database/runtime/connection.json"
+  },
+  "verification": {
+    "live_database_checks": 34,
+    "restored_database_checks": 34,
+    "all_original_csv_records_verified": 150010,
+    "offline_browser_checks_passed": true,
+    "temporary_restore_database_removed": true
+  },
+  "inputs": [
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/ACTION_PLAN.md",
+      "sha256": "7360427f615ab122b304653495b9ffece887621804a93a37502c4a72cb97ce34",
+      "size_bytes": "8791",
+      "row_count": "",
+      "parent_iteration": "4"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/DATA_FORMAT.md",
+      "sha256": "709ae66182ab7cfc256ed30760693f4a1a4e66876fc6e19636b2bc08567087b1",
+      "size_bytes": "9279",
+      "row_count": "",
+      "parent_iteration": "4"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/FINDINGS.md",
+      "sha256": "f2891e3a57996314ed7ca12fc12eace52848d8a3d2443fbebf7fcaa935bedf00",
+      "size_bytes": "37315",
+      "row_count": "",
+      "parent_iteration": "4"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/ITERATIONS.md",
+      "sha256": "763266a9dbd8913097c0690792c415aedfd1fa1f667b948202d849f857b93a21",
+      "size_bytes": "6213",
+      "row_count": "",
+      "parent_iteration": "4"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/README.md",
+      "sha256": "f958e32ed2e7b08ea172a49368886199e67994e44a153d089aa908a2e509a866",
+      "size_bytes": "6108",
+      "row_count": "",
+      "parent_iteration": "4"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/ROADMAP.md",
+      "sha256": "9bba819054dbd48460ccb49e54187151778ee22cd01f5b4ca7bb551f54017677",
+      "size_bytes": "11843",
+      "row_count": "",
+      "parent_iteration": "4"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/SOP.md",
+      "sha256": "052409aeb679511b629db402fe320a521942c8b55e73d73b230e360bb56af900",
+      "size_bytes": "9666",
+      "row_count": "",
+      "parent_iteration": "4"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/contact_lithology_candidates.csv",
+      "sha256": "f788e27da6e63d22f201e871caa02d69877d2089cebfc4eb18ca543090ed7100",
+      "size_bytes": "281010",
+      "row_count": "1068",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/examples.json",
+      "sha256": "1a150862e72e600a436e4f382b5f075b21f1b1c1938497b9146ef611d13f2514",
+      "size_bytes": "209327",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/findings.csv",
+      "sha256": "bf5cd71fd5c4f7edc6df56a34fb17045adea5b6202007a392a516600532822fa",
+      "size_bytes": "99959",
+      "row_count": "380",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/hierarchy_draft.csv",
+      "sha256": "04885afacfb9ad3ad8b1d1703679d71691c5954567ff4dcf42740ef811867117",
+      "size_bytes": "9724",
+      "row_count": "48",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/lithology_named_unit_checks.csv",
+      "sha256": "bbf52db89f5e85cdbbb553e8622cac131a745b9b6472feae58eee464c1946278",
+      "size_bytes": "381",
+      "row_count": "1",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/observed_transitions.csv",
+      "sha256": "5b9f283b44785a24be91bad6185a9208120926403585c40d93ccb0b4c4ce00f1",
+      "size_bytes": "109528",
+      "row_count": "1080",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/paired_lithology_audit.csv",
+      "sha256": "f82ce0e03f8a5684f48c5ca88bb1748593d88e2ba6ccead87c6c19cfbb1fd6d6",
+      "size_bytes": "361528",
+      "row_count": "1342",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/proposed_schemas.json",
+      "sha256": "b118150e96af9a9d50eeb02742b0d6586a69837d851c1054fdcd70d940c33e6f",
+      "size_bytes": "3765",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/row_audit.csv",
+      "sha256": "fa695ccc135dc7bb731a742668f83b2703a953b8c2fc76662cd6378578bf22b6",
+      "size_bytes": "841318",
+      "row_count": "1854",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/sequence_intervals.csv",
+      "sha256": "9f83431f6f787febf0b9df276a8517a93b65ea0ba1ab2afab503a79886987e92",
+      "size_bytes": "562757",
+      "row_count": "1408",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/site_audit.csv",
+      "sha256": "a55916ce0549c2086c261cdf2844f7bfca1bc44c7c07f7869baf926c4939c837",
+      "size_bytes": "94301",
+      "row_count": "328",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/site_report_links.csv",
+      "sha256": "317bd39133ce267687e4a52a15035f021760ea982751e66da809da668d0fb98f",
+      "size_bytes": "166361",
+      "row_count": "423",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/strat_lithology_overlaps.csv",
+      "sha256": "d8aa0021baf9fe23078d3b117083c848f2788538611fb5c7faef6149d2680c36",
+      "size_bytes": "155248",
+      "row_count": "1389",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/summary.json",
+      "sha256": "07c7301b311ab47afe3b5d3a404401d819672facbd0a578b8d8ebad2df9302e3",
+      "size_bytes": "17865",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/unit_frequency.csv",
+      "sha256": "83580e75ad0895b769c3397f6b8dfa4c9851b24887316d5140dde9615755432c",
+      "size_bytes": "7209",
+      "row_count": "44",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/artifacts/unit_interpreter_frequency.csv",
+      "sha256": "1c9727ee8a393095c874376e3afb49bfdc22bedd0b86ca8d089e24c42204aa5c",
+      "size_bytes": "14748",
+      "row_count": "253",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/README.md",
+      "sha256": "07c7cb6526f44811539e814f11e72e5e51d985be2763b26be354f7d12b34d488",
+      "size_bytes": "4560",
+      "row_count": "",
+      "parent_iteration": "0"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/audit/checks.json",
+      "sha256": "b43727cf110dd651590b57c057bed3de5a80d0dfb9a333951959e5143f8e75da",
+      "size_bytes": "8326",
+      "row_count": "",
+      "parent_iteration": "0"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/manifest.json",
+      "sha256": "33eec4b725c2fb4da1e569062d340bc97064f87a6c15353c565249adf3a892c2",
+      "size_bytes": "8737",
+      "row_count": "",
+      "parent_iteration": "0"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_lithology.csv",
+      "sha256": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+      "size_bytes": "2851475",
+      "row_count": "15586",
+      "parent_iteration": "0"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_stratigraphy.csv",
+      "sha256": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+      "size_bytes": "521575",
+      "row_count": "1854",
+      "parent_iteration": "0"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/outputs/boardman_wells_summary.csv",
+      "sha256": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17",
+      "size_bytes": "1578541",
+      "row_count": "7402",
+      "parent_iteration": "0"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter0_10082026_raw_data_copy/scripts/create_snapshot.py",
+      "sha256": "1a4b2399e4557325d28cf6bdb965ab67113e14226e6e857aef160569ccc22e85",
+      "size_bytes": "6825",
+      "row_count": "",
+      "parent_iteration": "0"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/README.md",
+      "sha256": "945d6a71fa687adb69ef7a2be115e33be4f8a2a4a658177e9402bbf4da7dbf35",
+      "size_bytes": "8594",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/checks.json",
+      "sha256": "820691dbe10691b262697510b2307b4e0a9610fc3fda0872a30c26ea759b7561",
+      "size_bytes": "1324",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/decisions.json",
+      "sha256": "df711942087bad2b8993e5d1da81af62854963bdde79f78fc0ff167c84d270ca",
+      "size_bytes": "1476",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/deduped_well_links.csv",
+      "sha256": "8787bc67c2181832090ad90f554dcf500cbee4794f9185a917c1212cf5cc6354",
+      "size_bytes": "35178",
+      "row_count": "91",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/groups.csv",
+      "sha256": "53461254b8037442a3add69e0909b77a8e8b7ed9f970243e0ae7f04ee5ce9170",
+      "size_bytes": "13993",
+      "row_count": "71",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/README.md",
+      "sha256": "8cd628e91ca1851e3083bef39b5c24ba6e753d4ebe6869645005d841574c720d",
+      "size_bytes": "1822",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/browser_checks.json",
+      "sha256": "b87fd2b24e6760804a5224d81f4264243ee7298144457ee848087b734fed910c",
+      "size_bytes": "581",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/change_record.json",
+      "sha256": "a905c8151f27e9b118b86f485f85dfe9774969ad6039fdb76d8fac0ae2f457c8",
+      "size_bytes": "3799",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/duplicate_groups_map_before_fix.html",
+      "sha256": "1f30ba857836694b83cbd20927611a0432cc4f135a491646835e32bdc4d81d3f",
+      "size_bytes": "52616",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/iteration_manifest_before_fix.json",
+      "sha256": "b289bb56f9ef79f5b799a17528745d14fc0815048470789beaa42b6ee979c0e1",
+      "size_bytes": "18910",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/iteration_map_manifest_before_fix.json",
+      "sha256": "86605396ffb954b4e7ed911da18b6515655172d233e59df621dedddfdc53835e",
+      "size_bytes": "3525",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/iteration_readme_before_fix.md",
+      "sha256": "2fbd4026aef30f9ac0689bb73767e8a5dc741379124fe5563f61b940408c67c9",
+      "size_bytes": "8023",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/map_before_fix.js",
+      "sha256": "65a3a5c4f5fc7c9a57386b7c9b1b3229bc256b55e13daa3df270bf3b4cfaf9ae",
+      "size_bytes": "5557",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/map_template_before_fix.html",
+      "sha256": "b80166cd0fb44bdf7ae3bb84a32a688386f211f9fbe2719bfcd8714a91d50aae",
+      "size_bytes": "4781",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/original_map_manifest_before_fix.json",
+      "sha256": "cb5867c07512e37ae88d7bf63bc871dc35c0f77f6249a372dc56bd90383affdf",
+      "size_bytes": "3111",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/map_background_fix/plot_addition_before_fix.json",
+      "sha256": "e9eb8d4f150b13a11fc914f242308891ae83c77249f52a6a1137a6ce72feb1af",
+      "size_bytes": "3414",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/plot_addition.json",
+      "sha256": "122e28400d3269fa76b71ed49ab026d46f3d8b5570a09608bcbdb616950e08d9",
+      "size_bytes": "3826",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/source_row_links.csv",
+      "sha256": "459f8e052182724945f28c944eed2a8da8c6452c9f3d67ab8f727bf2d8798261",
+      "size_bytes": "6696967",
+      "row_count": "24842",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/stratigraphy_duplicate_links.csv",
+      "sha256": "7480890326e27d48aa025d4939c3f28b84be3b08417a782d1493cc65f759346b",
+      "size_bytes": "47577",
+      "row_count": "427",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/audit/well_group_membership.csv",
+      "sha256": "90664cda8c29d37479b31f561f558b614323c59bf0857f14ad36300ab97fd565",
+      "size_bytes": "26007",
+      "row_count": "166",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/README_before_plot_addition.md",
+      "sha256": "bb63d4e4f9efd91f0b575f1f0b0eecb5a92279771440d954d795c6cc420a0794",
+      "size_bytes": "6525",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/before_after/README.md",
+      "sha256": "0820a52006c2f0514738c98964a9f5b52ccd5b84521046426dac00536c884407",
+      "size_bytes": "2443",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/before_after/before_after_dedupe.pdf",
+      "sha256": "e9118f5b587380263a0cb5b54d3e86bc9d19eb60e54c896fad93cdf449abc88d",
+      "size_bytes": "76526",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/before_after/before_after_dedupe.png",
+      "sha256": "7f8f862303368e46bd3cdf5c2d109d54d8b6b1e52adc9c6eb53c5f93511d3090",
+      "size_bytes": "385827",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/before_after/comparison_locations.csv",
+      "sha256": "9241116aad636b9a2d1370392e26f24c25430041647833276bd84f27646ff736",
+      "size_bytes": "10563",
+      "row_count": "159",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/before_after/manifest.json",
+      "sha256": "67f357a019be8b0cdd3f54e49b7da97b06be73e36980e322bff1635c09afc498",
+      "size_bytes": "4109",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/duplicate_groups/README.md",
+      "sha256": "0f444f4e802c303b304f63ef4a4b690b1e4bfd8d79f11d583e70dac87aeccb18",
+      "size_bytes": "2008",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/duplicate_groups/duplicate_groups_map.html",
+      "sha256": "2e858c4d291bac7636264d1f66df843c8613e592fcd19ac578b7a3f939ca4d21",
+      "size_bytes": "54492",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/duplicate_groups/duplicate_groups_overview.png",
+      "sha256": "c01d25aa127219492362c112d18dd70d6932485ca6aad52209b3ab2da4b7b341",
+      "size_bytes": "240146",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/duplicate_groups/group_locations.csv",
+      "sha256": "3509e16c41b6977cbcf99a54abf8c807c855120ebbc8bcc529c0fd10bd6dcd8e",
+      "size_bytes": "8538",
+      "row_count": "166",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/duplicate_groups/group_locations.geojson",
+      "sha256": "586ab45bb358ba706228e57043333156cde8eb10bc59023ac638bb87085aa317",
+      "size_bytes": "31905",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/duplicate_groups/groups.json",
+      "sha256": "c0a1ce16b6e958b837a5f0bc1846b4f1718e2f7a2c1ab51ded0812e74041e486",
+      "size_bytes": "69667",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/duplicate_groups/map_manifest.json",
+      "sha256": "638aac8dc6296240897564c3cabf7a7ac0e564edd046046af08d0171060c3990",
+      "size_bytes": "4149",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/manifest_before_plot_addition.json",
+      "sha256": "436729ea5569812f528d637c3327930895ab9b40f91426c1f508ad34d8d03696",
+      "size_bytes": "14174",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/plots/plot_manifest_before_addition.json",
+      "sha256": "fe74134eca08a9e5a1a5fb42b9fe0d7a03658c9f4182bedb1c635f915c6cdd53",
+      "size_bytes": "3059",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/workflow/ACTION_PLAN.md",
+      "sha256": "1165dd00ea4ae66811db31b7f9ed57891d56e250f944e6490f960109b378e7a3",
+      "size_bytes": "7325",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/workflow/DATA_FORMAT.md",
+      "sha256": "983a74c79d5a7cd2ddf89196a3bae63e938ea05d394803f0fc6edb9b9b196b40",
+      "size_bytes": "8300",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/evidence/workflow/SOP.md",
+      "sha256": "052409aeb679511b629db402fe320a521942c8b55e73d73b230e360bb56af900",
+      "size_bytes": "9666",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/inputs/input_files.csv",
+      "sha256": "ee3797c6bc0b197ffb33b8b5e94f23ae1c41ceaed73772d0e0305aa80270774b",
+      "size_bytes": "820",
+      "row_count": "3",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/manifest.json",
+      "sha256": "ce52349a468c2b9fc807db6be436005a51b3577170824e82bb32011410420d9c",
+      "size_bytes": "21922",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_lithology.csv",
+      "sha256": "7da857371ee81bb2feaf8e084ed81223752186c5f37a8c945fd31ffca8006f7f",
+      "size_bytes": "2827835",
+      "row_count": "15459",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_stratigraphy.csv",
+      "sha256": "46aa2f64131da1fb76a90cba94cc9f66165e7135fabfa0ee65782aac510efd71",
+      "size_bytes": "402005",
+      "row_count": "1427",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/boardman_wells_summary.csv",
+      "sha256": "18133acee080ef1c09c18aee3d5bb71089dd4f9a9c6d26c53bcc2f489b78f523",
+      "size_bytes": "1552591",
+      "row_count": "7311",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/removed_records/boardman_wells_lithology.csv",
+      "sha256": "213f0cd81799761c413827228c8066a091b8852770719ce32a484c66737ad8cf",
+      "size_bytes": "23807",
+      "row_count": "127",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/removed_records/boardman_wells_stratigraphy.csv",
+      "sha256": "c17c3c088588d7f914e310fc77a854175a8d7c5b32a301907eba9e104ed095e1",
+      "size_bytes": "119817",
+      "row_count": "427",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/removed_records/boardman_wells_summary.csv",
+      "sha256": "fc560d6ca8ac1d6ce8474d104b19e2a57ebeb5e73f3217c0133560615dc60d02",
+      "size_bytes": "26160",
+      "row_count": "91",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/outputs/representative_well_metadata.csv",
+      "sha256": "0becd1e12052fb8810cce3e11a76ab3251c08af5d25a91e7a15e4a9f3aed8a3f",
+      "size_bytes": "9776",
+      "row_count": "71",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/scripts/dedupe.py",
+      "sha256": "05b714e559af843f88d1af831494ae42ce9d71f30c8f92114ef85a0704aa2cea",
+      "size_bytes": "17796",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter1_10082026_dedupe_strat_reports/scripts/plot_before_after.py",
+      "sha256": "a51bd1e333e5623ab6cfdfca5caa928cb32450900882cca2bb564be55d0f7756",
+      "size_bytes": "10636",
+      "row_count": "",
+      "parent_iteration": "1"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/README.md",
+      "sha256": "9650e2106ef145aef160b02eaa5ce3d88c9959189ce95b5bbfc0b8cf99354be3",
+      "size_bytes": "7998",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/audit/browser_map_checks.json",
+      "sha256": "09eed01771697fd320959c04cdc1b26415fc6405c2215e5e2b4529071d33cd83",
+      "size_bytes": "784",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/audit/checks.json",
+      "sha256": "1b9d220d91317a58041fcd08791302eefdd5d38c92c9c8cd3c8ef58f50b52871",
+      "size_bytes": "2348",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/audit/decisions.json",
+      "sha256": "a87bbe6be4398d641defa99e4ecfb25a2de4fbe9b57ddbefcaf0134553e676bf",
+      "size_bytes": "536",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/audit/excluded_wells.csv",
+      "sha256": "4d88e6e5be4e23529b8c31bd02c037a84e35146024cec2a4e3b7a4c5769eef69",
+      "size_bytes": "1671515",
+      "row_count": "6979",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/audit/map_addition.json",
+      "sha256": "9911ef831f814da45445a71212cb8621d907e191ba0dcd7692a5fe4955c5b674",
+      "size_bytes": "4946",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/audit/source_row_links.csv",
+      "sha256": "8944ecc8f497728adf4c71ef822cfad41c8c9e108725cb49d41cd5ecdf812717",
+      "size_bytes": "10913644",
+      "row_count": "24197",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/README_before_map_addition.md",
+      "sha256": "681b5c0e208d511c3775559a369d45a1c8b9d8ffa57bd29c7534465d3bcdb447",
+      "size_bytes": "5925",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/manifest_before_map_addition.json",
+      "sha256": "fc10b98b950fe5e3fa88f72c56a5211ce4f0320df7157f3a2de0186bf09fe686",
+      "size_bytes": "18201",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/well_filter/README.md",
+      "sha256": "ef2937cd9f19644de18b4214d0f2c2ac6c9e602df048b6a10f49e094036d341f",
+      "size_bytes": "2882",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/well_filter/before_after_filter.pdf",
+      "sha256": "88c367ad0d4277a04fed5268a655e70413b7b391985fe5fb59d8e69b5760bac0",
+      "size_bytes": "91637",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/well_filter/before_after_filter.png",
+      "sha256": "8fac562ac6e83ca816b4f0067f3ff3febd823a7764897ae9b9117a8473a56965",
+      "size_bytes": "562796",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/well_filter/manifest.json",
+      "sha256": "39aaafff0069a939b6b63c5479c39cb1f0d006cc065e676b1eb60c5660987e63",
+      "size_bytes": "4981",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/well_filter/well_filter_map.html",
+      "sha256": "1df1803bc036acf3f56b00769b8d704d1fffc09eba0f347298fb76d4d4e5f9ca",
+      "size_bytes": "4481029",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/well_filter/well_locations.csv",
+      "sha256": "dff495a22ab8af7a667ea02ef47907532998c55c7c8266feda20a29d961dda6e",
+      "size_bytes": "2912299",
+      "row_count": "7311",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/well_filter/well_locations.geojson",
+      "sha256": "2c119276d5f419d685fd2b9c0f6c5c60b61b5aa310d3db64028b9be9e13c6bf8",
+      "size_bytes": "2920255",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/plots/well_filter/well_locations.json",
+      "sha256": "0de70075554ffde1e84746a2ca5286f7c1f70f991238b22e6761affc8cadf67c",
+      "size_bytes": "5463534",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/workflow/ACTION_PLAN.md",
+      "sha256": "47d9afa438550f60a090b1d357b67990620dcd1a7ae6a75ba88dbdb04b21957b",
+      "size_bytes": "8147",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/workflow/DATA_FORMAT.md",
+      "sha256": "983a74c79d5a7cd2ddf89196a3bae63e938ea05d394803f0fc6edb9b9b196b40",
+      "size_bytes": "8300",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/evidence/workflow/SOP.md",
+      "sha256": "052409aeb679511b629db402fe320a521942c8b55e73d73b230e360bb56af900",
+      "size_bytes": "9666",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/inputs/input_files.csv",
+      "sha256": "343647c8a3fa3d92c10effa90ca25ce49174ccf6ac9608c2aef5455d684857d4",
+      "size_bytes": "2198",
+      "row_count": "8",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/inputs/parent_manifest_snapshot.json",
+      "sha256": "ce52349a468c2b9fc807db6be436005a51b3577170824e82bb32011410420d9c",
+      "size_bytes": "21922",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/manifest.json",
+      "sha256": "4d5e382b5161535863ec55e2bf45460f4feb7d969f0df277c5e1664542e3b172",
+      "size_bytes": "22327",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_lithology.csv",
+      "sha256": "6e4ce4cd1b54c6082554ff423d889fb01656a38668454c35c3884372ebb84b6d",
+      "size_bytes": "226363",
+      "row_count": "1215",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_stratigraphy.csv",
+      "sha256": "46aa2f64131da1fb76a90cba94cc9f66165e7135fabfa0ee65782aac510efd71",
+      "size_bytes": "402005",
+      "row_count": "1427",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/boardman_wells_summary.csv",
+      "sha256": "85f537d3bc07205eed0fe40d9e74e46ed1987eaaacd4ca24626053d2024a6a8c",
+      "size_bytes": "95315",
+      "row_count": "332",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/removed_records/boardman_wells_lithology.csv",
+      "sha256": "304d975649e5847974a11d1ea8b07f8f65261a474030537384f81551c16a4645",
+      "size_bytes": "2601639",
+      "row_count": "14244",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/removed_records/boardman_wells_stratigraphy.csv",
+      "sha256": "c023ab53d679099bf3065008da558180d40795cad21ad4113c99181e79637949",
+      "size_bytes": "247",
+      "row_count": "0",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/outputs/removed_records/boardman_wells_summary.csv",
+      "sha256": "c0109da538d1a7990b583dde8222cdde70408369f728f62e52c710c964ad250b",
+      "size_bytes": "1457486",
+      "row_count": "6979",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/scripts/build_filter_maps.py",
+      "sha256": "2253484cf49d31979b6d35a3d3cb0ceb6b9da2322306c04759d41b11a1947415",
+      "size_bytes": "14927",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/scripts/filter_map.js",
+      "sha256": "7d56de02d061135d210a7228fa656d891f572b98692c71ab01ff30e78c7d6e51",
+      "size_bytes": "6813",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/scripts/filter_map_template.html",
+      "sha256": "ad02d6f00c29828b4607ee9833802047503d2a6703301e293846eff62895daa7",
+      "size_bytes": "5104",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter2_10092026_keep_stratigraphy_wells/scripts/filter_wells.py",
+      "sha256": "e27e8c963fdea492f56876552dfb51cff5ee256e94c59ab7a6364bc2b7aad8c7",
+      "size_bytes": "14501",
+      "row_count": "",
+      "parent_iteration": "2"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/README.md",
+      "sha256": "3a48b808be15ef43cc1dfa0f0384b1fec44a7fbc2b6d15d385229d06578fa5f8",
+      "size_bytes": "6377",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/FINDINGS.md",
+      "sha256": "068628cce12831f14a8c26fa8222769e728b37ad874e95acbed95e5efd2a9ab2",
+      "size_bytes": "5770",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/browser_checks.json",
+      "sha256": "56ef8cff3fd5c116b7b7352a892ba1310fe3b61a039f1ca6ec5153bb0cefefe9",
+      "size_bytes": "424",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/cached_ground_height_sources.csv",
+      "sha256": "1fe65db24471bae809a8bedf7ea9c2a5fb5fa86a90db51b52a10b9cde4304005",
+      "size_bytes": "16533",
+      "row_count": "35",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/checks.json",
+      "sha256": "3be80c2390af60f20d6c2ab2b2b684b3c1115cca452cddcc0665a7c94f96396d",
+      "size_bytes": "1870",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/classification_rules.json",
+      "sha256": "aafde4867eb85dc2276fcc271a225fbd8cd86423236b363bc5e46f3160f592a3",
+      "size_bytes": "1084",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/decisions.json",
+      "sha256": "af245989beb66ddd0a13253fdbcdd0683785cbf8795db209da988b29516f1b8d",
+      "size_bytes": "508",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/ground_height_candidates.csv",
+      "sha256": "3974baa28a2e95112e024b2a63d3e6dce45ed4e75db9b8cf3e102f39d920ecdd",
+      "size_bytes": "962181",
+      "row_count": "2844",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/interval_findings.csv",
+      "sha256": "6fda87ac02a7e5d7f82efe5fb4f67ce0bb2c0f19656efdf5cfad68bb61538c5e",
+      "size_bytes": "62540",
+      "row_count": "163",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/manifest.json",
+      "sha256": "a6cb8f1882911e91b644401d4bbafd13e9339e85ea1f8964382820d83edfd96c",
+      "size_bytes": "30178",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/audit/phase1_completeness/well_completeness.csv",
+      "sha256": "70b25f72d3206f7d090f28934e87d8eb9385abbef6bec5bd953f74a8a95e6da6",
+      "size_bytes": "156759",
+      "row_count": "332",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/evidence/plots/completeness/README.md",
+      "sha256": "a4b8a0f1e3a45038a8cb56874806b487d1aad1f8e8ce2a8b8ebef9efee730f1c",
+      "size_bytes": "2453",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/evidence/plots/completeness/audit_completeness.pdf",
+      "sha256": "93efecc7a04600fec1e69ab8979d4eea6d63987b4af8449d31dceb609da9e7b8",
+      "size_bytes": "34069",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/evidence/plots/completeness/audit_completeness.png",
+      "sha256": "cc2ee08985c313684423d251bd5c554f417ac007fa8feec6c9e10d79947cdc89",
+      "size_bytes": "352971",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/evidence/plots/completeness/audit_locations.geojson",
+      "sha256": "15d0531975df74014a5b14ae9711e88e6f688d99c6871eb89ce7e813448edd3d",
+      "size_bytes": "137474",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/evidence/plots/completeness/audit_locations.json",
+      "sha256": "bf47674946dfafacbad5b4a441b162a4d94d17960fb514016f8277deae7ffa74",
+      "size_bytes": "666475",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/evidence/plots/completeness/audit_map.html",
+      "sha256": "573e394827fe08990278606e24628bc32ebe18798eeb9ace22ae70a485036b97",
+      "size_bytes": "586056",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/evidence/plots/completeness/manifest.json",
+      "sha256": "c803a0e3477448fb319fd00d3b321048576ec9dcd3aeb66ddcd3eda2753c7e19",
+      "size_bytes": "4465",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/evidence/workflow/ACTION_PLAN.md",
+      "sha256": "c0b4e714997955390f729ccb54749b2f86331b2e9ceab94f13216861609ff267",
+      "size_bytes": "8401",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/evidence/workflow/DATA_FORMAT.md",
+      "sha256": "709ae66182ab7cfc256ed30760693f4a1a4e66876fc6e19636b2bc08567087b1",
+      "size_bytes": "9279",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/evidence/workflow/SOP.md",
+      "sha256": "052409aeb679511b629db402fe320a521942c8b55e73d73b230e360bb56af900",
+      "size_bytes": "9666",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/inputs/input_files.csv",
+      "sha256": "e601930ed7926cafe5d16f59b8deecff5617a5e0faddfb3d5c84f7f8d6045872",
+      "size_bytes": "16180",
+      "row_count": "73",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/inputs/parent_manifest_snapshot.json",
+      "sha256": "4d5e382b5161535863ec55e2bf45460f4feb7d969f0df277c5e1664542e3b172",
+      "size_bytes": "22327",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/manifest.json",
+      "sha256": "15b95cffc42a6315aa3e8f11deba1406addcc93336c6cc9347f95c7db7e2785d",
+      "size_bytes": "36232",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/scripts/audit_heights_and_depths.py",
+      "sha256": "c46bb0e7e033eddf993457d207a49925c0411225480b0104d0cb71a8c8e8f39f",
+      "size_bytes": "18025",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/scripts/audit_map.js",
+      "sha256": "fd7e6e97b37f862d6de33914b7cfb82f35dc297a85dfdf4a4599eaf2a6841b23",
+      "size_bytes": "6573",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/scripts/audit_map_template.html",
+      "sha256": "4f1754377e22cbbe051b3fdffa94e4ac18f11eea347c923e9eba9053b69c011d",
+      "size_bytes": "4533",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/scripts/build_audit_maps.py",
+      "sha256": "b3915a3cecc5a2701399a00df3afd6f1cd77c9cebff07cad0806e5031c30e11d",
+      "size_bytes": "8963",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/iter3_10092026_audit_heights_and_depths/scripts/map_geometry.py",
+      "sha256": "9694fe602a245c840ec7f6fcdb43055423a04edc605834060119678c64d84fa0",
+      "size_bytes": "1672",
+      "row_count": "",
+      "parent_iteration": "3"
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/README.md",
+      "sha256": "139aa6e89b94dd73bfa97d7535d94c94cbbc9b2b0564bfb5b5fdc990624f63c4",
+      "size_bytes": "4725",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/README.md",
+      "sha256": "ba77b62f16d0357796051c993d5aeb7d6555c01c3f22bbc836cb60f99e051c49",
+      "size_bytes": "2067",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/before_after_dedupe.pdf",
+      "sha256": "e9118f5b587380263a0cb5b54d3e86bc9d19eb60e54c896fad93cdf449abc88d",
+      "size_bytes": "76526",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/before_after_dedupe.png",
+      "sha256": "7f8f862303368e46bd3cdf5c2d109d54d8b6b1e52adc9c6eb53c5f93511d3090",
+      "size_bytes": "385827",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/comparison_locations.csv",
+      "sha256": "9241116aad636b9a2d1370392e26f24c25430041647833276bd84f27646ff736",
+      "size_bytes": "10563",
+      "row_count": "159",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/manifest.json",
+      "sha256": "28cf540bee8f37499ed6b76f793fc517767104ea6f8c39e18ddc0663578cbb0f",
+      "size_bytes": "3376",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/plot_before_after.py",
+      "sha256": "618688f0d3c22f3ab4ef5a95beead93fd663ee68c54886b2061e767cf34b872f",
+      "size_bytes": "10018",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/build_map.py",
+      "sha256": "3cda1da7a183024d6aea85fe7130718b6f3dc903cfbe93246ad1b98527180578",
+      "size_bytes": "13208",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/duplicate_groups_map.html",
+      "sha256": "2e858c4d291bac7636264d1f66df843c8613e592fcd19ac578b7a3f939ca4d21",
+      "size_bytes": "54492",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/duplicate_groups_overview.png",
+      "sha256": "c01d25aa127219492362c112d18dd70d6932485ca6aad52209b3ab2da4b7b341",
+      "size_bytes": "240146",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/group_locations.csv",
+      "sha256": "3509e16c41b6977cbcf99a54abf8c807c855120ebbc8bcc529c0fd10bd6dcd8e",
+      "size_bytes": "8538",
+      "row_count": "166",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/group_locations.geojson",
+      "sha256": "586ab45bb358ba706228e57043333156cde8eb10bc59023ac638bb87085aa317",
+      "size_bytes": "31905",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/groups.json",
+      "sha256": "c0a1ce16b6e958b837a5f0bc1846b4f1718e2f7a2c1ab51ded0812e74041e486",
+      "size_bytes": "69667",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/map.js",
+      "sha256": "f680a807cd4a7f1630af6a477f9e75c5ead199dc6343d1ddbd9417977b2cdea5",
+      "size_bytes": "7071",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/map_manifest.json",
+      "sha256": "47122219868971c8fc6d87fbfed90946a7b1a51ca6922af2e19a9f9ad263c4fe",
+      "size_bytes": "3735",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "04_analysis/stratigraphy_sequences/maps/duplicate_groups/map_template.html",
+      "sha256": "6202e9260e8d9910c9dfc56017983d96e6cef0e7176ff68e031dcefb16dd0d90",
+      "size_bytes": "5143",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_10022.html.gz",
+      "sha256": "f9af69146e805a833eb7b42d54ea991156960368da5cc86353cc6eb5a54c0a7f",
+      "size_bytes": "671248",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_10022.json",
+      "sha256": "6ca7392dd4d230b769745d766cae2731c420ce0ad8b8237cafb9a44d3dfe0cb1",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_10306.html.gz",
+      "sha256": "74bbadcfcf4b853b8e18474e3150389a4dfdbabcba338854a1d50fd346493990",
+      "size_bytes": "747378",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_10306.json",
+      "sha256": "10fc26d315a7dee37c46b0276c049d115a22d5c3cf6adfc3531361a5a0b3a25d",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_1057.html.gz",
+      "sha256": "44a97b8283d508825c86ec27c925a1e8e18072c2da30987fe274025940cf7135",
+      "size_bytes": "826714",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_1057.json",
+      "sha256": "9be7b26220d66eff55a6929abe50dedd83b50fad28b39c275fc0e1dcda0ad5ae",
+      "size_bytes": "481",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_1065.html.gz",
+      "sha256": "e7972c8fcd2ed014fa97c3fbdc2e8dcac5e1bb19b5aa6b66e81a641eb8e57a91",
+      "size_bytes": "754089",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_1065.json",
+      "sha256": "ec5e59d4d5e7ae9e5fea8d37a55ab4f46e07ad3a2c456772cf83acc79a9be4cb",
+      "size_bytes": "481",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_117.html.gz",
+      "sha256": "6c3e4696dea91a505869324be440a0b593628b5e173c9527af71decc83ddb258",
+      "size_bytes": "812933",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_117.json",
+      "sha256": "36c50615b7b7cfb2bf53a1fecc9fca4747bdd0e493d138e28aaea83cc0d446e9",
+      "size_bytes": "479",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_131.html.gz",
+      "sha256": "e4dd7144e120bea4b20eeb2ffe319c36f3639523623dc92377323430ee5a8a20",
+      "size_bytes": "519646",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_131.json",
+      "sha256": "73240d3b7b30dd369963feaa7e354a70afc1c6b690f70326b843bd0bfb7da77d",
+      "size_bytes": "479",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_14479.html.gz",
+      "sha256": "2f2fe248aba96f69b009664fc5d8d5be7730d71762d02581965464672388877d",
+      "size_bytes": "784165",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_14479.json",
+      "sha256": "fe7ab761ae146d6e8e5f911b4613fe8bf27bb25064ae8f0505cb38e9a5d7e1d7",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_14827.html.gz",
+      "sha256": "30c7c93465a222233bba00f41a433eaf32cf42c399ce7125856b905881e8f0a0",
+      "size_bytes": "949186",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_14827.json",
+      "sha256": "68c83e444e81a780132b3536408d432bb637ea9fc7840539fad848d535e59e69",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_15840.html.gz",
+      "sha256": "d7daa7e667790d880c6e629b642cfd7c86c25dc59a03b32b35ede7ab2a622c9d",
+      "size_bytes": "1141861",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_15840.json",
+      "sha256": "87ea2df34de600f27ee64a558b8e014277387074a979c9bd50b15e0c5b8f63ee",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16225.html.gz",
+      "sha256": "1d20769f015ed5dcd2b59a5f67b1f4762eb970b3399919d1e01a9fcb0d98e823",
+      "size_bytes": "731266",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16225.json",
+      "sha256": "466e639c94a723a2246ab09470f4e58dcf5815a2d096a741a9e2fed34fe277d1",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16227.html.gz",
+      "sha256": "abfb6778337f3794873bb93fe209f9a6357f5d6da399ddf31d4b6a72dfa581de",
+      "size_bytes": "946378",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16227.json",
+      "sha256": "9cc37b0a5f3efbe25906027560c2db5e8e480eb73aed877bc265c4ee3bc66a1f",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16343.html.gz",
+      "sha256": "a3081f08dbb0104f4bd8dd24e3e2ff7a3a3a2f40a751447e72bae72b48525e68",
+      "size_bytes": "755627",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_16343.json",
+      "sha256": "6465b664f9d47f68f776cbf8050cf2b4258599d8e87939c5747baddba24c31b5",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17305.html.gz",
+      "sha256": "450230c18a7b3e07eb9684de5e3e5a766fbdeee8bf726636cc520f8f0eb22861",
+      "size_bytes": "615608",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17305.json",
+      "sha256": "1a094e4dbe3dea9bbe6646be447dbcde453f60f8898935ce7008ac4314be6c27",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17675.html.gz",
+      "sha256": "d771c520ff3afa26009b7a3a7706b4dc6b9897105b4bbc5f10de6870c837f660",
+      "size_bytes": "783945",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17675.json",
+      "sha256": "c5d4584ed15115f626158ac7e5d89719a84f21220990462c172a6b4196ce0601",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17693.html.gz",
+      "sha256": "6cdddcc07b7130d1aa21a1e4b7213275303fbe959dac169627e56c2103f62ea5",
+      "size_bytes": "886519",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_17693.json",
+      "sha256": "6fd9b8969195641d9b2e0550de365dd5ac1aa007c5d5508f8ac06448c4dbd200",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_18400.html.gz",
+      "sha256": "4620710ebd62826012484c09316bf431cd3f7a8c6e3264af2ec1722175ac8b27",
+      "size_bytes": "764651",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_18400.json",
+      "sha256": "cb7078479c67552aee33c85836876a37545bd37e7fd14e089d19a3a140b6f89e",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_19596.html.gz",
+      "sha256": "08b68e8529eb247723d21539df0e481a9aa3a51d935f0e6162ba3c29d1b8e48d",
+      "size_bytes": "938458",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_19596.json",
+      "sha256": "fc548490e44a810a10b066a69fe82d04c11b0ecf614c465d947755754e549cb6",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_20491.html.gz",
+      "sha256": "671ce28b48589c93bfb976a1fad4c6c9e03782f6b385df0684ac0b3399e4c2a4",
+      "size_bytes": "978194",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_20491.json",
+      "sha256": "d068c270169382f990c944e9275ab7df749bb9b05cd892d4311c49585e239530",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_35035.html.gz",
+      "sha256": "22249346ed0d0ea7925c98741ffa4e247c15c51c274aec4cd01d18c5cc318d51",
+      "size_bytes": "851781",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_35035.json",
+      "sha256": "010df27e649caee25ef0bd034a6e45d35891091ea953867ec459e181e5a2f23e",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_45231.html.gz",
+      "sha256": "a9ccef103ee87b0e6850dfac82f0b8d67a1d4952fbf59a5b8ee9f58d20a85be5",
+      "size_bytes": "1090489",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_45231.json",
+      "sha256": "4a596719d7fec8758b5d8a22c70de16be95ebdfd880d400c2cb0108462e1008f",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_45994.html.gz",
+      "sha256": "21a03f9a9b54d5dcb39fe8e34c8419a05b817b0820e661ca6c1a25d8eb95da8b",
+      "size_bytes": "571274",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_45994.json",
+      "sha256": "83d69972c912832c06642b0a3d3f5b09cdd236d89c1fc81c1ca7d4b22f51118b",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46062.html.gz",
+      "sha256": "18c9c0631cae871ef615740e0a7274741fd0b401f2453b895011458372d894ef",
+      "size_bytes": "648435",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46062.json",
+      "sha256": "6eea2957f4c3754d75b77b923b7316f9ff1e93b2d6e295f6edadbd73e4da093c",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46106.html.gz",
+      "sha256": "88a475dde3bdab7886892355f9f988e31420efeaa12df546008b36fcfdbf9cbb",
+      "size_bytes": "886057",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46106.json",
+      "sha256": "c0ecc252c5ab0c413f83bef5a5a473c171a87ffce705ad10f76265ed1c80a88e",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46778.html.gz",
+      "sha256": "14c53858e49976f9499cd178f6c4e59e783dcc844bff7f8308d78de2257913cd",
+      "size_bytes": "845414",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46778.json",
+      "sha256": "99ea215969d7a68022512c4918cbc11c5d3333f8afa6444173b492daaa046a0a",
+      "size_bytes": "484",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46946.html.gz",
+      "sha256": "85aef4f7ae79d5d2ab633e8a1960c41434b55f74be7adf9a14a0c9167c8edbce",
+      "size_bytes": "1145470",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_46946.json",
+      "sha256": "7eaf461045c65b6ea9e91330a575e0757aa01ba6afac0eed9417c48ee9e28dab",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_47445.html.gz",
+      "sha256": "45df119026715b2b4a242981288ecbb01ad4622a5ce65c471ee5bff691546d33",
+      "size_bytes": "815445",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_47445.json",
+      "sha256": "9cd4b3333c0a5a46ad3d9b01d3790561a5e82c68ebf60845f302bbbd1f780ff1",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49180.html.gz",
+      "sha256": "c3ff9fa32577e823a60a3782f80333d8921e62aff1f57ec762c7da8f51534704",
+      "size_bytes": "1053462",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49180.json",
+      "sha256": "5c54e00bb490f7517752de6fd45ac6b0847b15f206f36b1388ac320828b03f81",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49263.html.gz",
+      "sha256": "558358949117e3cba13c744d7f34889f3b665ddecf86a6ddb368368d588920c4",
+      "size_bytes": "943677",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49263.json",
+      "sha256": "b86a4bc4d64d6241230ebb490abda1b92cb5dcb2b147e49444e718f492af7196",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49264.html.gz",
+      "sha256": "aac4e8b9d937e446444a68b1ee4810229727e62fbe2d343aead1929e0f74121b",
+      "size_bytes": "602898",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49264.json",
+      "sha256": "0f95d09269b14899881812079a216a2b73d50251801fdec42bebbc610ea2e03d",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49265.html.gz",
+      "sha256": "69807d75cac92fc21dc3af46dc38e6c22e427469292ba0295d1f30a8655e853c",
+      "size_bytes": "961567",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49265.json",
+      "sha256": "1b591b17858a47c3e1e236fbfdd90c5791683c238c5d009d124a05101d76ced1",
+      "size_bytes": "483",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49268.html.gz",
+      "sha256": "f4005bc830d2ec2371e547426fbf96a7adf6567e42a8dff4cb63c2ed3a4db712",
+      "size_bytes": "717687",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_49268.json",
+      "sha256": "f9b5e178543256bc981ea6ab7525c0b3dc3746ce72f966c8ff0e9ecf79008155",
+      "size_bytes": "486",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_63.html.gz",
+      "sha256": "578ddbad4182cb45ff9983569ec86272226e1991eaee6cb502c0c7ff9ba57e48",
+      "size_bytes": "958346",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_63.json",
+      "sha256": "cc37169d0942505872ef4f15006a7d040fc03992038afa9252f2665e091a87d0",
+      "size_bytes": "486",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_680.html.gz",
+      "sha256": "dc2e3df88cbb40e19f3eb6aac7b61ce414176723fce32919b8435e99c611479f",
+      "size_bytes": "682036",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_680.json",
+      "sha256": "238a9ba480991b43f950cb65c582625f43cf7ea53bd2d710ad1fad3284b28e58",
+      "size_bytes": "479",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_79.html.gz",
+      "sha256": "eac2e742e8bcd80cc17a8f0d095a4f1c38b04b4a6e890fd6da1d68196d14566e",
+      "size_bytes": "812989",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_79.json",
+      "sha256": "177a1d280d9e609cb9b835d88414b980f972694af06d8b22c96f2eb0431dcd89",
+      "size_bytes": "477",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_956.html.gz",
+      "sha256": "0e7747f3acda0bb4e1656083df27a1455a25f531ba520ffd37659324dc5d48be",
+      "size_bytes": "836621",
+      "row_count": "",
+      "parent_iteration": ""
+    },
+    {
+      "path": "07_commercial_eval/rockworks/input/35_paired_spread/evidence/gwis_956.json",
+      "sha256": "fddea3bd011c773cbb2170f9757ef9c218503e1f5704a7bc59069a0d8e35b18c",
+      "size_bytes": "479",
+      "row_count": "",
+      "parent_iteration": ""
+    }
+  ],
+  "method_files": [
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/.gitignore",
+      "sha256": "6078f8db6d019208935997523aa731df70348d79f75fdf776e1e08a1bb65f39e",
+      "size_bytes": 25
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/README.md",
+      "sha256": "058a4b71d1494fca95d620ba866733993af509ed4ec479a3d37951605ab06b4a",
+      "size_bytes": 875
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/DATA_DICTIONARY.md",
+      "sha256": "f513c18c041eac2db43da87e1f842a92b51b865702fb9987bc7f9491aad23978",
+      "size_bytes": 5444
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/README.md",
+      "sha256": "04bfff1921df68b26bbc5ffb422057aee84bf6d5f2693682588592c1d7a46af5",
+      "size_bytes": 4370
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/compose.yaml",
+      "sha256": "f35e1effca1968d596a811fae49ef8f7d96c48fea5b675badcd2d8f156f3a6bd",
+      "size_bytes": 636
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/image.lock.json",
+      "sha256": "9f42535ecea188b5a0a1040ebe5ddb8a0a4c9e0af27c7f16a6b0b602eb0a6017",
+      "size_bytes": 153
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/schema.sql",
+      "sha256": "a1be2be8550d816ace2458eebc0409dc81f9bb426661defc0bc5d2ad25dd8c63",
+      "size_bytes": 8045
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/scripts/browser_check.cjs",
+      "sha256": "6229f5c636221d9dc6b804a0c935fc03b74b2942dd0fb751392812be8775b48b",
+      "size_bytes": 3850
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/scripts/build_database.py",
+      "sha256": "eb8354be2c28d4ea4853670c5bd97a779f39c2a6efeb2c4b83c0d850b87f3ed1",
+      "size_bytes": 13458
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/scripts/build_database_map.py",
+      "sha256": "d862eb2cfcf657059b153aae4e50194131bfe1a054d7ee0e0e7d284a76cafcd2",
+      "size_bytes": 4465
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/scripts/common.py",
+      "sha256": "17103b02efa23c8134b89c639b11f74ed2760aa44b9eb320c9ca96a2ccac3d71",
+      "size_bytes": 3287
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/scripts/manage_database.py",
+      "sha256": "c368a7bef23a6a3d4033f013130a42cb4184b327084229182e6925548231568b",
+      "size_bytes": 2897
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/scripts/map.js",
+      "sha256": "eda1a8c3c3a2b4efce7266e4daed11b2b8d88f161bc1bd5c78770ab9a6c62204",
+      "size_bytes": 10050
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/scripts/map_template.html",
+      "sha256": "cb67fcab2a90d96e2c9ca72564fdbf8a619274ff468aed104bd007a3a6c09584",
+      "size_bytes": 5075
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/scripts/verify_database.py",
+      "sha256": "6b09a120d100f725c363eb874439ccb3a7954f6006484c49f5a850f7c547c916",
+      "size_bytes": 7300
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/vendor/LEAFLET_LICENSE.txt",
+      "sha256": "53e8dc25862014e4324741ca18fbe3611e11d42ef69f59f86ea8c5389647d4cb",
+      "size_bytes": 1395
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/vendor/leaflet.css",
+      "sha256": "a7837102824184820dfa198d1ebcd109ff6d0ff9a2672a074b9a1b4d147d04c6",
+      "size_bytes": 14806
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/database/versions/v001/vendor/leaflet.js",
+      "sha256": "db49d009c841f5ca34a888c96511ae936fd9f5533e90d8b2c4d57596f4e5641a",
+      "size_bytes": 147552
+    }
+  ],
+  "artifacts": [
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/README.md",
+      "sha256": "e4f150cd506eb7b73bdfdd0597ca2b1c941989b7d885cd08ecff118886c9605e",
+      "size_bytes": 5251
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/browser_checks.json",
+      "sha256": "68af496c0f491027226b653d43853add737eddd94f219e2561247516cb67fd98",
+      "size_bytes": 552
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/checks.json",
+      "sha256": "5361bcd496cbc487cb942d584a47b63b031b39f4a30a36a39e8162f40abadcfa",
+      "size_bytes": 6324
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/decisions.json",
+      "sha256": "08ff53eb2ef1f7f4b3847a5aae6b88235dd279c523afb598f12868ab6556dafe",
+      "size_bytes": 994
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/environment.json",
+      "sha256": "9025d4d262e4afad5429353a64a2bf85d4e3c8507bb050561ae8399d772cbf1c",
+      "size_bytes": 720
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/import_summary.json",
+      "sha256": "b4510918a41bf6fb2be9080465dc3c27e9f03aa8e7f4742a05ea0aaa6b3389dc",
+      "size_bytes": 589
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/restore_checks.json",
+      "sha256": "f5ed3d00abb8c1bb9bcaeff1c0e4313e434df8b281ce32e486b02b5be58cae90",
+      "size_bytes": 6338
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/restore_cleanup.json",
+      "sha256": "d6de841e96a1d669d26ca1206a939f744c0918329e84ba824807be577d3ed829",
+      "size_bytes": 228
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/source_record_links.csv",
+      "sha256": "4fe26004a92bfe8c7acf317b7d9b2bf48579391d9f60d3ef4a47dcb3811780de",
+      "size_bytes": 11756017
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/maps/README.md",
+      "sha256": "23fbefc9a920a16577c56b75cde6a5129ac4dfe8162e83c5a8b7a2315d160334",
+      "size_bytes": 1448
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/maps/database_map_preview.png",
+      "sha256": "95e5e082a09bd2a068757d3e2e944390d805e299dc56d750349fa8295fc8c30a",
+      "size_bytes": 152821
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/maps/well_database_map.html",
+      "sha256": "24c00da53b9e5b1b6be2c4dc341580c13bc67cef341a41ff830717de59c4c06a",
+      "size_bytes": 30281052
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/maps/well_database_map.manifest.json",
+      "sha256": "aeb506343a89c319b28412887ab7042e8abe4bd8dcd54c19fc9f209a56cb4ca9",
+      "size_bytes": 477
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/ACTION_PLAN.md",
+      "sha256": "7360427f615ab122b304653495b9ffece887621804a93a37502c4a72cb97ce34",
+      "size_bytes": 8791
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/DATA_FORMAT.md",
+      "sha256": "709ae66182ab7cfc256ed30760693f4a1a4e66876fc6e19636b2bc08567087b1",
+      "size_bytes": 9279
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/FINDINGS.md",
+      "sha256": "f2891e3a57996314ed7ca12fc12eace52848d8a3d2443fbebf7fcaa935bedf00",
+      "size_bytes": 37315
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/ITERATIONS.md",
+      "sha256": "763266a9dbd8913097c0690792c415aedfd1fa1f667b948202d849f857b93a21",
+      "size_bytes": 6213
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/README.md",
+      "sha256": "f958e32ed2e7b08ea172a49368886199e67994e44a153d089aa908a2e509a866",
+      "size_bytes": 6108
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/ROADMAP.md",
+      "sha256": "9bba819054dbd48460ccb49e54187151778ee22cd01f5b4ca7bb551f54017677",
+      "size_bytes": 11843
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/workflow/SOP.md",
+      "sha256": "052409aeb679511b629db402fe320a521942c8b55e73d73b230e360bb56af900",
+      "size_bytes": 9666
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/inputs/input_files.csv",
+      "sha256": "4564aa56a153921fa05017d83ab19c05bc104d073e642cc394e99830a82fe36a",
+      "size_bytes": 38680
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/outputs/boardman.dump",
+      "sha256": "d1a8ce38e54c8f8ccc6ec877e5daee2979a1a28d58afae4f6f031e069948480a",
+      "size_bytes": 57735223
+    }
+  ],
+  "backup": "outputs/boardman.dump",
+  "map": "evidence/maps/well_database_map.html",
+  "open_issues": [
+    "Iteration 3 height/depth actions remain pending; all 163 findings are open.",
+    "Horizontal and vertical references require verification before geological modeling.",
+    "ArcGIS geodatabase export remains deferred."
+  ],
+  "map_behavior": "Generated from PostgreSQL queries; embedded data snapshot, not a live database client."
+}

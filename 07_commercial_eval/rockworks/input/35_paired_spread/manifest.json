@@ -1,0 +1,51 @@
+{
+  "workbook": "boardman_35_paired_spread_rockworks.xls",
+  "workbook_sha256": "4b2b828ad07d5398d2a0f03c2eb412ad118e4330b3909ba6299137666b5b6e07",
+  "source_sha256": {
+    "boardman_wells_lithology.csv": "47680f75ad2c79a01acb397b4f2bfba3b5042c2bae1a6250cdf92acf27b29150",
+    "boardman_wells_stratigraphy.csv": "4cd54db4ec0e21d6edaaa3f132f913bb62c2a8d66e90ae290113ac06c0d768d0",
+    "boardman_wells_summary.csv": "0aa72d523e43e4d312cec67b480be6be179965a1b65428c2a69101e15695af17"
+  },
+  "selected_reports": 35,
+  "unique_gwis_sites": 35,
+  "covered_townships": 13,
+  "township_counts": {
+    "WM4.00N27.00E": 3,
+    "WM4.00N26.00E": 1,
+    "WM3.00N26.00E": 1,
+    "WM3.00N24.00E": 4,
+    "WM3.00N27.00E": 2,
+    "WM2.00N27.00E": 2,
+    "WM4.00N24.00E": 1,
+    "WM4.00N25.00E": 1,
+    "WM2.00N24.00E": 1,
+    "WM3.00N28.00E": 3,
+    "WM4.00N28.00E": 10,
+    "WM5.00N28.00E": 5,
+    "WM5.00N27.00E": 1
+  },
+  "source_datum_counts": {
+    "NAVD1988": 34,
+    "NGVD1929": 1
+  },
+  "sheet_rows_excluding_header": {
+    "Location": 35,
+    "Lithology": 453,
+    "Stratigraphy": 154,
+    "Lith Type": 274,
+    "Strat Type": 31,
+    "IText Type": 2,
+    "IText": 607,
+    "Source Summary": 35,
+    "Source Lithology": 453,
+    "Source Stratigraphy": 154,
+    "Selection": 35,
+    "Label Map": 31,
+    "Lithology Dictionary": 274,
+    "Datum Audit": 35,
+    "Read Me": 14
+  },
+  "validation": "every XLS cell read back with xlrd; source hashes unchanged",
+  "rockworks_import_status": "not_executed",
+  "selection_algorithm": "township_coverage_then_farthest_point_in_EPSG26911"
+}

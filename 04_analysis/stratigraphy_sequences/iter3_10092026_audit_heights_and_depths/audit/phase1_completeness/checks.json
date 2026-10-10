@@ -1,0 +1,58 @@
+{
+  "result": "pass",
+  "counts": {
+    "wells": 332,
+    "stratigraphy_intervals": 1427,
+    "lithology_intervals": 1215,
+    "numeric_categories": {
+      "numeric_complete": 246,
+      "inconsistent": 66,
+      "missing_elevation": 1,
+      "missing_depth": 19
+    },
+    "ground_height_categories": {
+      "calculated_only": 295,
+      "missing": 1,
+      "recorded_linked_site": 36
+    },
+    "missing_completion_depth_wells": 19,
+    "missing_elevation_wells": 1,
+    "wells_with_flagged_mismatches": 66,
+    "issue_counts": {
+      "interval_below_recorded_completion": 127,
+      "missing_or_invalid_interval_elevation": 10,
+      "missing_completion_depth": 19,
+      "stratigraphy_depth_overlap": 2,
+      "stratigraphy_depth_gap": 4,
+      "nonpositive_interval_thickness": 1
+    },
+    "issue_well_counts": {
+      "interval_below_recorded_completion": 64,
+      "missing_completion_depth": 19,
+      "missing_or_invalid_interval_elevation": 1,
+      "nonpositive_interval_thickness": 1,
+      "stratigraphy_depth_gap": 3,
+      "stratigraphy_depth_overlap": 1
+    },
+    "implied_ground_height_available_wells": 331,
+    "cached_ground_height_sites": 35,
+    "cached_ground_height_wells": 36,
+    "cached_source_coordinates_match_wells": 30,
+    "interval_vertical_reference_not_recorded_wells": 332,
+    "core_explicit_ground_height_fields": 0,
+    "ground_height_candidate_occurrences": 2844,
+    "finding_occurrences": 163
+  },
+  "arithmetic_tolerance_ft": "0.01",
+  "checks": {
+    "parent_output_hashes": "pass",
+    "well_ids_unique": "pass",
+    "interval_ids_join_summary": "pass",
+    "one_audit_row_per_well": "pass",
+    "exclusive_map_category_totals": "pass",
+    "csv_read_back": "pass",
+    "cached_pages_match_saved_hashes_and_ground_fields": "pass",
+    "all_source_hashes_unchanged": "pass",
+    "parent_manifest_unchanged": "pass"
+  }
+}

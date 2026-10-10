@@ -1,0 +1,49 @@
+{
+  "result": "pass",
+  "counts": {
+    "summary": {
+      "input": 7402,
+      "retained": 7311,
+      "archived": 91
+    },
+    "stratigraphy": {
+      "input": 1854,
+      "retained": 1427,
+      "archived": 427
+    },
+    "lithology": {
+      "input": 15586,
+      "retained": 15459,
+      "archived": 127
+    }
+  },
+  "duplicate_groups": 71,
+  "group_records": 166,
+  "representatives": 71,
+  "removed_wells": 91,
+  "groups_without_one_most_common_location": 9,
+  "distant_records_retained": [
+    "UMAT_0001205",
+    "UMAT_0058282",
+    "UMAT_0056176",
+    "UMAT_0057516"
+  ],
+  "surviving_wells_with_stratigraphy": 332,
+  "checks": {
+    "input_hashes": "pass",
+    "complete_sequence_matching_with_occurrence_counts": "pass",
+    "original_headers_preserved": "pass",
+    "retained_and_archived_rows_read_back_unchanged": "pass",
+    "all_original_rows_accounted_for": "pass",
+    "primary_keys_unique": "pass",
+    "active_and_archived_wells_partition_inputs": "pass",
+    "active_foreign_keys": "pass",
+    "archive_foreign_keys": "pass",
+    "summary_counts_and_flags": "pass",
+    "every_removal_within_100m": "pass",
+    "distant_records_retained": "pass",
+    "representatives_preserved": "pass",
+    "every_removed_interval_linked_to_surviving_occurrence": "pass",
+    "source_hashes_unchanged": "pass"
+  }
+}

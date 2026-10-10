@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-10-09T17:23:59.129607-07:00",
+  "authorized_by": "User instructions in this conversation",
+  "decisions": [
+    {
+      "id": "iter4_local_postgresql",
+      "decision": "Use a separate local Docker Desktop PostgreSQL/PostGIS instance and an HTML map; defer ArcGIS export."
+    },
+    {
+      "id": "iter4_shared_versioned_tools",
+      "decision": "Keep infrastructure under database/versions/v001; retain per-iteration backups, maps, checks and manifests."
+    },
+    {
+      "id": "iter4_preserve_working_data",
+      "decision": "Keep all 332 iteration 2 working well IDs, including iteration 3 discrepancies, and preserve original values."
+    },
+    {
+      "id": "iter4_preserve_evidence",
+      "decision": "Retain archives, original source file bytes, record links, open findings and unadopted height evidence."
+    }
+  ],
+  "geological_values_changed": 0,
+  "height_candidates_adopted": 0,
+  "iteration_3_status": "Audit complete; action decisions pending"
+}
