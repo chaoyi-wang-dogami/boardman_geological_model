@@ -49,10 +49,25 @@ data in documentation work when the corresponding project files are present.
 
 ## History and Git commands
 
-This is a normal follow-up commit. It removes the files from the branch's
-current tracked tree but retains their contents in older commits. Consequently,
-it does not shrink the existing Git history or remove the earlier large blob.
-History removal would require a separately agreed rewrite and force push.
+The first cleanup was a normal follow-up commit and left data in older commits.
+On October 9, 2026, the user authorized removing those files from Git history.
+The history rewrite removes 146 exact local-only paths across all seven source
+commits, including the database dump, maps, caches, exports, and older plots.
+The filtered current tree matches the previous tree before this policy update;
+source files and geological values are unchanged. See
+[GIT_HISTORY_CLEANUP.json](GIT_HISTORY_CLEANUP.json) for the path list, tool,
+recovery locations, and checks.
+
+The rewritten history has new commit IDs. The push targets only `master` and
+checks its exact previous remote commit before replacing it. Other existing
+clones should be re-cloned, or their local work carefully rebased onto the new
+history; merging the old history back would reintroduce the large files.
+
+A verified recovery bundle and commit mapping are stored outside this project
+in the sibling `boardman_git_history_recovery_20261009_183510/` directory.
+The original checkout retains old Git objects/reflogs locally for recovery;
+they are not part of the rewritten remote branch. Do not push recovery history
+back to the remote.
 
 To inspect ignored local files without modifying them:
 
