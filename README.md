@@ -38,6 +38,11 @@ The supplied `.gitignore` excludes downloaded PDFs, generated CSVs, and GIS
 outputs. Configuration, scripts, and later hand-curated interpretation files
 remain trackable.
 
+The [Git storage policy](GIT_STORAGE.md) also keeps database backups, generated
+interactive maps, plotting datasets, runtime logs, and downloaded page caches
+local. These files remain useful project data and require separate backup;
+they are excluded from the source-code repository.
+
 ## Install with uv
 
 From the repository root:
@@ -88,7 +93,8 @@ for denominators, definitions, and limitations. Driller figures use one
 geological report per identified well unit and names with at least 10 A/B units.
 The approved Zollman aliases are combined; Zachary Neigel's concentrated
 project is excluded. Generated CSVs are ignored by Git. The
-findings, figures, named description example, and JSON summaries are retained.
+findings, selected figures allowed by `.gitignore`, named description example,
+and JSON summaries are retained in Git. Other generated figures remain local.
 Source data are not changed.
 
 ## Curate the saved 19-township reports

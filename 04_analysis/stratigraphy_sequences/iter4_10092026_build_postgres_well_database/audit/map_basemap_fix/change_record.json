@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-09T17:47:19.341167-07:00",
+  "reason": "User reported no basemap on the iteration 4 HTML; requested repair folded into the cleanup commit.",
+  "confirmed_problem": "Wells only was selected by default; no background layer was initialized on startup.",
+  "provider": "USGS The National Map / USGSTopo",
+  "tile_url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
+  "provider_check": {
+    "status": 200,
+    "content_type": "image/jpeg",
+    "regional_tile": "8/91/42"
+  },
+  "database_tool_version": "v001",
+  "map_tool_version": "v002",
+  "changes": [
+    "Select USGS by default and load its tiles at startup.",
+    "Retain offline Wells only selection and explicit unavailable-background message.",
+    "Preserve previous HTML, preview, manifests and documentation; update current display hashes."
+  ],
+  "data_effect": "None: original embedded payload, database backup, working values, IDs and source references unchanged.",
+  "embedded_payload_sha256": "22dd62dfd6e93c82d3e21b060d3555ed4ca9b689b392e143299a860a4182d955",
+  "embedded_payload_unchanged": true,
+  "database_backup_unchanged": true,
+  "v001_tools_unchanged": true,
+  "preserved_files": [
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/iteration_manifest_before_fix.json",
+      "sha256": "c98146c7bf13cd1348afe37610e16d3c433182bf0039c7521824528849bfaa68",
+      "size_bytes": 80160
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/iteration_readme_before_fix.md",
+      "sha256": "e4f150cd506eb7b73bdfdd0597ca2b1c941989b7d885cd08ecff118886c9605e",
+      "size_bytes": 5251
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/map_manifest_before_fix.json",
+      "sha256": "aeb506343a89c319b28412887ab7042e8abe4bd8dcd54c19fc9f209a56cb4ca9",
+      "size_bytes": 477
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/map_readme_before_fix.md",
+      "sha256": "23fbefc9a920a16577c56b75cde6a5129ac4dfe8162e83c5a8b7a2315d160334",
+      "size_bytes": 1448
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/preview_before_fix.png",
+      "sha256": "95e5e082a09bd2a068757d3e2e944390d805e299dc56d750349fa8295fc8c30a",
+      "size_bytes": 152821
+    },
+    {
+      "path_base": "repository_root",
+      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/well_database_map_before_fix.html",
+      "sha256": "24c00da53b9e5b1b6be2c4dc341580c13bc67cef341a41ff830717de59c4c06a",
+      "size_bytes": 30281052
+    }
+  ],
+  "updated_map": {
+    "path_base": "repository_root",
+    "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/maps/well_database_map.html",
+    "sha256": "7192380e50184168902eed83c22d78b9176c7fced535fc21379eea07f0823e54",
+    "size_bytes": 30281394
+  },
+  "verification": "audit/map_basemap_fix/browser_checks.json",
+  "git_policy": "Generated maps/previews remain local; repair code, manifests and audit documentation are tracked."
+}

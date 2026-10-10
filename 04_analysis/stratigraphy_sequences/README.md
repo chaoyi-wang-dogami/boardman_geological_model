@@ -25,7 +25,7 @@ The [duplicate-group map](maps/duplicate_groups/README.md) shows the original it
 
 [Iteration 3](iter3_10092026_audit_heights_and_depths/README.md) contains the completed read-only depth/elevation audit and colored completeness maps. It remains open for decisions about corrections. Iteration 4 imports that evidence without correcting or removing affected wells.
 
-Open the [database map](iter4_10092026_build_postgres_well_database/evidence/maps/well_database_map.html) directly in a browser. Well information is embedded, so inspection works without a database connection. See [shared database instructions](database/versions/v001/README.md) to start the local server, regenerate a map, or restore the frozen backup. ArcGIS export is deferred.
+Open the [database map](iter4_10092026_build_postgres_well_database/evidence/maps/well_database_map.html) directly in a browser. Well information is embedded, so inspection works without a database connection. The USGS background loads by default; Wells only works offline. See [database instructions](database/versions/v001/README.md) to start the server or restore a backup, and [map tools v002](database/versions/v002/README.md) to regenerate a map. ArcGIS export is deferred.
 
 ## File layout
 

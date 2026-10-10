@@ -19,7 +19,7 @@ __pycache__/
 # Generated combined raw interval table
 03_processed/lithology/lithology_all_raw.csv
 
-# Reproducible tables; retain the report figures and JSON summaries in Git
+# Reproducible tables and figures; retain selected report figures and JSON summaries
 04_analysis/raw_lithology_profile/artifacts/*.csv
 04_analysis/raw_lithology_profile/artifacts/*.png
 !04_analysis/raw_lithology_profile/artifacts/vocabulary.png
@@ -34,3 +34,41 @@ __pycache__/
 .ipynb_checkpoints/
 .vscode/
 .idea/
+
+# Local database releases: preserve on disk and back up separately from Git.
+*.dump
+*.backup
+
+# Generated Markdown previews and runtime logs
+03_processed/boardman_19_townships/README.html
+*.log
+
+# Generated pilot-model exports; retain the scripts and ParaView settings.
+04_analysis/boardman_19_townships/geological_model/*.gempy
+04_analysis/boardman_19_townships/geological_model/*.npz
+04_analysis/boardman_19_townships/geological_model/*.vti
+
+# Generated iteration maps, plotting datasets, and PDF figures.
+# Keep map templates/scripts, audit findings, checks, decisions, and manifests.
+04_analysis/stratigraphy_sequences/iter*/evidence/plots/**/*.html
+04_analysis/stratigraphy_sequences/iter*/evidence/plots/**/*.pdf
+04_analysis/stratigraphy_sequences/iter*/evidence/plots/**/*.geojson
+04_analysis/stratigraphy_sequences/iter*/evidence/plots/**/groups.json
+04_analysis/stratigraphy_sequences/iter*/evidence/plots/**/well_locations.json
+04_analysis/stratigraphy_sequences/iter*/evidence/plots/**/audit_locations.json
+04_analysis/stratigraphy_sequences/iter*/evidence/maps/*.html
+04_analysis/stratigraphy_sequences/iter*/audit/map_background_fix/duplicate_groups_map_before_fix.html
+04_analysis/stratigraphy_sequences/iter*/audit/map_basemap_fix/*_before_fix.html
+04_analysis/stratigraphy_sequences/maps/duplicate_groups/*.html
+!04_analysis/stratigraphy_sequences/maps/duplicate_groups/map_template.html
+04_analysis/stratigraphy_sequences/maps/duplicate_groups/*.geojson
+04_analysis/stratigraphy_sequences/maps/duplicate_groups/groups.json
+04_analysis/stratigraphy_sequences/maps/duplicate_groups/before_after/*.pdf
+04_analysis/stratigraphy_sequences/artifacts/examples.json
+
+# Downloaded RockWorks source-page caches and derived import workbooks.
+# Keep lightweight source metadata, provenance manifests, and import instructions.
+07_commercial_eval/rockworks/input/*/evidence/*.html.gz
+07_commercial_eval/rockworks/input/*/evidence/*_lithology_visible.json
+07_commercial_eval/rockworks/input/*/*.xls
+07_commercial_eval/rockworks/input/*/*.xlsx

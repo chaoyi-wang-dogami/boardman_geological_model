@@ -76,17 +76,14 @@
     "host": "127.0.0.1",
     "port": 55432,
     "database": "boardman",
-    "credentials": "Excluded; private ignored database/runtime/connection.json",
-    "map_tool_version": "v002"
+    "credentials": "Excluded; private ignored database/runtime/connection.json"
   },
   "verification": {
     "live_database_checks": 34,
     "restored_database_checks": 34,
     "all_original_csv_records_verified": 150010,
     "offline_browser_checks_passed": true,
-    "temporary_restore_database_removed": true,
-    "live_usgs_basemap_loaded": true,
-    "original_embedded_payload_unchanged_after_repair": true
+    "temporary_restore_database_removed": true
   },
   "inputs": [
     {
@@ -1689,8 +1686,8 @@
     {
       "path_base": "repository_root",
       "path": "04_analysis/stratigraphy_sequences/database/README.md",
-      "sha256": "91464f7cfad56b210cda0318cfa688a2f7068f0a9ff4a48f739763e3f7be5715",
-      "size_bytes": 949
+      "sha256": "058a4b71d1494fca95d620ba866733993af509ed4ec479a3d37951605ab06b4a",
+      "size_bytes": 875
     },
     {
       "path_base": "repository_root",
@@ -1787,44 +1784,14 @@
       "path": "04_analysis/stratigraphy_sequences/database/versions/v001/vendor/leaflet.js",
       "sha256": "db49d009c841f5ca34a888c96511ae936fd9f5533e90d8b2c4d57596f4e5641a",
       "size_bytes": 147552
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/database/versions/v002/README.md",
-      "sha256": "ad4a6c9677e0c88c0a5213e55eadab7d9d8fed740d4f5eced4a10218a119ca80",
-      "size_bytes": 1209
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/database/versions/v002/scripts/browser_check.cjs",
-      "sha256": "0deff41016131b2a05ef3ca6beacfa6c3afe3e66beaa2722dfc187eb6a8d7d23",
-      "size_bytes": 5387
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/database/versions/v002/scripts/build_database_map.py",
-      "sha256": "cda5033fedafa64fda0345f1a2b6dca8fa557a32d5a352f3faf460e15c9a865b",
-      "size_bytes": 5398
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/database/versions/v002/scripts/map.js",
-      "sha256": "4bbec3bc50ff9f2b470e0608e8dcf11471f2283384c44499f7ba533b11416950",
-      "size_bytes": 10375
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/database/versions/v002/scripts/map_template.html",
-      "sha256": "9872729033640f41618a2adf9ee7b03aaf45a2b1248cfe81666a598eb6764b78",
-      "size_bytes": 5092
     }
   ],
   "artifacts": [
     {
       "path_base": "repository_root",
       "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/README.md",
-      "sha256": "bce5c44c12643c2d22e5bb0b43da9c22a653f3c52ce310b48c8705f7137409ce",
-      "size_bytes": 5721
+      "sha256": "e4f150cd506eb7b73bdfdd0597ca2b1c941989b7d885cd08ecff118886c9605e",
+      "size_bytes": 5251
     },
     {
       "path_base": "repository_root",
@@ -1858,60 +1825,6 @@
     },
     {
       "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/README.md",
-      "sha256": "1817999a2497535cb4aa92ba9bf7ea579a5d0e31d7852f37b840931101f12d62",
-      "size_bytes": 1576
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/browser_checks.json",
-      "sha256": "16285a513afaf9427fb2e1305ef5560154c4b54bbfdd2a8f67f3284a39283c2c",
-      "size_bytes": 708
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/change_record.json",
-      "sha256": "a3915c50745472b3aa346259526b3dd6132f928b29390df50a0bbea311ec88ff",
-      "size_bytes": 3558
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/iteration_manifest_before_fix.json",
-      "sha256": "c98146c7bf13cd1348afe37610e16d3c433182bf0039c7521824528849bfaa68",
-      "size_bytes": 80160
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/iteration_readme_before_fix.md",
-      "sha256": "e4f150cd506eb7b73bdfdd0597ca2b1c941989b7d885cd08ecff118886c9605e",
-      "size_bytes": 5251
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/map_manifest_before_fix.json",
-      "sha256": "aeb506343a89c319b28412887ab7042e8abe4bd8dcd54c19fc9f209a56cb4ca9",
-      "size_bytes": 477
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/map_readme_before_fix.md",
-      "sha256": "23fbefc9a920a16577c56b75cde6a5129ac4dfe8162e83c5a8b7a2315d160334",
-      "size_bytes": 1448
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/preview_before_fix.png",
-      "sha256": "95e5e082a09bd2a068757d3e2e944390d805e299dc56d750349fa8295fc8c30a",
-      "size_bytes": 152821
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/map_basemap_fix/well_database_map_before_fix.html",
-      "sha256": "24c00da53b9e5b1b6be2c4dc341580c13bc67cef341a41ff830717de59c4c06a",
-      "size_bytes": 30281052
-    },
-    {
-      "path_base": "repository_root",
       "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/audit/restore_checks.json",
       "sha256": "f5ed3d00abb8c1bb9bcaeff1c0e4313e434df8b281ce32e486b02b5be58cae90",
       "size_bytes": 6338
@@ -1931,14 +1844,8 @@
     {
       "path_base": "repository_root",
       "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/maps/README.md",
-      "sha256": "e3cbf1eaa561a9f815a3659269eac1aebabfc6a9b4f7a16c32f077ef7edd9d08",
-      "size_bytes": 1737
-    },
-    {
-      "path_base": "repository_root",
-      "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/maps/database_map_basemap_preview.png",
-      "sha256": "445f377da75bdcb74f18486a4b8ef8f05702dce131f67593af259e183ef6127e",
-      "size_bytes": 507353
+      "sha256": "23fbefc9a920a16577c56b75cde6a5129ac4dfe8162e83c5a8b7a2315d160334",
+      "size_bytes": 1448
     },
     {
       "path_base": "repository_root",
@@ -1949,14 +1856,14 @@
     {
       "path_base": "repository_root",
       "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/maps/well_database_map.html",
-      "sha256": "7192380e50184168902eed83c22d78b9176c7fced535fc21379eea07f0823e54",
-      "size_bytes": 30281394
+      "sha256": "24c00da53b9e5b1b6be2c4dc341580c13bc67cef341a41ff830717de59c4c06a",
+      "size_bytes": 30281052
     },
     {
       "path_base": "repository_root",
       "path": "04_analysis/stratigraphy_sequences/iter4_10092026_build_postgres_well_database/evidence/maps/well_database_map.manifest.json",
-      "sha256": "a7f0d6e157d79177b61af458906008a0d335ed8b96ce6f1de071d41f41606e76",
-      "size_bytes": 667
+      "sha256": "aeb506343a89c319b28412887ab7042e8abe4bd8dcd54c19fc9f209a56cb4ca9",
+      "size_bytes": 477
     },
     {
       "path_base": "repository_root",
@@ -2020,14 +1927,5 @@
     "Horizontal and vertical references require verification before geological modeling.",
     "ArcGIS geodatabase export remains deferred."
   ],
-  "map_behavior": "Generated from PostgreSQL queries; embedded data snapshot, not a live database client.",
-  "last_documentation_update_local": "2026-10-09T17:47:19.341167-07:00",
-  "display_repairs": [
-    {
-      "date": "2026-10-09T17:47:19.341167-07:00",
-      "record": "audit/map_basemap_fix/change_record.json",
-      "previous_manifest": "audit/map_basemap_fix/iteration_manifest_before_fix.json",
-      "original_completed_at_local_retained": true
-    }
-  ]
+  "map_behavior": "Generated from PostgreSQL queries; embedded data snapshot, not a live database client."
 }

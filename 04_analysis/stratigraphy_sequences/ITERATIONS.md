@@ -50,5 +50,6 @@ An iteration may be complete with an unresolved issue if its purpose was to docu
 | October 9, 2026 | Added static full-extent/closer before-and-after comparisons and a USGS interactive map inside iteration 2 | Display evidence only; original data outputs, archives, decisions, and closure time unchanged; previous manifest/README retained |
 | October 9, 2026 | Completed iteration 3's read-only audit phase and category maps; left iteration open for action decisions | No data changes; 19 missing completion depths, one well missing elevations, and 66 wells with discrepancies identified; calculated heights remain candidates |
 | October 9, 2026 | Completed iteration 4 with shared versioned database tools, relational history, offline HTML inspection, and a tested backup | 332 working wells and all interval values unchanged; all 7,402 original IDs and 163 open audit findings retained; no height candidates adopted |
+| October 9, 2026 | Repaired iteration 4's opening basemap using map tools v002; retained previous map and manifests | Display only: existing embedded data and database backup unchanged; verified live USGS tiles, background switching, and offline controls |
 
 Keep dated plan revisions here. Once data iterations begin, record material workflow changes in the affected iteration's decisions and retain the document version used to perform the work.

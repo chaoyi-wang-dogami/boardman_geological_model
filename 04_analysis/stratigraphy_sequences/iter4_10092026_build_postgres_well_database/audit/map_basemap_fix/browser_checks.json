@@ -1,0 +1,30 @@
+{
+  "offline": true,
+  "live_usgs_basemap_loaded": true,
+  "background_switching_verified": true,
+  "passed": true,
+  "default_background": "usgs",
+  "automatic_background_initialization": true,
+  "category_counts": {
+    "numeric": {
+      "numeric_complete": 246,
+      "missing_depth": 19,
+      "missing_elevation": 1,
+      "inconsistent": 66
+    },
+    "ground": {
+      "recorded_linked_site": 36,
+      "calculated_only": 295,
+      "missing": 1
+    }
+  },
+  "working_wells": 332,
+  "archived_wells": 7070,
+  "all_wells": 7402,
+  "full_interval_details": true,
+  "duplicate_navigation": true,
+  "search_and_reset": true,
+  "tile_failure_handled": true,
+  "scale_present": true,
+  "page_errors": []
+}
